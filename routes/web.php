@@ -57,32 +57,11 @@ Route::get('/lang/{locale}', function ($locale) {
 
 /*
 |--------------------------------------------------------------------------
-| Admin Routes (Protected)
+| Admin Routes (Protected) - TODO: implement admin middleware and controllers
 |--------------------------------------------------------------------------
 */
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-    
-    // Registrations Management
-    Route::get('/registrations', function () {
-        return view('admin.registrations.index');
-    })->name('admin.registrations');
-    
-    Route::get('/registrations/{uuid}', function ($uuid) {
-        return view('admin.registrations.show', compact('uuid'));
-    })->name('admin.registrations.show');
-    
-    // Speakers Management
-    Route::resource('speakers', \App\Http\Controllers\Admin\SpeakerController::class)
-        ->names('admin.speakers');
-    
-    // Sponsors Management  
-    Route::resource('sponsors', \App\Http\Controllers\Admin\SponsorController::class)
-        ->names('admin.sponsors');
-    
-    // FAQs Management
-    Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class)
-        ->names('admin.faqs');
-});
+// Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+//     Route::get('/', function () {
+//         return view('admin.dashboard');
+//     })->name('admin.dashboard');
+// });
