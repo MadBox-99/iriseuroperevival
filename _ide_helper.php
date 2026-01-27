@@ -27163,6 +27163,21 @@ namespace App\Filament\Resources\Sponsors\Pages {
             }
     }
 
+namespace App\Filament\Resources\Workshops\Pages {
+    /**
+     */
+    class CreateWorkshop extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditWorkshop extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListWorkshops extends \Filament\Resources\Pages\ListRecords {
+            }
+    }
+
 namespace App\Filament\Widgets {
     /**
      */

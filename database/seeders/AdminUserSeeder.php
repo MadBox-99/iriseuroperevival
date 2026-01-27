@@ -24,5 +24,12 @@ class AdminUserSeeder extends Seeder
                 'email_verified_at' => now(),
             ],
         );
+        User::factory()->create([
+            'name' => 'Admin User',
+            'email' => 'admin@admin.com',
+            'is_admin' => true,
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+        ]);
     }
 }

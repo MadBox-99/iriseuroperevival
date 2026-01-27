@@ -35,6 +35,8 @@ class RegistrationForm extends Component implements HasSchemas
 
     public string $type = 'attendee';
 
+    public ?string $error = null;
+
     public ?array $data = [];
 
     public bool $processing = false;
