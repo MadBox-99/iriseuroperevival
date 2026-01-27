@@ -24,7 +24,7 @@ describe('program page', function () {
     it('displays schedule items grouped by day', function () {
         ScheduleItem::factory()->create([
             'title' => 'Morning Worship',
-            'day' => '2026-08-06',
+            'day' => '2026-10-23',
             'start_time' => '09:00',
             'end_time' => '10:00',
             'type' => 'worship',
@@ -32,7 +32,7 @@ describe('program page', function () {
 
         ScheduleItem::factory()->create([
             'title' => 'Afternoon Session',
-            'day' => '2026-08-06',
+            'day' => '2026-10-23',
             'start_time' => '14:00',
             'end_time' => '15:30',
             'type' => 'session',
@@ -97,31 +97,31 @@ describe('program page', function () {
     it('can switch between days', function () {
         ScheduleItem::factory()->create([
             'title' => 'Day 1 Session',
-            'day' => '2026-08-06',
+            'day' => '2026-10-23',
         ]);
 
         ScheduleItem::factory()->create([
             'title' => 'Day 2 Session',
-            'day' => '2026-08-07',
+            'day' => '2026-10-24',
         ]);
 
         Livewire::test(Program::class)
             ->assertSee('Day 1 Session')
-            ->call('setActiveDay', '2026-08-07')
-            ->assertSet('activeDay', '2026-08-07');
+            ->call('setActiveDay', '2026-10-24')
+            ->assertSet('activeDay', '2026-10-24');
     });
 
     it('orders schedule items by time', function () {
         ScheduleItem::factory()->create([
             'title' => 'Second Session',
-            'day' => '2026-08-06',
+            'day' => '2026-10-23',
             'start_time' => '14:00',
             'end_time' => '15:00',
         ]);
 
         ScheduleItem::factory()->create([
             'title' => 'First Session',
-            'day' => '2026-08-06',
+            'day' => '2026-10-23',
             'start_time' => '09:00',
             'end_time' => '10:00',
         ]);

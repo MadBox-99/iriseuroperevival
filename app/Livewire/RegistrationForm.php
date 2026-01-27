@@ -325,6 +325,10 @@ class RegistrationForm extends Component implements HasSchemas
 
     protected function getTicketSelectionStep(): Step
     {
+        $stripeService = app(StripeService::class);
+        $prices = $stripeService->getAllPrices();
+        $tierName = $stripeService->getTierName();
+
         return Step::make('Select Your Tickets')
             ->description('Choose the best option for you')
             ->icon('heroicon-o-ticket')
@@ -333,12 +337,14 @@ class RegistrationForm extends Component implements HasSchemas
                     ->label('Ticket Type')
                     ->required()
                     ->options([
-                        'individual' => 'Individual - Single attendee registration',
-                        'team' => 'Team Pass - 10+ attendees group discount (Save 20%)',
+                        'individual' => 'Standard Ticket - Single attendee registration',
+                        'team' => 'Group Pass - 10+ attendees (Save 20%)',
+                        'vip' => 'VIP Pass - Premium experience with exclusive benefits',
                     ])
                     ->descriptions([
-                        'individual' => 'Early Bird Price: €49/person',
-                        'team' => 'Early Bird Price: €39/person',
+                        'individual' => "{$tierName} Price: €" . number_format($prices['individual'] / 100, 0) . '/person',
+                        'team' => "{$tierName} Price: €" . number_format($prices['team'] / 100, 0) . '/person (min. 10 people)',
+                        'vip' => "{$tierName} Price: €" . number_format($prices['vip'] / 100, 0) . '/person - Front row seating, VIP lounge access, meet & greet',
                     ])
                     ->default('individual')
                     ->live(),
@@ -347,15 +353,29 @@ class RegistrationForm extends Component implements HasSchemas
                     ->label('Number of Tickets')
                     ->numeric()
                     ->required()
-                    ->minValue(1)
-                    ->maxValue(50)
+                    ->minValue(fn ($get) => $get('ticket_type') === 'team' ? 10 : 1)
+                    ->maxValue(fn ($get) => $get('ticket_type') === 'vip' ? 10 : 50)
                     ->default(1)
                     ->live()
                     ->helperText(function ($get) {
-                        if ($get('ticket_type') === 'team' && (int) ($get('ticket_quantity') ?? 1) < 10) {
-                            return 'Team pass requires minimum 10 tickets';
+                        $ticketType = $get('ticket_type');
+                        $quantity = (int) ($get('ticket_quantity') ?? 1);
+
+                        if ($ticketType === 'team' && $quantity < 10) {
+                            return 'Group pass requires minimum 10 tickets to qualify for the discount.';
                         }
-                    }),
+
+                        if ($ticketType === 'vip') {
+                            return 'VIP passes are limited to maximum 10 per order.';
+                        }
+                    })
+                    ->rules([
+                        fn ($get) => function (string $attribute, $value, \Closure $fail) use ($get) {
+                            if ($get('ticket_type') === 'team' && (int) $value < 10) {
+                                $fail('Group pass requires minimum 10 tickets.');
+                            }
+                        },
+                    ]),
 
                 Section::make('Order Summary')
                     ->schema([

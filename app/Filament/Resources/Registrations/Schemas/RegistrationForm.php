@@ -72,8 +72,9 @@ class RegistrationForm
                         Select::make('ticket_type')
                             ->label('Ticket Type')
                             ->options([
-                                'individual' => 'Individual',
-                                'team' => 'Team',
+                                'individual' => 'Standard',
+                                'team' => 'Group (10+)',
+                                'vip' => 'VIP',
                                 'volunteer' => 'Volunteer',
                             ]),
                         TextInput::make('ticket_quantity')

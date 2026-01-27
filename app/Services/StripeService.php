@@ -121,10 +121,11 @@ class StripeService
         $ticketName = match ($ticketType) {
             'team' => 'Europe Revival 2026 - Team Pass',
             'volunteer' => 'Europe Revival 2026 - Volunteer Pass',
+            'vip' => 'Europe Revival 2026 - VIP Pass',
             default => 'Europe Revival 2026 - Individual Ticket',
         };
 
-        $description = "August 6-9, 2026 | Budapest, Hungary | {$tier} pricing";
+        $description = "October 22-25, 2026 | Budapest, Hungary | {$tier} pricing";
 
         return [
             [
@@ -151,19 +152,22 @@ class StripeService
     {
         $prices = [
             'early' => [
-                'individual' => 4900,   // €49
-                'team' => 3900,         // €39
+                'individual' => 4900,   // €49 - Standard ticket
+                'team' => 3900,         // €39 - Group discount (10+ people)
                 'volunteer' => 2900,    // €29 - Volunteer discounted rate
+                'vip' => 14900,         // €149 - VIP with premium benefits
             ],
             'regular' => [
-                'individual' => 5900,   // €59
-                'team' => 4900,         // €49
+                'individual' => 5900,   // €59 - Standard ticket
+                'team' => 4900,         // €49 - Group discount (10+ people)
                 'volunteer' => 3900,    // €39 - Volunteer discounted rate
+                'vip' => 17900,         // €179 - VIP with premium benefits
             ],
             'late' => [
-                'individual' => 6900,   // €69
-                'team' => 5900,         // €59
+                'individual' => 6900,   // €69 - Standard ticket
+                'team' => 5900,         // €59 - Group discount (10+ people)
                 'volunteer' => 4900,    // €49 - Volunteer discounted rate
+                'vip' => 19900,         // €199 - VIP with premium benefits
             ],
         ];
 
@@ -179,17 +183,54 @@ class StripeService
     }
 
     /**
+     * Get all pricing information for the current tier.
+     */
+    public function getAllPrices(): array
+    {
+        $tier = $this->getCurrentPricingTier();
+
+        return [
+            'tier' => $tier,
+            'individual' => $this->getTicketPrice('individual', $tier),
+            'team' => $this->getTicketPrice('team', $tier),
+            'volunteer' => $this->getTicketPrice('volunteer', $tier),
+            'vip' => $this->getTicketPrice('vip', $tier),
+            'team_minimum' => 10,
+        ];
+    }
+
+    /**
+     * Get human-readable tier name.
+     */
+    public function getTierName(): string
+    {
+        return match ($this->getCurrentPricingTier()) {
+            'early' => 'Early Bird',
+            'regular' => 'Regular',
+            'late' => 'Late Registration',
+        };
+    }
+
+    /**
+     * Get Early Bird end date.
+     */
+    public function getEarlyBirdEndDate(): string
+    {
+        return 'August 31, 2026';
+    }
+
+    /**
      * Determine the current pricing tier based on date.
      */
     public function getCurrentPricingTier(): string
     {
         $now = Date::now();
 
-        // Early Bird: Until June 30, 2026
-        $earlyBirdEnd = Date::create(2026, 6, 30, 23, 59, 59);
+        // Early Bird: Until August 31, 2026
+        $earlyBirdEnd = Date::create(2026, 8, 31, 23, 59, 59);
 
-        // Regular: July 1 - August 31, 2026
-        $regularEnd = Date::create(2026, 8, 31, 23, 59, 59);
+        // Regular: September 1 - October 15, 2026
+        $regularEnd = Date::create(2026, 10, 15, 23, 59, 59);
 
         if ($now->lte($earlyBirdEnd)) {
             return 'early';

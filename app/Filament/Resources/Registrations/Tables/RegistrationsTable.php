@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Registrations\Tables;
 
+use App\Exports\RegistrationsExport;
+use App\Mail\BulkEmail;
 use App\Mail\ReferenceRequest;
 use App\Models\Registration;
 use Filament\Actions\Action;
@@ -14,6 +16,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -22,6 +25,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class RegistrationsTable
 {
@@ -77,7 +82,21 @@ class RegistrationsTable
                     ->toggleable(),
                 TextColumn::make('ticket_type')
                     ->label('Ticket')
-                    ->formatStateUsing(fn (?string $state): string => $state ? ucfirst($state) : '-')
+                    ->badge()
+                    ->color(fn (?string $state): string => match ($state) {
+                        'individual' => 'gray',
+                        'team' => 'info',
+                        'vip' => 'warning',
+                        'volunteer' => 'success',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (?string $state): string => match ($state) {
+                        'individual' => 'Standard',
+                        'team' => 'Group',
+                        'vip' => 'VIP',
+                        'volunteer' => 'Volunteer',
+                        default => $state ?? '-',
+                    })
                     ->toggleable(),
                 TextColumn::make('amount')
                     ->label('Amount')
@@ -114,6 +133,14 @@ class RegistrationsTable
                         'rejected' => 'Rejected',
                         'cancelled' => 'Cancelled',
                     ]),
+                SelectFilter::make('ticket_type')
+                    ->label('Ticket Type')
+                    ->options([
+                        'individual' => 'Standard',
+                        'team' => 'Group',
+                        'vip' => 'VIP',
+                        'volunteer' => 'Volunteer',
+                    ]),
                 SelectFilter::make('country')
                     ->searchable()
                     ->preload(),
@@ -121,6 +148,33 @@ class RegistrationsTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+                Action::make('send_email')
+                    ->label('Send Email')
+                    ->icon('heroicon-o-envelope')
+                    ->color('info')
+                    ->modalHeading(fn (Registration $record) => "Send Email to {$record->full_name}")
+                    ->form([
+                        TextInput::make('subject')
+                            ->label('Subject')
+                            ->required()
+                            ->placeholder('Email subject...'),
+                        Textarea::make('body')
+                            ->label('Message')
+                            ->required()
+                            ->rows(6)
+                            ->placeholder('Write your message here...'),
+                    ])
+                    ->action(function (Registration $record, array $data): void {
+                        Mail::to($record->email)->queue(
+                            new BulkEmail($record, $data['subject'], $data['body']),
+                        );
+
+                        Notification::make()
+                            ->title('Email Sent')
+                            ->body("Email queued for {$record->full_name}")
+                            ->success()
+                            ->send();
+                    }),
                 Action::make('approve')
                     ->label('Approve')
                     ->icon('heroicon-o-check')
@@ -260,25 +314,115 @@ class RegistrationsTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
+                    BulkAction::make('send_bulk_email')
+                        ->label('Send Email')
+                        ->icon('heroicon-o-envelope')
+                        ->color('info')
+                        ->modalHeading('Send Email to Selected Registrations')
+                        ->form([
+                            TextInput::make('subject')
+                                ->label('Subject')
+                                ->required()
+                                ->placeholder('Email subject...'),
+                            Textarea::make('body')
+                                ->label('Message')
+                                ->required()
+                                ->rows(6)
+                                ->placeholder('Write your message here. Use {first_name} to personalize.'),
+                        ])
+                        ->action(function (Collection $records, array $data): void {
+                            $count = 0;
+                            $records->each(function (Registration $record) use ($data, &$count): void {
+                                Mail::to($record->email)->queue(
+                                    new BulkEmail($record, $data['subject'], $data['body']),
+                                );
+                                $count++;
+                            });
+
+                            Notification::make()
+                                ->title('Emails Sent')
+                                ->body("Queued {$count} email(s) for delivery")
+                                ->success()
+                                ->send();
+                        })
+                        ->deselectRecordsAfterCompletion(),
+                    BulkAction::make('export_csv')
+                        ->label('Export CSV')
+                        ->icon('heroicon-o-document-arrow-down')
+                        ->color('gray')
+                        ->action(function (Collection $records): BinaryFileResponse {
+                            $filename = 'registrations-' . now()->format('Y-m-d-His') . '.csv';
+
+                            return Excel::download(
+                                new RegistrationsExport($records),
+                                $filename,
+                                \Maatwebsite\Excel\Excel::CSV,
+                            );
+                        })
+                        ->deselectRecordsAfterCompletion(),
+                    BulkAction::make('export_excel')
+                        ->label('Export Excel')
+                        ->icon('heroicon-o-document-arrow-down')
+                        ->color('success')
+                        ->action(function (Collection $records): BinaryFileResponse {
+                            $filename = 'registrations-' . now()->format('Y-m-d-His') . '.xlsx';
+
+                            return Excel::download(
+                                new RegistrationsExport($records),
+                                $filename,
+                                \Maatwebsite\Excel\Excel::XLSX,
+                            );
+                        })
+                        ->deselectRecordsAfterCompletion(),
                     BulkAction::make('approve_selected')
                         ->label('Approve Selected')
                         ->icon('heroicon-o-check')
                         ->color('success')
                         ->requiresConfirmation()
                         ->action(function (Collection $records): void {
-                            $records->each(function (Registration $record): void {
+                            $count = 0;
+                            $records->each(function (Registration $record) use (&$count): void {
                                 if ($record->type === 'ministry' && $record->status === 'pending_approval') {
                                     $record->approve(Auth::id());
+                                    $count++;
                                 }
                             });
 
                             Notification::make()
-                                ->title('Selected registrations approved')
+                                ->title('Registrations Approved')
+                                ->body("Approved {$count} registration(s)")
                                 ->success()
                                 ->send();
-                        }),
+                        })
+                        ->deselectRecordsAfterCompletion(),
                     DeleteBulkAction::make(),
                 ]),
+                Action::make('export_all_csv')
+                    ->label('Export All (CSV)')
+                    ->icon('heroicon-o-document-arrow-down')
+                    ->color('gray')
+                    ->action(function (): BinaryFileResponse {
+                        $filename = 'all-registrations-' . now()->format('Y-m-d-His') . '.csv';
+
+                        return Excel::download(
+                            new RegistrationsExport(),
+                            $filename,
+                            \Maatwebsite\Excel\Excel::CSV,
+                        );
+                    }),
+                Action::make('export_all_excel')
+                    ->label('Export All (Excel)')
+                    ->icon('heroicon-o-document-arrow-down')
+                    ->color('success')
+                    ->action(function (): BinaryFileResponse {
+                        $filename = 'all-registrations-' . now()->format('Y-m-d-His') . '.xlsx';
+
+                        return Excel::download(
+                            new RegistrationsExport(),
+                            $filename,
+                            \Maatwebsite\Excel\Excel::XLSX,
+                        );
+                    }),
             ])
             ->striped()
             ->paginated([10, 25, 50, 100]);

@@ -25,7 +25,7 @@ class ScheduleItemFactory extends Factory
         return [
             'title' => fake()->sentence(4),
             'description' => fake()->paragraph(),
-            'day' => fake()->dateTimeBetween('2026-08-06', '2026-08-09'),
+            'day' => fake()->dateTimeBetween('2026-10-22', '2026-10-25'),
             'start_time' => $startTime,
             'end_time' => $endTime,
             'type' => fake()->randomElement(['session', 'worship', 'break', 'meal', 'special']),
