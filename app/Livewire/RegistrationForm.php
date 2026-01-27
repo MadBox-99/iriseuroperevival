@@ -7,388 +7,510 @@ namespace App\Livewire;
 use App\Models\Registration;
 use App\Services\StripeService;
 use Exception;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Wizard;
+use Filament\Schemas\Components\Wizard\Step;
+use Filament\Schemas\Concerns\InteractsWithSchemas;
+use Filament\Schemas\Contracts\HasSchemas;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
-class RegistrationForm extends Component
+class RegistrationForm extends Component implements HasSchemas
 {
-    // Form Type: 'attendee', 'ministry', 'volunteer'
+    use InteractsWithSchemas;
+
     public string $type = 'attendee';
 
-    // Current Step
-    public int $currentStep = 1;
+    public ?array $data = [];
 
-    public int $totalSteps = 4;
-
-    // Step 1: Personal Information
-    public string $first_name = '';
-
-    public string $last_name = '';
-
-    public string $email = '';
-
-    public string $phone = '';
-
-    public string $country = '';
-
-    public string $city = '';
-
-    // Step 2: Ministry Details (Ministry Team Only)
-    public string $citizenship = '';
-
-    public array $languages = [];
-
-    public string $occupation = '';
-
-    public string $church_name = '';
-
-    public string $church_city = '';
-
-    public string $pastor_name = '';
-
-    public string $pastor_email = '';
-
-    // Step 3: Testimony (Ministry Team Only)
-    public bool $is_born_again = false;
-
-    public bool $is_spirit_filled = false;
-
-    public string $testimony = '';
-
-    public bool $attended_ministry_school = false;
-
-    public string $ministry_school_name = '';
-
-    public string $reference_1_name = '';
-
-    public string $reference_1_email = '';
-
-    public string $reference_2_name = '';
-
-    public string $reference_2_email = '';
-
-    // Step 4: Ticket Selection (Attendees)
-    public string $ticket_type = 'individual'; // 'individual' or 'team'
-
-    public int $ticket_quantity = 1;
-
-    public array $team_members = [];
-
-    // Agreements
-    public bool $accepts_guidelines = false;
-
-    public bool $accepts_terms = false;
-
-    // Processing
     public bool $processing = false;
-
-    public ?string $error = null;
-
-    protected $listeners = ['resetForm'];
 
     public function mount(string $type = 'attendee'): void
     {
         $this->type = $type;
 
-        // Set total steps based on type
-        $this->totalSteps = match ($type) {
-            'attendee' => 3,
-            'ministry' => 5,
-            'volunteer' => 3,
-            default => 3,
-        };
+        $this->form->fill([
+            'ticket_type' => 'individual',
+            'ticket_quantity' => 1,
+        ]);
     }
 
-    public function rules(): array
+    public function form(Schema $schema): Schema
     {
-        $rules = [
-            // Step 1 - Always required
-            'first_name' => 'required|string|max:100',
-            'last_name' => 'required|string|max:100',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:30',
-            'country' => 'required|string|max:100',
-            'city' => 'required|string|max:100',
+        return $schema
+            ->components([
+                Wizard::make($this->getWizardSteps())
+                    ->submitAction(view('livewire.registration-form.partials.submit-button', [
+                        'type' => $this->type,
+                    ])->render()),
+            ])
+            ->statePath('data');
+    }
+
+    protected function getWizardSteps(): array
+    {
+        $steps = [
+            $this->getPersonalInfoStep(),
         ];
 
-        // Ministry Team specific rules
         if ($this->type === 'ministry') {
-            $rules = array_merge($rules, [
-                'citizenship' => 'required|string|max:100',
-                'languages' => 'required|array|min:1',
-                'occupation' => 'required|string|max:255',
-                'church_name' => 'required|string|max:255',
-                'church_city' => 'required|string|max:100',
-                'pastor_name' => 'required|string|max:200',
-                'pastor_email' => 'required|email|max:255',
-                'is_born_again' => 'accepted',
-                'is_spirit_filled' => 'accepted',
-                'testimony' => 'required|string|min:100|max:3000',
-                'reference_1_name' => 'required|string|max:200',
-                'reference_1_email' => 'required|email|max:255',
-                'reference_2_name' => 'required|string|max:200',
-                'reference_2_email' => 'required|email|max:255',
-            ]);
+            $steps[] = $this->getMinistryDetailsStep();
+            $steps[] = $this->getChurchInfoStep();
+            $steps[] = $this->getTestimonyStep();
         }
 
-        // Ticket selection for attendees
         if ($this->type === 'attendee') {
-            $rules = array_merge($rules, [
-                'ticket_type' => 'required|in:individual,team',
-                'ticket_quantity' => 'required|integer|min:1|max:50',
-            ]);
+            $steps[] = $this->getTicketSelectionStep();
         }
 
-        // Terms acceptance
-        $rules['accepts_terms'] = 'accepted';
+        if ($this->type === 'volunteer') {
+            $steps[] = $this->getVolunteerDetailsStep();
+        }
+
+        $steps[] = $this->getConfirmationStep();
+
+        return $steps;
+    }
+
+    protected function getPersonalInfoStep(): Step
+    {
+        return Step::make('Personal Information')
+            ->description('Tell us about yourself')
+            ->icon('heroicon-o-user')
+            ->schema([
+                Grid::make(2)
+                    ->schema([
+                        TextInput::make('first_name')
+                            ->label('First Name')
+                            ->required()
+                            ->maxLength(100)
+                            ->placeholder('Your first name'),
+
+                        TextInput::make('last_name')
+                            ->label('Last Name')
+                            ->required()
+                            ->maxLength(100)
+                            ->placeholder('Your last name'),
+                    ]),
+
+                TextInput::make('email')
+                    ->label('Email Address')
+                    ->email()
+                    ->required()
+                    ->maxLength(255)
+                    ->placeholder('you@example.com'),
+
+                TextInput::make('phone')
+                    ->label('Phone Number')
+                    ->tel()
+                    ->required()
+                    ->maxLength(30)
+                    ->placeholder('+36 30 123 4567'),
+
+                Grid::make(2)
+                    ->schema([
+                        Select::make('country')
+                            ->label('Country')
+                            ->required()
+                            ->searchable()
+                            ->options([
+                                'Hungary' => 'Hungary',
+                                'Germany' => 'Germany',
+                                'Austria' => 'Austria',
+                                'Romania' => 'Romania',
+                                'Slovakia' => 'Slovakia',
+                                'Czech Republic' => 'Czech Republic',
+                                'Poland' => 'Poland',
+                                'United Kingdom' => 'United Kingdom',
+                                'United States' => 'United States',
+                                'Other' => 'Other',
+                            ])
+                            ->placeholder('Select country'),
+
+                        TextInput::make('city')
+                            ->label('City')
+                            ->required()
+                            ->maxLength(100)
+                            ->placeholder('Your city'),
+                    ]),
+            ]);
+    }
+
+    protected function getMinistryDetailsStep(): Step
+    {
+        return Step::make('Ministry Details')
+            ->description('Tell us about your background')
+            ->icon('heroicon-o-briefcase')
+            ->schema([
+                TextInput::make('citizenship')
+                    ->label('Citizenship')
+                    ->required()
+                    ->maxLength(100)
+                    ->placeholder('e.g. Hungarian, German, etc.'),
+
+                CheckboxList::make('languages')
+                    ->label('Languages You Speak')
+                    ->required()
+                    ->options([
+                        'English' => 'English',
+                        'Hungarian' => 'Hungarian',
+                        'German' => 'German',
+                        'Romanian' => 'Romanian',
+                        'Spanish' => 'Spanish',
+                        'French' => 'French',
+                        'Portuguese' => 'Portuguese',
+                        'Russian' => 'Russian',
+                        'Other' => 'Other',
+                    ])
+                    ->columns(3)
+                    ->gridDirection('row'),
+
+                TextInput::make('occupation')
+                    ->label('Occupation')
+                    ->required()
+                    ->maxLength(255)
+                    ->placeholder('Your current occupation'),
+            ]);
+    }
+
+    protected function getChurchInfoStep(): Step
+    {
+        return Step::make('Church Information')
+            ->description('Tell us about your church')
+            ->icon('heroicon-o-building-library')
+            ->schema([
+                Grid::make(2)
+                    ->schema([
+                        TextInput::make('church_name')
+                            ->label('Church Name')
+                            ->required()
+                            ->maxLength(255)
+                            ->placeholder('Your home church name'),
+
+                        TextInput::make('church_city')
+                            ->label('Church City')
+                            ->required()
+                            ->maxLength(100)
+                            ->placeholder('City where your church is located'),
+                    ]),
+
+                Grid::make(2)
+                    ->schema([
+                        TextInput::make('pastor_name')
+                            ->label('Senior Pastor\'s Name')
+                            ->required()
+                            ->maxLength(200)
+                            ->placeholder('Pastor\'s full name'),
+
+                        TextInput::make('pastor_email')
+                            ->label('Pastor\'s Email')
+                            ->email()
+                            ->required()
+                            ->maxLength(255)
+                            ->placeholder('pastor@church.com'),
+                    ]),
+            ]);
+    }
+
+    protected function getTestimonyStep(): Step
+    {
+        return Step::make('Spiritual Background')
+            ->description('Share your testimony with us')
+            ->icon('heroicon-o-heart')
+            ->schema([
+                Section::make('Spiritual Requirements')
+                    ->schema([
+                        Checkbox::make('is_born_again')
+                            ->label('I am a born-again believer')
+                            ->helperText('I have accepted Jesus Christ as my Lord and Savior')
+                            ->accepted()
+                            ->validationMessages([
+                                'accepted' => 'Ministry team members must be born again believers.',
+                            ]),
+
+                        Checkbox::make('is_spirit_filled')
+                            ->label('I am Spirit-filled')
+                            ->helperText('I have received the baptism of the Holy Spirit')
+                            ->accepted()
+                            ->validationMessages([
+                                'accepted' => 'Ministry team members must be Spirit-filled.',
+                            ]),
+                    ]),
+
+                Textarea::make('testimony')
+                    ->label('Your Testimony')
+                    ->required()
+                    ->minLength(100)
+                    ->maxLength(3000)
+                    ->rows(6)
+                    ->placeholder('Please share your testimony and calling to ministry (minimum 100 characters)...')
+                    ->helperText(fn ($state) => strlen($state ?? '') . '/3000 characters'),
+
+                Section::make('Ministry Training')
+                    ->schema([
+                        Checkbox::make('attended_ministry_school')
+                            ->label('I have attended a ministry/Bible school')
+                            ->live(),
+
+                        TextInput::make('ministry_school_name')
+                            ->label('School Name')
+                            ->maxLength(255)
+                            ->placeholder('Name of the school')
+                            ->visible(fn ($get) => $get('attended_ministry_school')),
+                    ]),
+
+                Section::make('References')
+                    ->description('Please provide two references who can vouch for your character and ministry readiness.')
+                    ->schema([
+                        Grid::make(2)
+                            ->schema([
+                                TextInput::make('reference_1_name')
+                                    ->label('Reference 1 Name')
+                                    ->required()
+                                    ->maxLength(200)
+                                    ->placeholder('Full name'),
+
+                                TextInput::make('reference_1_email')
+                                    ->label('Reference 1 Email')
+                                    ->email()
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->placeholder('Email address'),
+                            ]),
+
+                        Grid::make(2)
+                            ->schema([
+                                TextInput::make('reference_2_name')
+                                    ->label('Reference 2 Name')
+                                    ->required()
+                                    ->maxLength(200)
+                                    ->placeholder('Full name'),
+
+                                TextInput::make('reference_2_email')
+                                    ->label('Reference 2 Email')
+                                    ->email()
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->placeholder('Email address'),
+                            ]),
+                    ]),
+            ]);
+    }
+
+    protected function getTicketSelectionStep(): Step
+    {
+        return Step::make('Select Your Tickets')
+            ->description('Choose the best option for you')
+            ->icon('heroicon-o-ticket')
+            ->schema([
+                Radio::make('ticket_type')
+                    ->label('Ticket Type')
+                    ->required()
+                    ->options([
+                        'individual' => 'Individual - Single attendee registration',
+                        'team' => 'Team Pass - 10+ attendees group discount (Save 20%)',
+                    ])
+                    ->descriptions([
+                        'individual' => 'Early Bird Price: €49/person',
+                        'team' => 'Early Bird Price: €39/person',
+                    ])
+                    ->default('individual')
+                    ->live(),
+
+                TextInput::make('ticket_quantity')
+                    ->label('Number of Tickets')
+                    ->numeric()
+                    ->required()
+                    ->minValue(1)
+                    ->maxValue(50)
+                    ->default(1)
+                    ->live()
+                    ->helperText(function ($get) {
+                        if ($get('ticket_type') === 'team' && (int) ($get('ticket_quantity') ?? 1) < 10) {
+                            return 'Team pass requires minimum 10 tickets';
+                        }
+                    }),
+
+                Section::make('Order Summary')
+                    ->schema([
+                        \Filament\Schemas\Components\View::make('livewire.registration-form.partials.order-summary'),
+                    ]),
+            ]);
+    }
+
+    protected function getVolunteerDetailsStep(): Step
+    {
+        return Step::make('Volunteer Details')
+            ->description('Tell us about your skills')
+            ->icon('heroicon-o-hand-raised')
+            ->schema([
+                CheckboxList::make('languages')
+                    ->label('Languages You Speak')
+                    ->required()
+                    ->options([
+                        'English' => 'English',
+                        'Hungarian' => 'Hungarian',
+                        'German' => 'German',
+                        'Romanian' => 'Romanian',
+                        'Spanish' => 'Spanish',
+                        'French' => 'French',
+                        'Portuguese' => 'Portuguese',
+                        'Russian' => 'Russian',
+                        'Other' => 'Other',
+                    ])
+                    ->columns(3)
+                    ->gridDirection('row'),
+            ]);
+    }
+
+    protected function getConfirmationStep(): Step
+    {
+        $schema = [
+            Section::make('Registration Summary')
+                ->schema([
+                    \Filament\Schemas\Components\View::make('livewire.registration-form.partials.summary'),
+                ]),
+        ];
 
         if ($this->type === 'ministry') {
-            $rules['accepts_guidelines'] = 'accepted';
+            $schema[] = Section::make('Ministry Team Guidelines')
+                ->description('Please read and accept the following guidelines')
+                ->schema([
+                    \Filament\Schemas\Components\View::make('livewire.registration-form.partials.ministry-guidelines'),
+
+                    Checkbox::make('accepts_guidelines')
+                        ->label('I accept the Ministry Team Guidelines')
+                        ->helperText('I understand and commit to the requirements above')
+                        ->accepted()
+                        ->validationMessages([
+                            'accepted' => 'You must accept the ministry team guidelines.',
+                        ]),
+                ]);
         }
 
-        return $rules;
-    }
+        $schema[] = Checkbox::make('accepts_terms')
+            ->label('I accept the Terms & Conditions')
+            ->helperText(view('livewire.registration-form.partials.terms-links')->render())
+            ->accepted()
+            ->validationMessages([
+                'accepted' => 'You must accept the terms and conditions.',
+            ]);
 
-    protected function messages(): array
-    {
-        return [
-            'first_name.required' => 'Please enter your first name.',
-            'last_name.required' => 'Please enter your last name.',
-            'email.required' => 'Please enter your email address.',
-            'email.email' => 'Please enter a valid email address.',
-            'is_born_again.accepted' => 'Ministry team members must be born again believers.',
-            'is_spirit_filled.accepted' => 'Ministry team members must be Spirit-filled.',
-            'testimony.required' => 'Please share your testimony.',
-            'testimony.min' => 'Your testimony should be at least 100 characters.',
-            'accepts_terms.accepted' => 'You must accept the terms and conditions.',
-            'accepts_guidelines.accepted' => 'You must accept the ministry team guidelines.',
-        ];
-    }
-
-    public function nextStep(): void
-    {
-        $this->validateCurrentStep();
-
-        if ($this->currentStep < $this->totalSteps) {
-            $this->currentStep++;
-        }
-    }
-
-    public function previousStep(): void
-    {
-        if ($this->currentStep > 1) {
-            $this->currentStep--;
-        }
-    }
-
-    public function goToStep(int $step): void
-    {
-        if ($step >= 1 && $step <= $this->currentStep) {
-            $this->currentStep = $step;
-        }
-    }
-
-    protected function validateCurrentStep(): void
-    {
-        $stepRules = $this->getStepRules($this->currentStep);
-        $this->validate($stepRules);
-    }
-
-    protected function getStepRules(int $step): array
-    {
-        return match ($this->type) {
-            'attendee' => $this->getAttendeeStepRules($step),
-            'ministry' => $this->getMinistryStepRules($step),
-            'volunteer' => $this->getVolunteerStepRules($step),
-            default => [],
-        };
-    }
-
-    protected function getAttendeeStepRules(int $step): array
-    {
-        return match ($step) {
-            1 => [
-                'first_name' => 'required|string|max:100',
-                'last_name' => 'required|string|max:100',
-                'email' => 'required|email|max:255',
-                'phone' => 'required|string|max:30',
-                'country' => 'required|string|max:100',
-                'city' => 'required|string|max:100',
-            ],
-            2 => [
-                'ticket_type' => 'required|in:individual,team',
-                'ticket_quantity' => 'required|integer|min:1|max:50',
-            ],
-            3 => [
-                'accepts_terms' => 'accepted',
-            ],
-            default => [],
-        };
-    }
-
-    protected function getMinistryStepRules(int $step): array
-    {
-        return match ($step) {
-            1 => [
-                'first_name' => 'required|string|max:100',
-                'last_name' => 'required|string|max:100',
-                'email' => 'required|email|max:255',
-                'phone' => 'required|string|max:30',
-                'country' => 'required|string|max:100',
-                'city' => 'required|string|max:100',
-            ],
-            2 => [
-                'citizenship' => 'required|string|max:100',
-                'languages' => 'required|array|min:1',
-                'occupation' => 'required|string|max:255',
-            ],
-            3 => [
-                'church_name' => 'required|string|max:255',
-                'church_city' => 'required|string|max:100',
-                'pastor_name' => 'required|string|max:200',
-                'pastor_email' => 'required|email|max:255',
-            ],
-            4 => [
-                'is_born_again' => 'accepted',
-                'is_spirit_filled' => 'accepted',
-                'testimony' => 'required|string|min:100|max:3000',
-                'reference_1_name' => 'required|string|max:200',
-                'reference_1_email' => 'required|email|max:255',
-                'reference_2_name' => 'required|string|max:200',
-                'reference_2_email' => 'required|email|max:255',
-            ],
-            5 => [
-                'accepts_terms' => 'accepted',
-                'accepts_guidelines' => 'accepted',
-            ],
-            default => [],
-        };
-    }
-
-    protected function getVolunteerStepRules(int $step): array
-    {
-        return match ($step) {
-            1 => [
-                'first_name' => 'required|string|max:100',
-                'last_name' => 'required|string|max:100',
-                'email' => 'required|email|max:255',
-                'phone' => 'required|string|max:30',
-                'country' => 'required|string|max:100',
-                'city' => 'required|string|max:100',
-            ],
-            2 => [
-                'languages' => 'required|array|min:1',
-            ],
-            3 => [
-                'accepts_terms' => 'accepted',
-            ],
-            default => [],
-        };
+        return Step::make('Confirmation')
+            ->description('Review and confirm your registration')
+            ->icon('heroicon-o-check-circle')
+            ->schema($schema);
     }
 
     public function submit()
     {
-        $this->validate();
+        $data = $this->form->getState();
         $this->processing = true;
         $this->error = null;
 
         try {
-            $registration = $this->createRegistration();
+            $registration = $this->createRegistration($data);
 
             if ($this->type === 'attendee') {
-                // Redirect to Stripe Checkout
                 $stripeService = app(StripeService::class);
                 $checkoutUrl = $stripeService->createCheckoutSession($registration);
 
                 return redirect($checkoutUrl);
             }
 
-            // For ministry/volunteer - redirect to success page
+            Notification::make()
+                ->title('Application Submitted!')
+                ->success()
+                ->send();
+
             return to_route('register.success', ['uuid' => $registration->uuid]);
         } catch (Exception $e) {
-            $this->error = 'An error occurred. Please try again or contact support.';
             $this->processing = false;
+
+            Notification::make()
+                ->title('Error')
+                ->body('An error occurred. Please try again or contact support.')
+                ->danger()
+                ->send();
 
             report($e);
         }
     }
 
-    protected function createRegistration(): Registration
+    protected function createRegistration(array $data): Registration
     {
-        $data = [
+        $registrationData = [
             'uuid' => Str::uuid(),
             'type' => $this->type,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'country' => $this->country,
-            'city' => $this->city,
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'country' => $data['country'],
+            'city' => $data['city'],
             'status' => $this->type === 'attendee' ? 'pending_payment' : 'pending_approval',
         ];
 
-        // Attendee specific
         if ($this->type === 'attendee') {
-            $data['ticket_type'] = $this->ticket_type;
-            $data['ticket_quantity'] = $this->ticket_quantity;
-            $data['amount'] = $this->calculateAmount();
+            $registrationData['ticket_type'] = $data['ticket_type'];
+            $registrationData['ticket_quantity'] = $data['ticket_quantity'];
+            $registrationData['amount'] = $this->calculateAmount($data);
         }
 
-        // Ministry team specific
         if ($this->type === 'ministry') {
-            $data['citizenship'] = $this->citizenship;
-            $data['languages'] = $this->languages;
-            $data['occupation'] = $this->occupation;
-            $data['church_name'] = $this->church_name;
-            $data['church_city'] = $this->church_city;
-            $data['pastor_name'] = $this->pastor_name;
-            $data['pastor_email'] = $this->pastor_email;
-            $data['is_born_again'] = $this->is_born_again;
-            $data['is_spirit_filled'] = $this->is_spirit_filled;
-            $data['testimony'] = $this->testimony;
-            $data['attended_ministry_school'] = $this->attended_ministry_school;
-            $data['ministry_school_name'] = $this->ministry_school_name;
-            $data['reference_1_name'] = $this->reference_1_name;
-            $data['reference_1_email'] = $this->reference_1_email;
-            $data['reference_2_name'] = $this->reference_2_name;
-            $data['reference_2_email'] = $this->reference_2_email;
+            $registrationData['citizenship'] = $data['citizenship'];
+            $registrationData['languages'] = $data['languages'];
+            $registrationData['occupation'] = $data['occupation'];
+            $registrationData['church_name'] = $data['church_name'];
+            $registrationData['church_city'] = $data['church_city'];
+            $registrationData['pastor_name'] = $data['pastor_name'];
+            $registrationData['pastor_email'] = $data['pastor_email'];
+            $registrationData['is_born_again'] = $data['is_born_again'] ?? false;
+            $registrationData['is_spirit_filled'] = $data['is_spirit_filled'] ?? false;
+            $registrationData['testimony'] = $data['testimony'];
+            $registrationData['attended_ministry_school'] = $data['attended_ministry_school'] ?? false;
+            $registrationData['ministry_school_name'] = $data['ministry_school_name'] ?? null;
+            $registrationData['reference_1_name'] = $data['reference_1_name'];
+            $registrationData['reference_1_email'] = $data['reference_1_email'];
+            $registrationData['reference_2_name'] = $data['reference_2_name'];
+            $registrationData['reference_2_email'] = $data['reference_2_email'];
         }
 
-        // Volunteer specific
         if ($this->type === 'volunteer') {
-            $data['languages'] = $this->languages;
+            $registrationData['languages'] = $data['languages'];
         }
 
-        return Registration::query()->create($data);
+        return Registration::query()->create($registrationData);
     }
 
-    protected function calculateAmount(): int
+    protected function calculateAmount(array $data): int
     {
         $stripeService = app(StripeService::class);
         $tier = $stripeService->getCurrentPricingTier();
-        $pricePerTicket = $stripeService->getTicketPrice($this->ticket_type, $tier);
+        $pricePerTicket = $stripeService->getTicketPrice($data['ticket_type'], $tier);
 
-        return $pricePerTicket * $this->ticket_quantity;
+        return $pricePerTicket * $data['ticket_quantity'];
     }
 
-    public function getProgressProperty(): int
+    public function getFormattedPrice(): string
     {
-        return (int) (($this->currentStep / $this->totalSteps) * 100);
-    }
+        $data = $this->data ?? [];
+        $ticketType = $data['ticket_type'] ?? 'individual';
+        $quantity = (int) ($data['ticket_quantity'] ?? 1);
+        $pricePerTicket = $ticketType === 'individual' ? 4900 : 3900;
 
-    public function getFormattedPriceProperty(): string
-    {
-        $amount = $this->calculateAmount();
-
-        return '€' . number_format($amount / 100, 2);
-    }
-
-    public function resetForm(): void
-    {
-        $this->reset();
-        $this->currentStep = 1;
+        return '€' . number_format(($pricePerTicket * $quantity) / 100, 2);
     }
 
     public function render(): Factory|View

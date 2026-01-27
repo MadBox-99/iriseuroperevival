@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "354721cc4f9e8d90065b2cda7a3a9634",
+    "content-hash": "8a0a2a6dee3d4daa99f1d6d8b5019a12",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -2189,16 +2189,16 @@
         },
         {
             "name": "laravel/boost",
-            "version": "v2.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/boost.git",
-                "reference": "59874334803197654c1e8de96547804465bbdd0c"
+                "reference": "4bbcc99c4b05fab18a848e65c8af9ad4173360dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/boost/zipball/59874334803197654c1e8de96547804465bbdd0c",
-                "reference": "59874334803197654c1e8de96547804465bbdd0c",
+                "url": "https://api.github.com/repos/laravel/boost/zipball/4bbcc99c4b05fab18a848e65c8af9ad4173360dd",
+                "reference": "4bbcc99c4b05fab18a848e65c8af9ad4173360dd",
                 "shasum": ""
             },
             "require": {
@@ -2251,7 +2251,7 @@
                 "issues": "https://github.com/laravel/boost/issues",
                 "source": "https://github.com/laravel/boost"
             },
-            "time": "2026-01-26T16:36:25+00:00"
+            "time": "2026-01-27T11:20:21+00:00"
         },
         {
             "name": "laravel/fortify",
@@ -9188,21 +9188,22 @@
         },
         {
             "name": "driftingly/rector-laravel",
-            "version": "2.1.2",
+            "version": "2.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/driftingly/rector-laravel.git",
-                "reference": "d7cd932cff9e398a43393f1a1a63b27d574e35ef"
+                "reference": "aee9d4a1d489e7ec484fc79f33137f8ee051b3f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/driftingly/rector-laravel/zipball/d7cd932cff9e398a43393f1a1a63b27d574e35ef",
-                "reference": "d7cd932cff9e398a43393f1a1a63b27d574e35ef",
+                "url": "https://api.github.com/repos/driftingly/rector-laravel/zipball/aee9d4a1d489e7ec484fc79f33137f8ee051b3f7",
+                "reference": "aee9d4a1d489e7ec484fc79f33137f8ee051b3f7",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4 || ^8.0",
-                "rector/rector": "^2.2.7"
+                "rector/rector": "^2.2.7",
+                "webmozart/assert": "^1.11"
             },
             "type": "rector-extension",
             "autoload": {
@@ -9217,9 +9218,9 @@
             "description": "Rector upgrades rules for Laravel Framework",
             "support": {
                 "issues": "https://github.com/driftingly/rector-laravel/issues",
-                "source": "https://github.com/driftingly/rector-laravel/tree/2.1.2"
+                "source": "https://github.com/driftingly/rector-laravel/tree/2.1.9"
             },
-            "time": "2025-10-31T21:56:58+00:00"
+            "time": "2025-12-25T23:31:36+00:00"
         },
         {
             "name": "fakerphp/faker",
@@ -10233,6 +10234,75 @@
                 }
             ],
             "time": "2025-08-20T13:10:51+00:00"
+        },
+        {
+            "name": "pestphp/pest-plugin-drift",
+            "version": "v4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pestphp/pest-plugin-drift.git",
+                "reference": "f4972f2dc6e6e6f1b47db0a8472ca70ca42b622e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pestphp/pest-plugin-drift/zipball/f4972f2dc6e6e6f1b47db0a8472ca70ca42b622e",
+                "reference": "f4972f2dc6e6e6f1b47db0a8472ca70ca42b622e",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^5.6.1",
+                "pestphp/pest": "^4.0.0",
+                "php": "^8.3.0",
+                "symfony/finder": "^7.3.2"
+            },
+            "require-dev": {
+                "pestphp/pest-dev-tools": "^4.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "pest": {
+                    "plugins": [
+                        "Pest\\Drift\\Plugin"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pest\\Drift\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The Pest Drift Plugin",
+            "keywords": [
+                "framework",
+                "laravel",
+                "pest",
+                "php",
+                "test",
+                "testing",
+                "unit"
+            ],
+            "support": {
+                "source": "https://github.com/pestphp/pest-plugin-drift/tree/v4.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/enunomaduro",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/mandisma",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-08-20T12:54:20+00:00"
         },
         {
             "name": "pestphp/pest-plugin-laravel",
@@ -12392,23 +12462,23 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "2.1.2",
+            "version": "1.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozarts/assert.git",
-                "reference": "ce6a2f100c404b2d32a1dd1270f9b59ad4f57649"
+                "reference": "9be6926d8b485f55b9229203f962b51ed377ba68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozarts/assert/zipball/ce6a2f100c404b2d32a1dd1270f9b59ad4f57649",
-                "reference": "ce6a2f100c404b2d32a1dd1270f9b59ad4f57649",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/9be6926d8b485f55b9229203f962b51ed377ba68",
+                "reference": "9be6926d8b485f55b9229203f962b51ed377ba68",
                 "shasum": ""
             },
             "require": {
                 "ext-ctype": "*",
                 "ext-date": "*",
                 "ext-filter": "*",
-                "php": "^8.2"
+                "php": "^7.2 || ^8.0"
             },
             "suggest": {
                 "ext-intl": "",
@@ -12418,7 +12488,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-feature/2-0": "2.0-dev"
+                    "dev-master": "1.10-dev"
                 }
             },
             "autoload": {
@@ -12434,10 +12504,6 @@
                 {
                     "name": "Bernhard Schussek",
                     "email": "bschussek@gmail.com"
-                },
-                {
-                    "name": "Woody Gilk",
-                    "email": "woody.gilk@gmail.com"
                 }
             ],
             "description": "Assertions to validate method input/output with nice error messages.",
@@ -12448,9 +12514,9 @@
             ],
             "support": {
                 "issues": "https://github.com/webmozarts/assert/issues",
-                "source": "https://github.com/webmozarts/assert/tree/2.1.2"
+                "source": "https://github.com/webmozarts/assert/tree/1.12.1"
             },
-            "time": "2026-01-13T14:02:24+00:00"
+            "time": "2025-10-29T15:56:20+00:00"
         }
     ],
     "aliases": [],

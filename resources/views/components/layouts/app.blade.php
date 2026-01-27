@@ -13,7 +13,7 @@
     <meta property="og:description" content="@yield('description', 'Encounter Jesus. Catch on Fire. October 23-25, 2026 in Budapest.')">
     <meta property="og:image" content="{{ asset('images/og-image.jpg') }}">
     <meta property="og:type" content="website">
-    
+
     {{-- Favicon --}}
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
@@ -24,16 +24,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     {{-- Styles --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
-    {{-- Livewire Styles --}}
-    @livewireStyles
+    @filamentStyles
+    @vite('resources/css/app.css')
+
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 
     @stack('styles')
 </head>
 <body class="bg-stone-950 text-white font-sans antialiased">
     {{-- Navigation --}}
-    @include('components.navigation')
+    <x-layouts.partials.navigation />
 
     {{-- Main Content --}}
     <main>
@@ -42,11 +46,11 @@
     </main>
 
     {{-- Footer --}}
-    @include('components.footer')
+    <x-layouts.partials.footer />
 
     {{-- Video Modal --}}
-    <div x-data="{ open: false }" 
-         x-show="open" 
+    <div x-data="{ open: false }"
+         x-show="open"
          x-on:open-video-modal.window="open = true"
          x-on:keydown.escape.window="open = false"
          x-transition:enter="transition ease-out duration-300"
@@ -59,7 +63,7 @@
          style="display: none;">
         {{-- Backdrop --}}
         <div class="absolute inset-0 bg-black/90" @click="open = false"></div>
-        
+
         {{-- Modal Content --}}
         <div class="relative z-10 w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl"
              x-transition:enter="transition ease-out duration-300"
@@ -70,18 +74,17 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
             </button>
-            <iframe x-show="open" 
+            <iframe x-show="open"
                     :src="open ? 'https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1' : ''"
-                    class="w-full h-full" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    class="w-full h-full"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
         </div>
     </div>
 
-    {{-- Livewire Scripts (includes Alpine.js automatically) --}}
-    @livewireScripts
-
+    @filamentScripts
+    @vite('resources/js/app.js')
     @stack('scripts')
 </body>
 </html>
