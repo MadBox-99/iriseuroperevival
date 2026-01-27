@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Livewire\Pages;
 
+use App\Models\Faq;
+use App\Models\Speaker;
+use App\Models\Sponsor;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -15,11 +18,40 @@ class Home extends Component
 {
     public function render(): View
     {
-        // TODO: Add Speaker, Sponsor, Faq models when ready
-        $speakers = collect();
-        $sponsors = collect();
-        $faqs = collect();
+        $featuredSpeakers = Speaker::query()
+            ->featured()
+            ->ordered()
+            ->get();
 
-        return view('livewire.pages.home', ['speakers' => $speakers, 'sponsors' => $sponsors, 'faqs' => $faqs]);
+        $workshopLeaders = Speaker::query()
+            ->ofType('workshop_leader')
+            ->ordered()
+            ->get();
+
+        $mainSponsor = Sponsor::query()
+            ->active()
+            ->ofTier('platinum')
+            ->ordered()
+            ->first();
+
+        $partnerSponsors = Sponsor::query()
+            ->active()
+            ->whereNot('tier', 'platinum')
+            ->byTierPriority()
+            ->ordered()
+            ->get();
+
+        $faqs = Faq::query()
+            ->published()
+            ->ordered()
+            ->get();
+
+        return view('livewire.pages.home', [
+            'featuredSpeakers' => $featuredSpeakers,
+            'workshopLeaders' => $workshopLeaders,
+            'mainSponsor' => $mainSponsor,
+            'partnerSponsors' => $partnerSponsors,
+            'faqs' => $faqs,
+        ]);
     }
 }

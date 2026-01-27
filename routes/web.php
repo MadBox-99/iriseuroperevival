@@ -15,6 +15,7 @@ use App\Livewire\Pages\Shop\Checkout as ShopCheckout;
 use App\Livewire\Pages\Shop\Index as ShopIndex;
 use App\Livewire\Pages\Shop\Success as ShopSuccess;
 use App\Livewire\Pages\Speakers;
+use App\Livewire\Pages\SpeakerShow;
 use App\Livewire\Pages\Terms;
 use App\Livewire\Pages\Workshops;
 use App\Livewire\Settings\Appearance;
@@ -35,9 +36,7 @@ Route::get('/', Home::class)->name('home');
 Route::get('/program', Program::class)->name('program');
 Route::get('/workshops', Workshops::class)->name('workshops');
 Route::get('/speakers', Speakers::class)->name('speakers');
-Route::get('/speakers/{slug}', function (string $slug): void {
-    abort(404); // TODO: implement when Speaker model is ready
-})->name('speaker.show');
+Route::get('/speakers/{slug}', SpeakerShow::class)->name('speaker.show');
 
 // Registration Routes
 Route::prefix('register')->group(function (): void {

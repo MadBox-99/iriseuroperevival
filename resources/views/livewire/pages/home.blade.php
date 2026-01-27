@@ -122,114 +122,25 @@
 
         {{-- Speakers Grid --}}
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {{-- Speaker 1 - Heidi Baker --}}
-            <a href="{{ route('speaker.show', 'heidi-baker') }}" class="speaker-card group">
-                <img src="{{ asset('images/speakers/heidi-baker.webp') }}" alt="Heidi Baker">
-                <div class="speaker-card-content">
-                    <span class="badge-amber mb-2">Keynote Speaker</span>
-                    <h3 class="text-xl font-bold text-white">Heidi Baker</h3>
-                    <p class="text-white/60 text-sm">Iris Global</p>
-                </div>
-                {{-- Hover Arrow --}}
-                <div class="absolute top-4 right-4 w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-20">
-                    <svg class="w-5 h-5 text-stone-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                </div>
-            </a>
-
-            {{-- Speaker 2 - Mel Tari --}}
-            <a href="{{ route('speaker.show', 'mel-tari') }}" class="speaker-card group">
-                <img src="{{ asset('images/speakers/mel-tari.webp') }}" alt="Mel Tari">
-                <div class="speaker-card-content">
-                    <span class="badge-amber mb-2">Special Guest</span>
-                    <h3 class="text-xl font-bold text-white">Mel Tari</h3>
-                    <p class="text-white/60 text-sm">Author, Like a Mighty Wind</p>
-                </div>
-                <div class="absolute top-4 right-4 w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-20">
-                    <svg class="w-5 h-5 text-stone-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                </div>
-            </a>
-
-            {{-- Speaker 3 - David Gava --}}
-            <a href="{{ route('speaker.show', 'david-gava') }}" class="speaker-card group">
-                <img src="{{ asset('images/speakers/david-gava.webp') }}" alt="David Gava">
-                <div class="speaker-card-content">
-                    <span class="badge-amber mb-2">Speaker</span>
-                    <h3 class="text-xl font-bold text-white">David Gava</h3>
-                    <p class="text-white/60 text-sm">Iris Hungary</p>
-                </div>
-                <div class="absolute top-4 right-4 w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-20">
-                    <svg class="w-5 h-5 text-stone-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                </div>
-            </a>
-
-            {{-- Speaker 4 - Pastor Josef --}}
-            <a href="{{ route('speaker.show', 'pastor-josef') }}" class="speaker-card group">
-                <img src="{{ asset('images/speakers/pastor-josef.webp') }}" alt="Pastor Josef">
-                <div class="speaker-card-content">
-                    <span class="badge-amber mb-2">Speaker</span>
-                    <h3 class="text-xl font-bold text-white">Pastor Josef</h3>
-                    <p class="text-white/60 text-sm">Budapest Church</p>
-                </div>
-                <div class="absolute top-4 right-4 w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-20">
-                    <svg class="w-5 h-5 text-stone-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                </div>
-            </a>
+            @foreach($featuredSpeakers as $speaker)
+                <x-home.speaker-card :speaker="$speaker" wire:key="speaker-{{ $speaker->id }}" />
+            @endforeach
         </div>
 
         {{-- Workshop Leaders --}}
-        <div class="mt-16">
-            <h3 class="text-2xl font-bold text-white text-center mb-8">Workshop Leaders</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                {{-- Workshop Leader 1 --}}
-                <a href="{{ route('speaker.show', 'mary-pat-gokee') }}" class="speaker-card group">
-                    <img src="{{ asset('images/speakers/mary-pat-gokee.webp') }}" alt="Mary Pat Gokee">
-                    <div class="speaker-card-content">
-                        <span class="badge-info mb-2">Prophetic Arts</span>
-                        <h3 class="text-lg font-bold text-white">Mary Pat Gokee</h3>
-                        <p class="text-white/60 text-sm">Iris Global</p>
-                    </div>
-                </a>
+        @if($workshopLeaders->isNotEmpty())
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-white text-center mb-8">Workshop Leaders</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    @foreach($workshopLeaders as $speaker)
+                        <x-home.speaker-card :speaker="$speaker" :showArrow="false" wire:key="workshop-{{ $speaker->id }}" />
+                    @endforeach
 
-                {{-- Workshop Leader 2 --}}
-                <a href="{{ route('speaker.show', 'katey-maddux') }}" class="speaker-card group">
-                    <img src="{{ asset('images/speakers/katey-maddux.webp') }}" alt="Katey Maddux">
-                    <div class="speaker-card-content">
-                        <span class="badge-info mb-2">Human Trafficking</span>
-                        <h3 class="text-lg font-bold text-white">Katey Maddux</h3>
-                        <p class="text-white/60 text-sm">Freedom Collective</p>
-                    </div>
-                </a>
-
-                {{-- Workshop Leader 3 --}}
-                <a href="{{ route('speaker.show', 'baoyan-lam') }}" class="speaker-card group">
-                    <img src="{{ asset('images/speakers/baoyan-lam.webp') }}" alt="Baoyan Lam">
-                    <div class="speaker-card-content">
-                        <span class="badge-info mb-2">Family & Parenting</span>
-                        <h3 class="text-lg font-bold text-white">Baoyan Lam</h3>
-                        <p class="text-white/60 text-sm">Iris Asia</p>
-                    </div>
-                </a>
-
-                {{-- More Coming --}}
-                <a href="{{ route('speakers') }}" class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/30 aspect-[3/4] flex flex-col items-center justify-center group hover:border-amber-500/50 transition-colors">
-                    <div class="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-amber-500/30 transition-colors">
-                        <svg class="w-8 h-8 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                        </svg>
-                    </div>
-                    <span class="text-amber-400 font-semibold">More Coming</span>
-                    <span class="text-white/50 text-sm mt-1">View All Speakers</span>
-                </a>
+                    {{-- More Coming --}}
+                    <x-home.more-speakers-card />
+                </div>
             </div>
-        </div>
+        @endif
     </div>
 </section>
 
@@ -810,23 +721,24 @@
 <section class="py-24 bg-stone-950">
     <div class="max-w-7xl mx-auto px-4">
         {{-- Main Partner --}}
-        <div class="text-center mb-16">
-            <span class="text-white/40 text-sm uppercase tracking-wider mb-4 block">Presented by</span>
-            <a href="https://irisglobal.org" target="_blank" class="inline-block">
-                <img src="{{ asset('images/sponsors/iris-global.svg') }}" alt="Iris Global" class="h-16 md:h-20 opacity-80 hover:opacity-100 transition-opacity">
-            </a>
-        </div>
+        @if($mainSponsor)
+            <div class="text-center mb-16">
+                <span class="text-white/40 text-sm uppercase tracking-wider mb-4 block">Presented by</span>
+                <x-home.sponsor-logo :sponsor="$mainSponsor" size="main" />
+            </div>
+        @endif
 
         {{-- Partners Grid --}}
-        <div class="text-center mb-8">
-            <span class="text-white/40 text-sm uppercase tracking-wider">Partner Organizations</span>
-        </div>
-        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-60">
-            <img src="{{ asset('images/sponsors/partner-1.svg') }}" alt="Partner" class="h-8 md:h-10">
-            <img src="{{ asset('images/sponsors/partner-2.svg') }}" alt="Partner" class="h-8 md:h-10">
-            <img src="{{ asset('images/sponsors/partner-3.svg') }}" alt="Partner" class="h-8 md:h-10">
-            <img src="{{ asset('images/sponsors/partner-4.svg') }}" alt="Partner" class="h-8 md:h-10">
-        </div>
+        @if($partnerSponsors->isNotEmpty())
+            <div class="text-center mb-8">
+                <span class="text-white/40 text-sm uppercase tracking-wider">Partner Organizations</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-60">
+                @foreach($partnerSponsors as $sponsor)
+                    <x-home.sponsor-logo :sponsor="$sponsor" wire:key="sponsor-{{ $sponsor->id }}" />
+                @endforeach
+            </div>
+        @endif
 
         {{-- Volunteer CTA --}}
         <div class="mt-20 text-center">
@@ -865,101 +777,18 @@
 
         {{-- FAQ Accordion --}}
         <div class="space-y-4">
-            {{-- FAQ 1 --}}
-            <div class="accordion-item">
-                <button @click="openFaq = openFaq === 1 ? null : 1" class="accordion-trigger">
-                    <span class="text-white font-medium text-left">Who can attend Europe Revival 2026?</span>
-                    <svg class="w-5 h-5 text-amber-400 transition-transform duration-300" :class="openFaq === 1 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div x-show="openFaq === 1" x-collapse>
-                    <div class="accordion-content">
-                        <p class="text-white/70">Europe Revival is open to everyone—believers, seekers, church leaders, and anyone hungry for an encounter with God. Whether you're a seasoned minister or new to faith, you're welcome to join us in Budapest.</p>
-                    </div>
-                </div>
-            </div>
-
-            {{-- FAQ 2 --}}
-            <div class="accordion-item">
-                <button @click="openFaq = openFaq === 2 ? null : 2" class="accordion-trigger">
-                    <span class="text-white font-medium text-left">Will there be a livestream available?</span>
-                    <svg class="w-5 h-5 text-amber-400 transition-transform duration-300" :class="openFaq === 2 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div x-show="openFaq === 2" x-collapse>
-                    <div class="accordion-content">
-                        <p class="text-white/70">Yes! Main sessions will be livestreamed for those who cannot attend in person. However, we highly encourage in-person attendance to fully experience the atmosphere of revival and receive personal ministry.</p>
-                    </div>
-                </div>
-            </div>
-
-            {{-- FAQ 3 --}}
-            <div class="accordion-item">
-                <button @click="openFaq = openFaq === 3 ? null : 3" class="accordion-trigger">
-                    <span class="text-white font-medium text-left">What languages will be available?</span>
-                    <svg class="w-5 h-5 text-amber-400 transition-transform duration-300" :class="openFaq === 3 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div x-show="openFaq === 3" x-collapse>
-                    <div class="accordion-content">
-                        <p class="text-white/70">The conference will be held in English with simultaneous translation available in Hungarian, German, Romanian, and Russian. Translation devices will be provided at the venue.</p>
-                    </div>
-                </div>
-            </div>
-
-            {{-- FAQ 4 --}}
-            <div class="accordion-item">
-                <button @click="openFaq = openFaq === 4 ? null : 4" class="accordion-trigger">
-                    <span class="text-white font-medium text-left">Is childcare available?</span>
-                    <svg class="w-5 h-5 text-amber-400 transition-transform duration-300" :class="openFaq === 4 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div x-show="openFaq === 4" x-collapse>
-                    <div class="accordion-content">
-                        <p class="text-white/70">Yes, we will have a supervised children's program for ages 4-12 during main sessions. Registration for childcare is required in advance. Children under 4 must be accompanied by a parent or guardian.</p>
-                    </div>
-                </div>
-            </div>
-
-            {{-- FAQ 5 --}}
-            <div class="accordion-item">
-                <button @click="openFaq = openFaq === 5 ? null : 5" class="accordion-trigger">
-                    <span class="text-white font-medium text-left">Are meals included?</span>
-                    <svg class="w-5 h-5 text-amber-400 transition-transform duration-300" :class="openFaq === 5 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div x-show="openFaq === 5" x-collapse>
-                    <div class="accordion-content">
-                        <p class="text-white/70">Meals are not included in the registration fee. However, there will be food vendors on-site, and the venue is surrounded by restaurants and cafes. We'll also have a coffee shop area for fellowship during breaks.</p>
-                    </div>
-                </div>
-            </div>
-
-            {{-- FAQ 6 --}}
-            <div class="accordion-item">
-                <button @click="openFaq = openFaq === 6 ? null : 6" class="accordion-trigger">
-                    <span class="text-white font-medium text-left">How do I apply for the Ministry Team?</span>
-                    <svg class="w-5 h-5 text-amber-400 transition-transform duration-300" :class="openFaq === 6 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div x-show="openFaq === 6" x-collapse>
-                    <div class="accordion-content">
-                        <p class="text-white/70">Ministry Team applications are open! You'll need to complete our application form including your testimony and pastor's reference. Approved team members receive free conference access in exchange for serving in healing rooms, prophetic ministry, or practical support. Applications close September 1, 2026.</p>
+            @foreach($faqs as $index => $faq)
+                <x-home.faq-item :faq="$faq" :index="$index + 1" wire:key="faq-{{ $faq->id }}">
+                    @if($faq->category === 'registration')
                         <a href="{{ route('register.ministry') }}" class="inline-flex items-center gap-2 text-amber-400 mt-4 hover:underline">
                             Apply Now
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                             </svg>
                         </a>
-                    </div>
-                </div>
-            </div>
+                    @endif
+                </x-home.faq-item>
+            @endforeach
         </div>
 
         {{-- Contact CTA --}}
