@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\WebhookController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,13 +23,13 @@ Route::get('/speakers/{slug}', [HomeController::class, 'speaker'])->name('speake
 Route::prefix('register')->group(function () {
     // Attendee Registration (default)
     Route::get('/', [RegistrationController::class, 'attendee'])->name('register');
-    
+
     // Ministry Team Application
     Route::get('/ministry', [RegistrationController::class, 'ministry'])->name('register.ministry');
-    
+
     // Volunteer Application
     Route::get('/volunteer', [RegistrationController::class, 'volunteer'])->name('volunteer');
-    
+
     // Success & Cancel Pages
     Route::get('/success/{uuid}', [RegistrationController::class, 'success'])->name('register.success');
     Route::get('/cancel/{uuid}', [RegistrationController::class, 'cancel'])->name('register.cancel');
@@ -38,6 +39,14 @@ Route::prefix('register')->group(function () {
 Route::post('/webhooks/stripe', [WebhookController::class, 'handleStripe'])
     ->name('webhooks.stripe')
     ->withoutMiddleware(['web', 'csrf']);
+
+// Shop Routes
+Route::prefix('shop')->group(function () {
+    Route::get('/', [ShopController::class, 'index'])->name('shop.index');
+    Route::get('/cart', [ShopController::class, 'cart'])->name('shop.cart');
+    Route::get('/checkout', [ShopController::class, 'checkout'])->name('shop.checkout');
+    Route::get('/order/{uuid}/success', [ShopController::class, 'success'])->name('shop.success');
+});
 
 // Newsletter Subscription
 Route::post('/newsletter/subscribe', [HomeController::class, 'subscribeNewsletter'])
@@ -52,6 +61,7 @@ Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'hu', 'de'])) {
         session(['locale' => $locale]);
     }
+
     return redirect()->back();
 })->name('lang.switch');
 

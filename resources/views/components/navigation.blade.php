@@ -24,31 +24,31 @@
             {{-- Desktop Navigation --}}
             <div class="hidden lg:flex items-center gap-8">
                 <a href="#speakers" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    Speakers
+                    {{ __('Speakers') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 transition-all group-hover:w-full"></span>
                 </a>
                 <a href="#theme" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    Theme
+                    {{ __('Theme') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 transition-all group-hover:w-full"></span>
                 </a>
                 <a href="#schedule" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    Schedule
+                    {{ __('Schedule') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 transition-all group-hover:w-full"></span>
                 </a>
                 <a href="#pricing" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    Pricing
+                    {{ __('Pricing') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 transition-all group-hover:w-full"></span>
                 </a>
                 <a href="#travel" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    Travel
+                    {{ __('Travel') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 transition-all group-hover:w-full"></span>
                 </a>
                 <a href="{{ route('workshops') }}" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    Workshops
+                    {{ __('Workshops') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 transition-all group-hover:w-full"></span>
                 </a>
                 <a href="{{ route('program') }}" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    Program
+                    {{ __('Program') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 transition-all group-hover:w-full"></span>
                 </a>
             </div>
@@ -56,26 +56,12 @@
             {{-- CTA Button --}}
             <div class="hidden lg:flex items-center gap-4">
                 {{-- Language Switcher --}}
-                <div x-data="{ open: false }" class="relative">
-                    <button @click="open = !open" class="flex items-center gap-1 text-white/60 hover:text-white text-sm transition-colors">
-                        <span>EN</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div x-show="open" @click.away="open = false" 
-                         x-transition
-                         class="absolute right-0 mt-2 w-24 bg-stone-900 border border-stone-700 rounded-lg shadow-xl overflow-hidden">
-                        <a href="?lang=en" class="block px-4 py-2 text-sm text-white/70 hover:bg-stone-800 hover:text-white">English</a>
-                        <a href="?lang=hu" class="block px-4 py-2 text-sm text-white/70 hover:bg-stone-800 hover:text-white">Magyar</a>
-                        <a href="?lang=de" class="block px-4 py-2 text-sm text-white/70 hover:bg-stone-800 hover:text-white">Deutsch</a>
-                    </div>
-                </div>
+                <x-language-switcher variant="dropdown" />
 
                 {{-- Register Button --}}
-                <a href="{{ route('register') }}" 
+                <a href="{{ route('register') }}"
                    class="group inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-stone-900 font-semibold text-sm rounded-full transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30">
-                    Register Now
+                    {{ __('Register Now') }}
                     <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                     </svg>
@@ -106,27 +92,24 @@
          class="lg:hidden bg-stone-950/98 backdrop-blur-xl border-t border-white/5"
          style="display: none;">
         <div class="max-w-7xl mx-auto px-4 py-6 space-y-4">
-            <a href="#speakers" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">Speakers</a>
-            <a href="#theme" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">Theme</a>
-            <a href="#schedule" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">Schedule</a>
-            <a href="#pricing" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">Pricing</a>
-            <a href="#travel" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">Travel</a>
-            <a href="{{ route('workshops') }}" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">Workshops</a>
-            <a href="{{ route('program') }}" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">Program</a>
+            <a href="#speakers" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Speakers') }}</a>
+            <a href="#theme" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Theme') }}</a>
+            <a href="#schedule" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Schedule') }}</a>
+            <a href="#pricing" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Pricing') }}</a>
+            <a href="#travel" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Travel') }}</a>
+            <a href="{{ route('workshops') }}" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Workshops') }}</a>
+            <a href="{{ route('program') }}" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Program') }}</a>
             
             {{-- Language Options --}}
-            <div class="flex items-center gap-4 py-3 border-b border-white/5">
-                <span class="text-white/50 text-sm">Language:</span>
-                <a href="?lang=en" class="text-amber-400 text-sm font-medium">EN</a>
-                <a href="?lang=hu" class="text-white/60 text-sm hover:text-white">HU</a>
-                <a href="?lang=de" class="text-white/60 text-sm hover:text-white">DE</a>
+            <div class="py-3 border-b border-white/5">
+                <x-language-switcher variant="inline" />
             </div>
             
             {{-- Mobile CTA --}}
             <div class="pt-4">
-                <a href="{{ route('register') }}" 
+                <a href="{{ route('register') }}"
                    class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-stone-900 font-bold rounded-full">
-                    Register Now
+                    {{ __('Register Now') }}
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                     </svg>
