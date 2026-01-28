@@ -4,7 +4,7 @@
 ])
 
 <a href="{{ route('speaker.show', $speaker->slug) }}" class="speaker-card group">
-    <img src="{{ $speaker->photo_path ? asset($speaker->photo_path) : asset('images/speakers/placeholder.webp') }}" alt="{{ $speaker->name }}">
+    <img src="{{ $speaker->photo_path ? Vite::asset('resources/' . $speaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}" alt="{{ $speaker->name }}">
     <div class="speaker-card-content">
         @if($speaker->title)
             <span class="badge-{{ $speaker->is_featured ? 'amber' : 'info' }} mb-2">{{ $speaker->title }}</span>

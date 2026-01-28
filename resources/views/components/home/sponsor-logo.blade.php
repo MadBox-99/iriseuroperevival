@@ -5,9 +5,10 @@
 
 @php
     $heightClass = match($size) {
-        'main' => 'h-16 md:h-20',
-        default => 'h-8 md:h-10',
+        'main' => 'h-20 md:h-28',
+        default => 'h-12 md:h-16',
     };
+    $invertClass = str_contains(strtolower($sponsor->name), 'mighty warrior') ? 'invert' : '';
 @endphp
 
 @if($sponsor->website_url)
@@ -15,13 +16,13 @@
         <img
             src="{{ $sponsor->logo_path ? Vite::asset($sponsor->logo_path) : asset('images/sponsors/placeholder.svg') }}"
             alt="{{ $sponsor->name }}"
-            class="{{ $heightClass }} {{ $size === 'main' ? 'opacity-80 hover:opacity-100 transition-opacity' : '' }}"
+            class="{{ $heightClass }} {{ $invertClass }} {{ $size === 'main' ? 'opacity-80 hover:opacity-100 transition-opacity' : '' }}"
         >
     </a>
 @else
     <img
         src="{{ $sponsor->logo_path ? Vite::asset($sponsor->logo_path) : asset('images/sponsors/placeholder.svg') }}"
         alt="{{ $sponsor->name }}"
-        class="{{ $heightClass }}"
+        class="{{ $heightClass }} {{ $invertClass }}"
     >
 @endif

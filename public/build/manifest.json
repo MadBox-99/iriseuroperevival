@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-Ci9ZUYoa.css",
+    "file": "assets/app-47EVl1TD.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -11,6 +11,22 @@
   "resources/images/ER-colours.jpg": {
     "file": "assets/ER-colours-ChCmU5s8.jpg",
     "src": "resources/images/ER-colours.jpg"
+  },
+  "resources/images/encounter-jesus-artwork.webp": {
+    "file": "assets/encounter-jesus-artwork-C4sMwYnr.webp",
+    "src": "resources/images/encounter-jesus-artwork.webp"
+  },
+  "resources/images/encounter-jesus-tagline.webp": {
+    "file": "assets/encounter-jesus-tagline-BPtEwDv6.webp",
+    "src": "resources/images/encounter-jesus-tagline.webp"
+  },
+  "resources/images/europe-revival-logo.svg": {
+    "file": "assets/europe-revival-logo-GAVWU6Tj.svg",
+    "src": "resources/images/europe-revival-logo.svg"
+  },
+  "resources/images/hero-video-thumbnail.webp": {
+    "file": "assets/hero-video-thumbnail-BF34WltE.webp",
+    "src": "resources/images/hero-video-thumbnail.webp"
   },
   "resources/images/iris-logo.webp": {
     "file": "assets/iris-logo-ZTjscbN6.webp",
@@ -25,12 +41,48 @@
     "src": "resources/images/partner-logos/Kerusso.png"
   },
   "resources/images/partner-logos/MWI-Logo.png": {
-    "file": "assets/MWI-Logo-BMMSSBK5.png",
+    "file": "assets/MWI-Logo-CQG69RjW.png",
     "src": "resources/images/partner-logos/MWI-Logo.png"
   },
   "resources/images/partner-logos/iris-global.png": {
     "file": "assets/iris-global-vBXXd2Xc.png",
     "src": "resources/images/partner-logos/iris-global.png"
+  },
+  "resources/images/speakers/baoyan-lam.webp": {
+    "file": "assets/baoyan-lam-BP6j1wyg.webp",
+    "src": "resources/images/speakers/baoyan-lam.webp"
+  },
+  "resources/images/speakers/david-gava.webp": {
+    "file": "assets/david-gava-BD3P_YxO.webp",
+    "src": "resources/images/speakers/david-gava.webp"
+  },
+  "resources/images/speakers/heidi-baker.webp": {
+    "file": "assets/heidi-baker-Cl27R5IG.webp",
+    "src": "resources/images/speakers/heidi-baker.webp"
+  },
+  "resources/images/speakers/katey-maddux-2.webp": {
+    "file": "assets/katey-maddux-2-B6Y2OxcJ.webp",
+    "src": "resources/images/speakers/katey-maddux-2.webp"
+  },
+  "resources/images/speakers/katey-maddux.webp": {
+    "file": "assets/katey-maddux-CkbbgjVA.webp",
+    "src": "resources/images/speakers/katey-maddux.webp"
+  },
+  "resources/images/speakers/mary-pat-gokee.webp": {
+    "file": "assets/mary-pat-gokee-D4-U2T1z.webp",
+    "src": "resources/images/speakers/mary-pat-gokee.webp"
+  },
+  "resources/images/speakers/mel-tari.webp": {
+    "file": "assets/mel-tari-BnSCM8dZ.webp",
+    "src": "resources/images/speakers/mel-tari.webp"
+  },
+  "resources/images/speakers/pastor-josef.webp": {
+    "file": "assets/pastor-josef-B5p6VI7M.webp",
+    "src": "resources/images/speakers/pastor-josef.webp"
+  },
+  "resources/images/speakers/placeholder.webp": {
+    "file": "assets/placeholder-DUU3kW1K.webp",
+    "src": "resources/images/speakers/placeholder.webp"
   },
   "resources/images/sponsors/iris-global-uk.svg": {
     "file": "assets/iris-global-uk-BpzEsppr.svg",
@@ -47,6 +99,14 @@
   "resources/images/sponsors/mighty-warrior-international.svg": {
     "file": "assets/mighty-warrior-international-BxA-bwDI.svg",
     "src": "resources/images/sponsors/mighty-warrior-international.svg"
+  },
+  "resources/images/textures/noise.png": {
+    "file": "assets/noise-DqweEHLi.png",
+    "src": "resources/images/textures/noise.png"
+  },
+  "resources/images/textures/transition-subtle.webp": {
+    "file": "assets/transition-subtle-BBUxlAEz.webp",
+    "src": "resources/images/textures/transition-subtle.webp"
   },
   "resources/js/app.js": {
     "file": "assets/app-Bi6NvaTD.js",
