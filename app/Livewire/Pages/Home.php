@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Livewire\Pages;
 
 use App\Models\Faq;
+use App\Models\ScheduleItem;
 use App\Models\Speaker;
 use App\Models\Sponsor;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Carbon;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -46,12 +48,39 @@ class Home extends Component
             ->ordered()
             ->get();
 
+        // Fetch schedule items grouped by day
+        $scheduleItems = ScheduleItem::query()
+            ->published()
+            ->with('speaker')
+            ->orderBy('day')
+            ->orderBy('start_time')
+            ->orderBy('sort_order')
+            ->get()
+            ->groupBy(function (ScheduleItem $item) {
+                return Carbon::parse($item->day)->format('Y-m-d');
+            });
+
+        // Prepare schedule days with metadata
+        $scheduleDays = $scheduleItems->map(function ($items, $day) {
+            $date = Carbon::parse($day);
+
+            return [
+                'date' => $day,
+                'formatted_date' => $date->format('l, M j'),
+                'short_date' => $date->format('M j'),
+                'day_name' => $date->format('l'),
+                'is_training_day' => $date->format('Y-m-d') === '2026-10-22',
+                'items' => $items,
+            ];
+        });
+
         return view('livewire.pages.home', [
             'featuredSpeakers' => $featuredSpeakers,
             'workshopLeaders' => $workshopLeaders,
             'mainSponsor' => $mainSponsor,
             'partnerSponsors' => $partnerSponsors,
             'faqs' => $faqs,
+            'scheduleDays' => $scheduleDays,
         ]);
     }
 }

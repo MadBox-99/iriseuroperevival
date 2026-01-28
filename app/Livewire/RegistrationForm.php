@@ -26,6 +26,7 @@ use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -56,9 +57,9 @@ class RegistrationForm extends Component implements HasSchemas
         return $schema
             ->components([
                 Wizard::make($this->getWizardSteps())
-                    ->submitAction(view('livewire.registration-form.partials.submit-button', [
+                    ->submitAction(new HtmlString(view('livewire.registration-form.partials.submit-button', [
                         'type' => $this->type,
-                    ])->render()),
+                    ])->render())),
             ])
             ->statePath('data');
     }
@@ -442,7 +443,7 @@ class RegistrationForm extends Component implements HasSchemas
 
         $schema[] = Checkbox::make('accepts_terms')
             ->label('I accept the Terms & Conditions')
-            ->helperText(view('livewire.registration-form.partials.terms-links')->render())
+            ->helperText(new HtmlString(view('livewire.registration-form.partials.terms-links')->render()))
             ->accepted()
             ->validationMessages([
                 'accepted' => 'You must accept the terms and conditions.',
@@ -568,7 +569,7 @@ class RegistrationForm extends Component implements HasSchemas
         $tier = $stripeService->getCurrentPricingTier();
         $pricePerTicket = $stripeService->getTicketPrice($data['ticket_type'], $tier);
 
-        return $pricePerTicket * $data['ticket_quantity'];
+        return (int) ($pricePerTicket * (int) $data['ticket_quantity']);
     }
 
     public function getFormattedPrice(): string
