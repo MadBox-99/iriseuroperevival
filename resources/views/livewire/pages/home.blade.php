@@ -6,7 +6,7 @@
         {{-- Video Background --}}
         <div class="absolute inset-0 z-0">
             <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-                <source src="{{ Vite::asset('resources/videos/worship-background.webm') }}" type="video/mp4">
+                <source src="{{ asset('videos/worship-background.webm') }}" type="video/webm">
             </video>
             {{-- Gradient Overlay --}}
             <div class="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-950/50 to-navy-950"></div>
