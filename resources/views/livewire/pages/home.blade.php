@@ -6,7 +6,7 @@
         {{-- Video Background --}}
         <div class="absolute inset-0 z-0">
             <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-                <source src="{{ Vite::asset('resources/videos/worship-background.mp4') }}" type="video/mp4">
+                <source src="{{ Vite::asset('resources/videos/worship-background.webm') }}" type="video/mp4">
             </video>
             {{-- Gradient Overlay --}}
             <div class="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-950/50 to-navy-950"></div>
@@ -33,16 +33,16 @@
 
             {{-- Tagline Image --}}
             <div class="mb-10 animate-fade-in-up" style="animation-delay: 0.1s;">
-                <img src="{{ Vite::asset('resources/images/encounter-jesus-tagline.webp') }}" alt="Encounter Jesus. Catch on Fire."
-                    class="h-16 md:h-24 mx-auto">
+                <img src="{{ Vite::asset('resources/images/encounter-jesus-tagline.webp') }}"
+                    alt="Encounter Jesus. Catch on Fire." class="h-16 md:h-24 mx-auto">
             </div>
 
             {{-- Description --}}
             <p class="text-xl md:text-2xl text-white/70 max-w-2xl mx-auto mb-10 animate-fade-in-up"
                 style="animation-delay: 0.2s;">
                 A 3-day conference for everyone seeking <span class="text-sky-400">revival</span>,
-                <span class="text-sky-400">healing</span>, and a fresh <span
-                    class="text-sky-400">encounter</span> with Jesus.
+                <span class="text-sky-400">healing</span>, and a fresh <span class="text-sky-400">encounter</span> with
+                Jesus.
             </p>
 
             {{-- CTA Buttons --}}
@@ -73,7 +73,8 @@
             <div class="relative max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s;">
                 <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 cursor-pointer group"
                     @click="$dispatch('open-video-modal')">
-                    <img src="{{ Vite::asset('resources/images/hero-video-thumbnail.webp') }}" alt="Europe Revival 2025 Highlights"
+                    <img src="{{ Vite::asset('resources/images/hero-video-thumbnail.webp') }}"
+                        alt="Europe Revival 2025 Highlights"
                         class="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105">
                     {{-- Play Button Overlay --}}
                     <div
@@ -174,8 +175,8 @@
                 {{-- Left: Artwork --}}
                 <div class="relative">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="{{ Vite::asset('resources/images/encounter-jesus-artwork.webp') }}" alt="Encounter Jesus"
-                            class="w-full aspect-[4/5] object-cover">
+                        <img src="{{ Vite::asset('resources/images/encounter-jesus-artwork.webp') }}"
+                            alt="Encounter Jesus" class="w-full aspect-[4/5] object-cover">
                         {{-- Glow Effect --}}
                         <div class="absolute -inset-4 bg-primary-500/20 blur-3xl -z-10"></div>
                     </div>
@@ -206,8 +207,7 @@
                     {{-- Theme Points --}}
                     <div class="space-y-6 mb-10">
                         <div class="flex gap-4">
-                            <div
-                                class="w-12 h-12 bg-sky-400/20 rounded-xl flex items-center justify-center shrink-0">
+                            <div class="w-12 h-12 bg-sky-400/20 rounded-xl flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -222,8 +222,7 @@
                         </div>
 
                         <div class="flex gap-4">
-                            <div
-                                class="w-12 h-12 bg-sky-400/20 rounded-xl flex items-center justify-center shrink-0">
+                            <div class="w-12 h-12 bg-sky-400/20 rounded-xl flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -240,8 +239,7 @@
                         </div>
 
                         <div class="flex gap-4">
-                            <div
-                                class="w-12 h-12 bg-sky-400/20 rounded-xl flex items-center justify-center shrink-0">
+                            <div class="w-12 h-12 bg-sky-400/20 rounded-xl flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -316,8 +314,7 @@
                         <div class="max-w-3xl mx-auto">
                             <div class="bg-navy-700/50 border border-navy-600 rounded-2xl p-8">
                                 <div class="flex items-center gap-4 mb-6">
-                                    <div
-                                        class="w-14 h-14 bg-sky-400/20 rounded-xl flex items-center justify-center">
+                                    <div class="w-14 h-14 bg-sky-400/20 rounded-xl flex items-center justify-center">
                                         <svg class="w-7 h-7 text-sky-400" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -495,7 +492,8 @@
                     Regular (July 1 - Aug 31)
                 </button>
                 <button @click="activeTier = 'late'"
-                    :class="activeTier === 'late' ? 'bg-sky-400 text-navy-800' : 'bg-navy-700 text-white/70 hover:text-white'"
+                    :class="activeTier === 'late' ? 'bg-sky-400 text-navy-800' :
+                        'bg-navy-700 text-white/70 hover:text-white'"
                     class="px-5 py-2.5 rounded-full font-medium text-sm transition-all flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full"
                         :class="activeTier === 'late' ? 'bg-navy-800' : 'bg-sky-400'"></span>
@@ -748,8 +746,8 @@
         <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
             {{-- Theme Logo --}}
             <div class="mb-8">
-                <img src="{{ Vite::asset('resources/images/encounter-jesus-tagline.webp') }}" alt="Encounter Jesus. Catch on Fire."
-                    class="h-16 md:h-20 mx-auto opacity-80">
+                <img src="{{ Vite::asset('resources/images/encounter-jesus-tagline.webp') }}"
+                    alt="Encounter Jesus. Catch on Fire." class="h-16 md:h-20 mx-auto opacity-80">
             </div>
 
             <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
