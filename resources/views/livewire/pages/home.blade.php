@@ -6,7 +6,7 @@
         {{-- Video Background --}}
         <div class="absolute inset-0 z-0">
             <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-                <source src="{{ asset('videos/worship-background.webm') }}" type="video/webm">
+                <source src="{{ Vite::asset('resources/videos/worship-background.webm') }}" type="video/webm">
             </video>
             {{-- Gradient Overlay --}}
             <div class="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-950/50 to-navy-950"></div>
@@ -619,16 +619,16 @@
             {{-- Early Bird Banner --}}
             <div class="mt-12 max-w-3xl mx-auto" x-show="activeTier === 'early'">
                 <div
-                    class="bg-green-500/10 border border-green-500/30 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-4">
-                    <div class="w-14 h-14 bg-green-500/20 rounded-xl flex items-center justify-center shrink-0">
-                        <svg class="w-7 h-7 text-green-400" fill="none" stroke="currentColor"
+                    class="bg-sky-400/10 border border-sky-400/30 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-4">
+                    <div class="w-14 h-14 bg-sky-400/20 rounded-xl flex items-center justify-center shrink-0">
+                        <svg class="w-7 h-7 text-sky-400" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
                     <div class="text-center md:text-left">
-                        <h4 class="text-green-400 font-semibold">Early Bird Pricing Ends June 30, 2026</h4>
+                        <h4 class="text-sky-400 font-semibold">Early Bird Pricing Ends June 30, 2026</h4>
                         <p class="text-white/60 text-sm">Lock in the lowest price and save up to €20 per ticket</p>
                     </div>
                 </div>
