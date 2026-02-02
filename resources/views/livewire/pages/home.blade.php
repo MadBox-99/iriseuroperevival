@@ -170,7 +170,7 @@
                 <div class="relative">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl">
                         <img src="{{ Vite::asset('resources/images/crowd-1.webp') }}"
-                            alt="Encounter Jesus" class="w-full aspect-[4/5] object-cover">
+                            alt="Encounter Jesus" class="w-full aspect-4/5 object-cover">
                         {{-- Glow Effect --}}
                         <div class="absolute -inset-4 bg-primary-500/20 blur-3xl -z-10"></div>
                     </div>
