@@ -122,7 +122,7 @@ class HomePageSeeder extends Seeder
         $sponsors = [
             [
                 'name' => 'IRIS Global UK',
-                'logo_path' => 'resources/images/sponsors/iris-global-uk.svg',
+                'logo_path' => 'resources/images/partner-logos/iris-global.png',
                 'website_url' => 'https://irisglobal.org.uk',
                 'tier' => 'platinum',
                 'sort_order' => 1,
@@ -130,7 +130,7 @@ class HomePageSeeder extends Seeder
             ],
             [
                 'name' => 'Kingdom Business Collective',
-                'logo_path' => 'resources/images/sponsors/kingdom-business-collective.svg',
+                'logo_path' => 'resources/images/partner-logos/KBC-Logo.png',
                 'website_url' => null,
                 'tier' => 'gold',
                 'sort_order' => 10,
@@ -138,7 +138,7 @@ class HomePageSeeder extends Seeder
             ],
             [
                 'name' => 'Mighty Warrior International',
-                'logo_path' => 'resources/images/sponsors/mighty-warrior-international.svg',
+                'logo_path' => 'resources/images/partner-logos/MWI-Logo.png',
                 'website_url' => null,
                 'tier' => 'gold',
                 'sort_order' => 11,
@@ -146,7 +146,7 @@ class HomePageSeeder extends Seeder
             ],
             [
                 'name' => 'Kerusso',
-                'logo_path' => 'resources/images/sponsors/kerusso.svg',
+                'logo_path' => 'resources/images/partner-logos/Kerusso.png',
                 'website_url' => 'https://kerusso.com',
                 'tier' => 'gold',
                 'sort_order' => 12,
