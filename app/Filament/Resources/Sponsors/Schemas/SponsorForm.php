@@ -44,6 +44,7 @@ class SponsorForm
                     ->schema([
                         FileUpload::make('logo_path')
                             ->image()
+                            ->disk('public')
                             ->directory('sponsors')
                             ->imageEditor()
                             ->columnSpanFull(),
