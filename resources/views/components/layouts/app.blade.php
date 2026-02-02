@@ -11,7 +11,7 @@
     {{-- Open Graph --}}
     <meta property="og:title" content="@yield('title', 'Europe Revival 2026')">
     <meta property="og:description" content="@yield('description', 'Encounter Jesus. Catch on Fire. October 23-25, 2026 in Budapest.')">
-    <meta property="og:image" content="{{ Vite::asset('resources/images/og-image.jpg') }}">
+{{--     <meta property="og:image" content="{{ Vite::asset('resources/images/og-image.jpg') }}"> --}}
     <meta property="og:type" content="website">
 
     {{-- Favicon --}}

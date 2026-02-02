@@ -5,10 +5,10 @@
             {{-- Logo & Description --}}
             <div class="md:col-span-2">
                 <a href="{{ route('home') }}" class="inline-block mb-6">
-                    <img src="{{ asset('images/iris-global-logo-white.svg') }}" alt="Iris Global" class="h-8">
+                    <img src="{{ Vite::asset('resources/images/iris-budapest-2026.png') }}" alt="Iris Global" class="h-8">
                 </a>
                 <p class="text-white/50 text-sm leading-relaxed max-w-md mb-6">
-                    Europe Revival 2026 is brought to you by Iris Global, a ministry dedicated to bringing 
+                    Europe Revival 2026 is brought to you by Iris Global, a ministry dedicated to bringing
                     the love of Jesus to the nations through revival, healing, and supernatural encounters.
                 </p>
                 {{-- Social Links --}}
@@ -57,13 +57,13 @@
                     <li><a href="{{ route('volunteer') }}" class="text-white/50 hover:text-white text-sm transition-colors">Volunteer Application</a></li>
                     <li><a href="mailto:info@europerevival.org" class="text-white/50 hover:text-white text-sm transition-colors">Contact Us</a></li>
                 </ul>
-                
+
                 {{-- Newsletter --}}
                 <div class="mt-6">
                     <h4 class="text-white font-semibold mb-3 text-sm">Stay Updated</h4>
                     <form action="{{ route('newsletter.subscribe') }}" method="POST" class="flex gap-2">
                         @csrf
-                        <input type="email" name="email" placeholder="Your email" 
+                        <input type="email" name="email" placeholder="Your email"
                                class="flex-1 px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-sm text-white placeholder-white/40 focus:outline-none focus:border-primary-500 transition-colors">
                         <button type="submit" class="px-4 py-2 bg-primary-500 hover:bg-primary-400 text-navy-800 font-semibold rounded-lg text-sm transition-colors">
                             Subscribe

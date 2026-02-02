@@ -14,7 +14,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="flex items-center justify-between h-20">
             {{-- Logo --}}
-            <a href="{{ route('home') }}" class="flex-shrink-0">
+            <a href="{{ route('home') }}" class="shrink-0">
                 <img src="{{ Vite::asset('resources/images/europe-revival-logo.svg') }}"
                      alt="Europe Revival 2026"
                      class="h-10 md:h-12 transition-all duration-300"
@@ -52,7 +52,7 @@
             {{-- CTA Button --}}
             <div class="hidden lg:flex items-center gap-4">
                 {{-- Language Switcher --}}
-                <x-language-switcher variant="dropdown" />
+               {{--  <x-language-switcher variant="dropdown" /> --}}
 
                 {{-- Register Button --}}
                 <a href="{{ route('register') }}"
