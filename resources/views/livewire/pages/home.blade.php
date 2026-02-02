@@ -2,12 +2,16 @@
     {{-- ============================================
     HERO SECTION
 ============================================= --}}
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {{-- Video Background --}}
+    <section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+        {{-- Image Background --}}
         <div class="absolute inset-0 z-0">
+            <img src="{{ Vite::asset('resources/images/crowd-3.webp') }}" alt=""
+                class="absolute inset-0 w-full h-full object-cover">
+            {{-- Video Background (hidden for now)
             <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
                 <source src="{{ Vite::asset('resources/videos/worship-background.webm') }}" type="video/webm">
             </video>
+            --}}
             {{-- Gradient Overlay --}}
             <div class="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-950/50 to-navy-950"></div>
             {{-- Texture Overlay --}}
@@ -73,8 +77,8 @@
             <div class="relative max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s;">
                 <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 cursor-pointer group"
                     @click="$dispatch('open-video-modal')">
-                    <img src="{{ Vite::asset('resources/images/hero-video-thumbnail.webp') }}"
-                        alt="Europe Revival 2025 Highlights"
+                    <img src="{{ Vite::asset('resources/images/close-up-of-podium-with-speake.webp') }}"
+                        alt="Europe Revival 2026 Highlights"
                         class="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105">
                     {{-- Play Button Overlay --}}
                     <div
@@ -88,29 +92,19 @@
                     </div>
                     {{-- Caption --}}
                     <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                        <p class="text-white/80 text-sm">Watch highlights from Europe Revival 2025</p>
+                        <p class="text-white/80 text-sm">Watch highlights from Europe Revival 2026</p>
                     </div>
                 </div>
             </div>
 
-            {{-- Scroll Indicator --}}
-            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-                <a href="#speakers"
-                    class="flex flex-col items-center gap-2 text-white/50 hover:text-white/80 transition-colors">
-                    <span class="text-xs uppercase tracking-widest">Scroll</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                    </svg>
-                </a>
-            </div>
         </div>
     </section>
 
     {{-- Texture Transition --}}
     <div class="h-24 bg-gradient-to-b from-navy-950 to-navy-800 relative overflow-hidden">
-        <img src="{{ Vite::asset('resources/images/textures/transition-subtle.webp') }}" alt=""
-            class="absolute inset-0 w-full h-full object-cover opacity-20">
+        <div class="absolute inset-0 opacity-20"
+            style="background-image: url('{{ Vite::asset('resources/images/textures/noise.png') }}'); background-repeat: repeat;">
+        </div>
     </div>
 
     {{-- ============================================
@@ -165,7 +159,7 @@
     <section id="theme" class="py-24 bg-navy-900 relative overflow-hidden">
         {{-- Background Artwork --}}
         <div class="absolute right-0 top-0 w-1/2 h-full opacity-20">
-            <img src="{{ Vite::asset('resources/images/encounter-jesus-artwork.webp') }}" alt=""
+            <img src="{{ Vite::asset('resources/images/crowd-1.webp') }}" alt=""
                 class="w-full h-full object-cover object-left">
             <div class="absolute inset-0 bg-gradient-to-r from-navy-950 to-transparent"></div>
         </div>
@@ -175,7 +169,7 @@
                 {{-- Left: Artwork --}}
                 <div class="relative">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="{{ Vite::asset('resources/images/encounter-jesus-artwork.webp') }}"
+                        <img src="{{ Vite::asset('resources/images/crowd-1.webp') }}"
                             alt="Encounter Jesus" class="w-full aspect-[4/5] object-cover">
                         {{-- Glow Effect --}}
                         <div class="absolute -inset-4 bg-primary-500/20 blur-3xl -z-10"></div>
@@ -621,8 +615,7 @@
                 <div
                     class="bg-sky-400/10 border border-sky-400/30 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-4">
                     <div class="w-14 h-14 bg-sky-400/20 rounded-xl flex items-center justify-center shrink-0">
-                        <svg class="w-7 h-7 text-sky-400" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
+                        <svg class="w-7 h-7 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -732,15 +725,13 @@
     FINAL CTA SECTION
 ============================================= --}}
     <section class="py-32 bg-navy-900 relative overflow-hidden">
-        {{-- Background --}}
+        {{-- Background Image --}}
         <div class="absolute inset-0">
-            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-navy-950"></div>
+            <img src="{{ Vite::asset('resources/images/crowd-1.webp') }}" alt=""
+                class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-navy-950"></div>
             <div class="absolute inset-0 opacity-10"
                 style="background-image: url('{{ Vite::asset('resources/images/textures/noise.png') }}');"></div>
-            {{-- Glow Effects --}}
-            <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-500/20 rounded-full blur-[150px]">
-            </div>
         </div>
 
         <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">

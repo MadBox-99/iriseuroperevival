@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-47EVl1TD.css",
+    "file": "assets/app-x6Ge4aQ8.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -11,6 +11,22 @@
   "resources/images/ER-colours.jpg": {
     "file": "assets/ER-colours-ChCmU5s8.jpg",
     "src": "resources/images/ER-colours.jpg"
+  },
+  "resources/images/close-up-of-podium-with-speake.webp": {
+    "file": "assets/close-up-of-podium-with-speake-tit9UjeS.webp",
+    "src": "resources/images/close-up-of-podium-with-speake.webp"
+  },
+  "resources/images/crowd-1.webp": {
+    "file": "assets/crowd-1-BlS4P4fs.webp",
+    "src": "resources/images/crowd-1.webp"
+  },
+  "resources/images/crowd-2.webp": {
+    "file": "assets/crowd-2-C4KcmLA5.webp",
+    "src": "resources/images/crowd-2.webp"
+  },
+  "resources/images/crowd-3.webp": {
+    "file": "assets/crowd-3-DKST7T50.webp",
+    "src": "resources/images/crowd-3.webp"
   },
   "resources/images/encounter-jesus-artwork.webp": {
     "file": "assets/encounter-jesus-artwork-C4sMwYnr.webp",
@@ -113,5 +129,9 @@
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
+  },
+  "resources/videos/worship-background.webm": {
+    "file": "assets/worship-background-Cvog3M5p.webm",
+    "src": "resources/videos/worship-background.webm"
   }
 }
