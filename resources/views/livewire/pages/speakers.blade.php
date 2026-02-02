@@ -1,7 +1,7 @@
 <div>
     {{-- Hero Section --}}
     <section class="relative py-24 bg-stone-950">
-        <div class="absolute inset-0 opacity-5" style="background-image: url('{{ asset('images/textures/noise.png') }}');"></div>
+        <div class="absolute inset-0 opacity-5" style="background-image: url('{{ Vite::asset('resources/images/textures/noise.png') }}');"></div>
         <div class="relative z-10 max-w-7xl mx-auto px-4">
             <div class="text-center mb-4">
                 <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded-full mb-4">
@@ -32,11 +32,11 @@
                            class="group relative overflow-hidden rounded-2xl bg-stone-800/50 border border-stone-700 hover:border-amber-500/50 transition-all duration-300"
                            wire:key="featured-{{ $speaker->id }}">
                             {{-- Photo --}}
-                            <div class="aspect-[3/4] overflow-hidden">
-                                <img src="{{ $speaker->photo_path ? asset($speaker->photo_path) : asset('images/speakers/placeholder.webp') }}"
+                            <div class="aspect-3/4 overflow-hidden">
+                                <img src="{{ $speaker->photo_path ? Vite::asset($speaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
                                      alt="{{ $speaker->name }}"
                                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/20 to-transparent"></div>
+                                <div class="absolute inset-0 bg-linear-to-t from-stone-900 via-stone-900/20 to-transparent"></div>
                             </div>
 
                             {{-- Content --}}
@@ -85,11 +85,11 @@
                            class="group relative overflow-hidden rounded-2xl bg-stone-800/50 border border-stone-700 hover:border-cyan-500/50 transition-all duration-300"
                            wire:key="workshop-{{ $speaker->id }}">
                             {{-- Photo --}}
-                            <div class="aspect-[3/4] overflow-hidden">
-                                <img src="{{ $speaker->photo_path ? asset($speaker->photo_path) : asset('images/speakers/placeholder.webp') }}"
+                            <div class="aspect-3/4 overflow-hidden">
+                                <img src="{{ $speaker->photo_path ? Vite::asset($speaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
                                      alt="{{ $speaker->name }}"
                                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/20 to-transparent"></div>
+                                <div class="absolute inset-0 bg-linear-to-t from-stone-900 via-stone-900/20 to-transparent"></div>
                             </div>
 
                             {{-- Content --}}
@@ -128,11 +128,11 @@
                            class="group relative overflow-hidden rounded-2xl bg-stone-800/50 border border-stone-700 hover:border-purple-500/50 transition-all duration-300"
                            wire:key="worship-{{ $speaker->id }}">
                             {{-- Photo --}}
-                            <div class="aspect-[3/4] overflow-hidden">
-                                <img src="{{ $speaker->photo_path ? asset($speaker->photo_path) : asset('images/speakers/placeholder.webp') }}"
+                            <div class="aspect-3/4 overflow-hidden">
+                                <img src="{{ $speaker->photo_path ? Vite::asset($speaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
                                      alt="{{ $speaker->name }}"
                                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/20 to-transparent"></div>
+                                <div class="absolute inset-0 bg-linear-to-t from-stone-900 via-stone-900/20 to-transparent"></div>
                             </div>
 
                             {{-- Content --}}

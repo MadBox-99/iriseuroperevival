@@ -13,7 +13,7 @@
             </video>
             --}}
             {{-- Gradient Overlay --}}
-            <div class="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-950/50 to-navy-950"></div>
+            <div class="absolute inset-0 bg-linear-to-b from-navy-950/70 via-navy-950/50 to-navy-950"></div>
             {{-- Texture Overlay --}}
             <div class="absolute inset-0 opacity-30"
                 style="background-image: url('{{ Vite::asset('resources/images/textures/noise.png') }}'); background-repeat: repeat;">
@@ -53,7 +53,7 @@
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up"
                 style="animation-delay: 0.3s;">
                 <a href="{{ route('register') }}"
-                    class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-bold text-lg rounded-full transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:scale-105">
+                    class="group inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-bold text-lg rounded-full transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:scale-105">
                     Register Now
                     <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24">
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     {{-- Caption --}}
-                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-linear-to-t from-black/80 to-transparent">
                         <p class="text-white/80 text-sm">Watch highlights from Europe Revival 2026</p>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
     </section>
 
     {{-- Texture Transition --}}
-    <div class="h-24 bg-gradient-to-b from-navy-950 to-navy-800 relative overflow-hidden">
+    <div class="h-24 bg-linear-to-b from-navy-950 to-navy-800 relative overflow-hidden">
         <div class="absolute inset-0 opacity-20"
             style="background-image: url('{{ Vite::asset('resources/images/textures/noise.png') }}'); background-repeat: repeat;">
         </div>
@@ -161,7 +161,7 @@
         <div class="absolute right-0 top-0 w-1/2 h-full opacity-20">
             <img src="{{ Vite::asset('resources/images/crowd-1.webp') }}" alt=""
                 class="w-full h-full object-cover object-left">
-            <div class="absolute inset-0 bg-gradient-to-r from-navy-950 to-transparent"></div>
+            <div class="absolute inset-0 bg-linear-to-r from-navy-950 to-transparent"></div>
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4">
@@ -176,7 +176,7 @@
                     </div>
                     {{-- Floating Badge --}}
                     <div
-                        class="absolute -bottom-6 -right-6 bg-gradient-to-br from-primary-500 to-primary-600 text-navy-800 px-6 py-4 rounded-2xl shadow-xl">
+                        class="absolute -bottom-6 -right-6 bg-linear-to-br from-primary-500 to-primary-600 text-navy-800 px-6 py-4 rounded-2xl shadow-xl">
                         <span class="text-4xl font-bold">2026</span>
                         <span class="block text-sm font-medium opacity-80">Conference Theme</span>
                     </div>
@@ -550,11 +550,11 @@
 
                 {{-- Team Pass --}}
                 <div
-                    class="bg-gradient-to-br from-primary-500/10 to-primary-600/10 border-2 border-primary-500/50 rounded-3xl p-8 relative overflow-hidden">
+                    class="bg-linear-to-br from-primary-500/10 to-primary-600/10 border-2 border-primary-500/50 rounded-3xl p-8 relative overflow-hidden">
                     {{-- Best Value Badge --}}
                     <div class="absolute -top-px -right-px">
                         <div
-                            class="bg-gradient-to-r from-primary-500 to-primary-600 text-navy-800 text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-3xl">
+                            class="bg-linear-to-r from-primary-500 to-primary-600 text-navy-800 text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-3xl">
                             BEST VALUE
                         </div>
                     </div>
@@ -729,7 +729,7 @@
         <div class="absolute inset-0">
             <img src="{{ Vite::asset('resources/images/crowd-1.webp') }}" alt=""
                 class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-navy-950"></div>
+            <div class="absolute inset-0 bg-linear-to-t from-navy-950 via-navy-950/70 to-navy-950"></div>
             <div class="absolute inset-0 opacity-10"
                 style="background-image: url('{{ Vite::asset('resources/images/textures/noise.png') }}');"></div>
         </div>
@@ -751,7 +751,7 @@
 
             {{-- CTA --}}
             <a href="{{ route('register') }}"
-                class="group inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-bold text-xl rounded-full transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:scale-105">
+                class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-bold text-xl rounded-full transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:scale-105">
                 Register Now — Starting at €49
                 <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none"
                     stroke="currentColor" viewBox="0 0 24 24">

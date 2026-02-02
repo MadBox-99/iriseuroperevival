@@ -202,7 +202,7 @@
     /* Primary Button - Gradient with glow */
     .btn-primary {
         @apply inline-flex items-center justify-center gap-2 px-8 py-4
-               bg-gradient-to-r from-primary-400 to-primary-600
+               bg-linear-to-r from-primary-400 to-primary-600
                hover:from-primary-500 hover:to-primary-700
                text-navy-900 font-bold rounded-full
                transition-all duration-300
@@ -213,7 +213,7 @@
 
     .btn-primary-sm {
         @apply inline-flex items-center justify-center gap-2 px-6 py-2.5
-               bg-gradient-to-r from-primary-400 to-primary-600
+               bg-linear-to-r from-primary-400 to-primary-600
                hover:from-primary-500 hover:to-primary-700
                text-navy-900 font-bold text-sm rounded-full
                transition-all duration-300
@@ -317,7 +317,7 @@
 
     .speaker-card::after {
         content: '';
-        @apply absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/30 to-transparent;
+        @apply absolute inset-0 bg-linear-to-t from-navy-950 via-navy-950/30 to-transparent;
     }
 
     .speaker-card-content {
@@ -405,11 +405,11 @@
 @layer utilities {
     /* Text Gradient */
     .text-gradient {
-        @apply text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600;
+        @apply text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-primary-600;
     }
 
     .text-gradient-gold {
-        @apply text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-primary-500 to-primary-700;
+        @apply text-transparent bg-clip-text bg-linear-to-r from-primary-400 via-primary-500 to-primary-700;
     }
 
     /* Animated Underline */

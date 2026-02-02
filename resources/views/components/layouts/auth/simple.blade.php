@@ -24,7 +24,7 @@
             <div class="w-full max-w-md">
                 {{-- Logo --}}
                 <a href="{{ route('home') }}" class="flex justify-center mb-8" wire:navigate>
-                    <img src="{{ asset('images/europe-revival-logo.svg') }}"
+                    <img src="{{ Vite::asset('resources/images/europe-revival-logo.svg') }}"
                          alt="{{ config('app.name') }}"
                          class="h-12">
                 </a>

@@ -53,7 +53,7 @@
             <div class="relative w-full max-w-2xl px-12">
                 <!-- Dashboard mockup card -->
                 <div class="bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 relative z-10">
-                    <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6">
+                    <div class="bg-linear-to-br from-gray-50 to-gray-100 rounded-xl p-6">
                         <!-- Stats grid -->
                         <div class="grid grid-cols-2 gap-3 mb-4">
                             <div class="bg-white rounded-lg p-3 shadow-sm">

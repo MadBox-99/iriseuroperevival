@@ -22,8 +22,8 @@
             <div class="grid lg:grid-cols-2 gap-12 items-start">
                 {{-- Photo --}}
                 <div class="relative">
-                    <div class="aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="{{ $speaker->photo_path ? asset($speaker->photo_path) : asset('images/speakers/placeholder.webp') }}"
+                    <div class="aspect-3/4 rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="{{ $speaker->photo_path ? Vite::asset($speaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
                              alt="{{ $speaker->name }}"
                              class="w-full h-full object-cover">
                     </div>
@@ -173,11 +173,11 @@
                         <a href="{{ route('speaker.show', $otherSpeaker->slug) }}"
                            class="group relative overflow-hidden rounded-2xl bg-stone-800/50 border border-stone-700 hover:border-amber-500/50 transition-all duration-300"
                            wire:key="other-{{ $otherSpeaker->id }}">
-                            <div class="aspect-[3/4] overflow-hidden">
-                                <img src="{{ $otherSpeaker->photo_path ? asset($otherSpeaker->photo_path) : asset('images/speakers/placeholder.webp') }}"
+                            <div class="aspect-3/4 overflow-hidden">
+                                <img src="{{ $otherSpeaker->photo_path ? Vite::asset($otherSpeaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
                                      alt="{{ $otherSpeaker->name }}"
                                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/20 to-transparent"></div>
+                                <div class="absolute inset-0 bg-linear-to-t from-stone-900 via-stone-900/20 to-transparent"></div>
                             </div>
                             <div class="absolute bottom-0 left-0 right-0 p-6">
                                 @if($otherSpeaker->title)

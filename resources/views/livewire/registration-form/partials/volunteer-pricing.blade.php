@@ -13,7 +13,7 @@
 @endphp
 
 <div class="space-y-4">
-    <div class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-xl">
+    <div class="flex items-center justify-between p-4 bg-linear-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-xl">
         <div>
             <p class="text-white font-semibold">Volunteer Pass</p>
             <p class="text-white/60 text-sm">{{ $tierLabels[$tier] ?? 'Current' }} Pricing</p>

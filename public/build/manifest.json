@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-x6Ge4aQ8.css",
+    "file": "assets/app-C8hhU0Zb.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -43,6 +43,10 @@
   "resources/images/hero-video-thumbnail.webp": {
     "file": "assets/hero-video-thumbnail-BF34WltE.webp",
     "src": "resources/images/hero-video-thumbnail.webp"
+  },
+  "resources/images/iris-budapest-2026.png": {
+    "file": "assets/iris-budapest-2026-CuiscS1J.png",
+    "src": "resources/images/iris-budapest-2026.png"
   },
   "resources/images/iris-logo.webp": {
     "file": "assets/iris-logo-ZTjscbN6.webp",
@@ -125,7 +129,7 @@
     "src": "resources/images/textures/transition-subtle.webp"
   },
   "resources/js/app.js": {
-    "file": "assets/app-Bi6NvaTD.js",
+    "file": "assets/app-CdbnJbB_.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

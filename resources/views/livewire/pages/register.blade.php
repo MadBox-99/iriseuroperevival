@@ -4,7 +4,7 @@
     <div class="relative pt-32 pb-16 overflow-hidden">
         {{-- Background --}}
         <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-stone-950"></div>
+            <div class="absolute inset-0 bg-linear-to-b from-amber-500/10 via-transparent to-stone-950"></div>
             <div class="absolute inset-0 opacity-20" style="background-image: url('{{ asset('images/textures/noise.png') }}');"></div>
         </div>
 
@@ -24,7 +24,7 @@
         <div class="max-w-3xl mx-auto">
             {{-- Info Cards based on type --}}
             @if($type === 'ministry')
-                <div class="mb-8 p-6 bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-2xl">
+                <div class="mb-8 p-6 bg-linear-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-2xl">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
                             <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,7 +59,7 @@
             @endif
 
             @if($type === 'volunteer')
-                <div class="mb-8 p-6 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl">
+                <div class="mb-8 p-6 bg-linear-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
                             <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

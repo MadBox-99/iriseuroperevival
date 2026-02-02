@@ -32,7 +32,7 @@
                                 <img src="{{ Storage::url($workshop->image_path) }}" alt="{{ $workshop->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                         @else
-                            <div class="aspect-video bg-gradient-to-br from-amber-500/20 to-stone-800 flex items-center justify-center">
+                            <div class="aspect-video bg-linear-to-br from-amber-500/20 to-stone-800 flex items-center justify-center">
                                 <svg class="w-16 h-16 text-amber-500/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                 </svg>
@@ -85,7 +85,7 @@
                                     @if($workshop->speaker->photo_path)
                                         <img src="{{ Storage::url($workshop->speaker->photo_path) }}" alt="{{ $workshop->speaker->name }}" class="w-10 h-10 rounded-full object-cover">
                                     @else
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center text-white font-semibold text-sm">
+                                        <div class="w-10 h-10 rounded-full bg-linear-to-br from-amber-500 to-amber-600 flex items-center justify-center text-white font-semibold text-sm">
                                             {{ substr($workshop->speaker->name, 0, 1) }}
                                         </div>
                                     @endif
@@ -126,7 +126,7 @@
                         <h3 class="text-lg font-semibold text-white">{{ __('Ready to join?') }}</h3>
                         <p class="text-stone-400 text-sm">{{ __('Register now to secure your spot in these transformative workshops.') }}</p>
                     </div>
-                    <a href="{{ route('register') }}" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-full hover:from-amber-600 hover:to-amber-700 transition-all whitespace-nowrap">
+                    <a href="{{ route('register') }}" class="inline-flex items-center px-6 py-3 bg-linear-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-full hover:from-amber-600 hover:to-amber-700 transition-all whitespace-nowrap">
                         {{ __('Register Now') }}
                         <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />

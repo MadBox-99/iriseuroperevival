@@ -79,7 +79,7 @@
 
                                 <div wire:key="item-{{ $item->id }}" class="relative flex items-start {{ $isEven ? 'md:flex-row-reverse' : '' }}">
                                     <!-- Timeline Dot -->
-                                    <div class="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-gradient-to-br {{ $bgGradient }} transform -translate-x-1/2 border-4 border-stone-950 z-10"></div>
+                                    <div class="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-linear-to-br {{ $bgGradient }} transform -translate-x-1/2 border-4 border-stone-950 z-10"></div>
 
                                     <!-- Time (Mobile: inline, Desktop: side) -->
                                     <div class="hidden md:block w-1/2 {{ $isEven ? 'pl-12 text-left' : 'pr-12 text-right' }}">
@@ -98,7 +98,7 @@
 
                                             <!-- Type Badge & Title -->
                                             <div class="flex items-start gap-3 mb-3">
-                                                <div class="w-10 h-10 rounded-lg bg-gradient-to-br {{ $bgGradient }} flex items-center justify-center shrink-0">
+                                                <div class="w-10 h-10 rounded-lg bg-linear-to-br {{ $bgGradient }} flex items-center justify-center shrink-0">
                                                     <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         {!! $icon !!}
                                                     </svg>
@@ -128,7 +128,7 @@
                                                     @if($item->speaker->photo_path)
                                                         <img src="{{ Storage::url($item->speaker->photo_path) }}" alt="{{ $item->speaker->name }}" class="w-10 h-10 rounded-full object-cover">
                                                     @else
-                                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center text-white font-semibold text-sm">
+                                                        <div class="w-10 h-10 rounded-full bg-linear-to-br from-amber-500 to-amber-600 flex items-center justify-center text-white font-semibold text-sm">
                                                             {{ substr($item->speaker->name, 0, 1) }}
                                                         </div>
                                                     @endif
@@ -154,23 +154,23 @@
             <!-- Legend -->
             <div class="mt-16 flex flex-wrap justify-center gap-4">
                 <div class="flex items-center gap-2">
-                    <div class="w-4 h-4 rounded-full bg-gradient-to-br from-purple-500 to-purple-600"></div>
+                    <div class="w-4 h-4 rounded-full bg-linear-to-br from-purple-500 to-purple-600"></div>
                     <span class="text-stone-400 text-sm">{{ __('Worship') }}</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <div class="w-4 h-4 rounded-full bg-gradient-to-br from-amber-500 to-amber-600"></div>
+                    <div class="w-4 h-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600"></div>
                     <span class="text-stone-400 text-sm">{{ __('Session') }}</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <div class="w-4 h-4 rounded-full bg-gradient-to-br from-green-500 to-green-600"></div>
+                    <div class="w-4 h-4 rounded-full bg-linear-to-br from-green-500 to-green-600"></div>
                     <span class="text-stone-400 text-sm">{{ __('Meal') }}</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <div class="w-4 h-4 rounded-full bg-gradient-to-br from-stone-500 to-stone-600"></div>
+                    <div class="w-4 h-4 rounded-full bg-linear-to-br from-stone-500 to-stone-600"></div>
                     <span class="text-stone-400 text-sm">{{ __('Break') }}</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <div class="w-4 h-4 rounded-full bg-gradient-to-br from-pink-500 to-pink-600"></div>
+                    <div class="w-4 h-4 rounded-full bg-linear-to-br from-pink-500 to-pink-600"></div>
                     <span class="text-stone-400 text-sm">{{ __('Special') }}</span>
                 </div>
             </div>
