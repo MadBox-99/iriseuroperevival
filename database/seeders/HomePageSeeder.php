@@ -122,7 +122,7 @@ class HomePageSeeder extends Seeder
         $sponsors = [
             [
                 'name' => 'IRIS Global UK',
-                'logo_path' => 'resources/images/partner-logos/iris-global.png',
+                'logo_path' => 'resources/images/iris-budapest-2026.png',
                 'website_url' => 'https://irisglobal.org.uk',
                 'tier' => 'platinum',
                 'sort_order' => 1,
