@@ -30,16 +30,22 @@
             class="absolute inset-0 z-30 rounded-2xl overflow-hidden pointer-events-none group-hover/card:pointer-events-auto">
             {{-- Blur layer - always blurred, opacity transitions --}}
             <div
-                class="absolute inset-0 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"></div>
+                class="absolute inset-0 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
+            </div>
             {{-- Gradient layer --}}
             <div
-                class="absolute inset-0 bg-gradient-to-b from-navy-950/95 via-navy-900/75 to-ocean-700/55 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"></div>
+                class="absolute inset-0 bg-gradient-to-b from-navy-950/95 via-navy-900/75 to-ocean-700/85 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
+            </div>
             {{-- Content layer --}}
             <div
                 class="absolute inset-0 p-5 flex flex-col opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
-                <h4 class="text-white font-bold mb-2">{{ $speaker->name }}</h4>
-                <p class="text-white/80 text-sm leading-relaxed overflow-y-auto flex-1">{{ $speaker->bio }}</p>
-                <span class="inline-flex items-center gap-1 text-sky-400 text-xs mt-3 font-medium">
+                <h4 class="text-white font-bold mb-4">{{ $speaker->name }}</h4>
+                <div class="relative flex-1 min-h-0">
+                    <p class="text-white/80 text-sm leading-relaxed overflow-y-auto h-full"
+                        style="mask-image: linear-gradient(to bottom, black 70%, transparent 95%);">{{ $speaker->bio }}
+                    </p>
+                </div>
+                <span class="inline-flex items-center gap-1 text-sky-400 text-xs pt-4 font-medium">
                     View full profile
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
