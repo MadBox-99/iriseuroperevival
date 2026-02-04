@@ -30,11 +30,11 @@
             class="absolute inset-0 z-30 rounded-2xl overflow-hidden pointer-events-none group-hover/card:pointer-events-auto">
             {{-- Blur layer - always blurred, opacity transitions --}}
             <div
-                class="absolute inset-0 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
+                class="absolute inset-0 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out">
             </div>
             {{-- Gradient layer --}}
             <div
-                class="absolute inset-0 bg-gradient-to-b from-navy-950/95 via-navy-900/75 to-ocean-700/85 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
+                class="absolute inset-0 bg-gradient-to-b from-navy-950/95 via-navy-900/75 to-ocean-700/85 opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out">
             </div>
             {{-- Content layer --}}
             <div
