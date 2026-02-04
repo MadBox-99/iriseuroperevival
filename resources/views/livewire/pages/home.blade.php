@@ -133,6 +133,9 @@
                 @foreach ($featuredSpeakers as $speaker)
                     <x-home.speaker-card :speaker="$speaker" wire:key="speaker-{{ $speaker->id }}" />
                 @endforeach
+
+                {{-- More Coming --}}
+                <x-home.more-speakers-card />
             </div>
 
             {{-- Workshop Leaders --}}
