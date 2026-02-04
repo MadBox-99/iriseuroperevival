@@ -72,10 +72,6 @@
     "file": "assets/iris-global-vBXXd2Xc.png",
     "src": "resources/images/partner-logos/iris-global.png"
   },
-  "resources/images/speakers/David-Gava.webp": {
-    "file": "assets/David-Gava-Gk3j-YgZ.webp",
-    "src": "resources/images/speakers/David-Gava.webp"
-  },
   "resources/images/speakers/HeidiD.webp": {
     "file": "assets/HeidiD-mV-5KhTR.webp",
     "src": "resources/images/speakers/HeidiD.webp"
@@ -91,6 +87,10 @@
   "resources/images/speakers/baoyan-lam.webp": {
     "file": "assets/baoyan-lam-CI2LMghP.webp",
     "src": "resources/images/speakers/baoyan-lam.webp"
+  },
+  "resources/images/speakers/david-gava.webp": {
+    "file": "assets/david-gava-Gk3j-YgZ.webp",
+    "src": "resources/images/speakers/david-gava.webp"
   },
   "resources/images/speakers/heidi-baker.webp": {
     "file": "assets/heidi-baker-Cl27R5IG.webp",
