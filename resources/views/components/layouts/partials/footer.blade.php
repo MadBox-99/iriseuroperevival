@@ -5,7 +5,7 @@
             {{-- Logo & Description --}}
             <div class="md:col-span-2">
                 <a href="{{ route('home') }}" class="inline-block mb-6">
-                    <img src="{{ Vite::asset('resources/images/iris-budapest-2026.png') }}" alt="Iris Global" class="h-8">
+                    <img src="{{ Vite::asset('resources/images/iris-budapest-2026.png') }}" alt="Iris Global" class="h-14">
                 </a>
                 <p class="text-white/50 text-sm leading-relaxed max-w-md mb-6">
                     Europe Revival 2026 is brought to you by Iris Global, a ministry dedicated to bringing
