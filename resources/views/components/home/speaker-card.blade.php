@@ -39,13 +39,16 @@
             {{-- Content layer --}}
             <div
                 class="absolute inset-0 p-5 flex flex-col opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
-                <h4 class="text-white font-bold mb-4">{{ $speaker->name }}</h4>
+                <h4 class="text-white font-bold">{{ $speaker->name }}</h4>
+                @if ($speaker->title)
+                    <span class="text-sky-400 text-xs font-medium mb-3">{{ $speaker->title }}</span>
+                @endif
                 <div class="relative flex-1 min-h-0">
-                    <p class="text-white/80 text-sm leading-relaxed overflow-y-auto h-full"
+                    <p class="text-white/80 text-sm leading-relaxed overflow-y-auto h-full pb-12"
                         style="mask-image: linear-gradient(to bottom, black 70%, transparent 95%);">{{ $speaker->bio }}
                     </p>
                 </div>
-                <span class="inline-flex items-center gap-1 text-sky-400 text-xs pt-4 font-medium">
+                <span class="inline-flex items-center gap-1 text-sky-400 text-xs pt-2 font-medium">
                     View full profile
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

@@ -15,82 +15,65 @@ class ScheduleItemSeeder extends Seeder
      */
     public function run(): void
     {
-        $speakers = Speaker::query()->where('type', 'speaker')->get();
+        // Clear existing schedule items
+        ScheduleItem::query()->delete();
+
+        // Get speakers by slug for specific assignments
+        $davidGava = Speaker::query()->where('slug', 'david-gava')->first();
+        $heidi = Speaker::query()->where('slug', 'heidi-baker')->first();
+        $melTari = Speaker::query()->where('slug', 'mel-tari')->first();
+        $pastorJosef = Speaker::query()->where('slug', 'pastor-josef')->first();
 
         $schedule = [
-            // Training Day - Wednesday, October 22
+            // THURSDAY - Training Day for Ministry Team
             [
                 'day' => '2026-10-22',
                 'items' => [
                     ['start' => '09:00', 'end' => '10:00', 'title' => 'Registration & Check-in', 'type' => 'special', 'location' => 'Main Lobby'],
-                    ['start' => '10:00', 'end' => '10:30', 'title' => 'Welcome Coffee', 'type' => 'break', 'location' => 'Café Area'],
-                    ['start' => '10:30', 'end' => '12:30', 'title' => 'Pastors & Leaders Session: Morning', 'type' => 'session', 'location' => 'Main Hall', 'speaker' => true, 'description' => 'Special equipping session for pastors and church leaders.'],
-                    ['start' => '12:30', 'end' => '14:00', 'title' => 'Lunch', 'type' => 'meal', 'location' => 'Dining Hall'],
-                    ['start' => '14:00', 'end' => '16:00', 'title' => 'Pastors & Leaders Session: Afternoon', 'type' => 'session', 'location' => 'Main Hall', 'speaker' => true, 'description' => 'Continued training and ministry for leaders.'],
-                    ['start' => '16:00', 'end' => '16:30', 'title' => 'Coffee Break', 'type' => 'break', 'location' => 'Café Area'],
-                    ['start' => '16:30', 'end' => '18:00', 'title' => 'Q&A and Prayer for Leaders', 'type' => 'session', 'location' => 'Main Hall', 'speaker' => true, 'description' => 'Open discussion and personal ministry time.'],
-                    ['start' => '18:00', 'end' => '19:00', 'title' => 'Dinner', 'type' => 'meal', 'location' => 'Dining Hall'],
-                    ['start' => '19:30', 'end' => '21:30', 'title' => 'Evening Worship & Ministry', 'type' => 'worship', 'location' => 'Main Hall', 'speaker' => true, 'description' => 'Opening night of worship and impartation.'],
+                    ['start' => '10:00', 'end' => '17:00', 'title' => 'Ministry Team Training Day', 'type' => 'session', 'location' => 'Main Hall', 'speaker_id' => $davidGava?->id, 'description' => 'All-day training for ministry team members with David Gava and ministry team leaders.'],
+                    ['start' => '12:30', 'end' => '13:30', 'title' => 'Lunch Break', 'type' => 'meal', 'location' => 'Dining Hall'],
                 ],
             ],
-            // Day 1 - Thursday, October 23
+            // FRIDAY
             [
                 'day' => '2026-10-23',
                 'items' => [
-                    ['start' => '07:00', 'end' => '08:00', 'title' => 'Morning Prayer', 'type' => 'worship', 'location' => 'Chapel'],
-                    ['start' => '08:00', 'end' => '09:00', 'title' => 'Breakfast', 'type' => 'meal', 'location' => 'Dining Hall'],
-                    ['start' => '09:30', 'end' => '11:00', 'title' => 'Morning Session: "The Fire of Revival"', 'type' => 'session', 'location' => 'Main Hall', 'speaker' => true, 'description' => 'Setting the tone for the conference with a powerful message about the fire of revival sweeping across Europe.'],
-                    ['start' => '11:00', 'end' => '11:30', 'title' => 'Coffee Break', 'type' => 'break', 'location' => 'Café Area'],
-                    ['start' => '11:30', 'end' => '13:00', 'title' => 'Workshops Session 1', 'type' => 'session', 'location' => 'Various Rooms', 'description' => 'Choose from multiple workshop tracks.'],
-                    ['start' => '13:00', 'end' => '14:30', 'title' => 'Lunch', 'type' => 'meal', 'location' => 'Dining Hall'],
-                    ['start' => '15:00', 'end' => '16:30', 'title' => 'Afternoon Session: "Awakening the Nations"', 'type' => 'session', 'location' => 'Main Hall', 'speaker' => true, 'description' => 'A prophetic word for the nations of Europe and Gods plan for awakening.'],
-                    ['start' => '17:00', 'end' => '18:30', 'title' => 'Free Time & Recreation', 'type' => 'break', 'location' => 'Campus'],
-                    ['start' => '18:30', 'end' => '19:30', 'title' => 'Dinner', 'type' => 'meal', 'location' => 'Dining Hall'],
-                    ['start' => '20:00', 'end' => '22:00', 'title' => 'Evening Celebration: Worship & Ministry', 'type' => 'worship', 'location' => 'Main Hall', 'speaker' => true, 'description' => 'An extended time of worship and ministry with personal prayer available.'],
+                    ['start' => '11:00', 'end' => '14:00', 'title' => 'Pastors & Leaders Session', 'type' => 'session', 'location' => 'Main Hall', 'speaker_id' => $melTari?->id, 'description' => 'Special session for pastors, ministry leaders and business leaders with coffee, tea, and refreshments.'],
+                    ['start' => '18:30', 'end' => '22:00', 'title' => 'Opening Session', 'type' => 'session', 'location' => 'Main Hall', 'speaker_id' => $davidGava?->id, 'description' => 'Opening worship and message. Honouring the pastors of the city.'],
                 ],
             ],
-            // Day 2 - Friday, October 24
+            // SATURDAY
             [
                 'day' => '2026-10-24',
                 'items' => [
-                    ['start' => '07:00', 'end' => '08:00', 'title' => 'Morning Prayer', 'type' => 'worship', 'location' => 'Chapel'],
-                    ['start' => '08:00', 'end' => '09:00', 'title' => 'Breakfast', 'type' => 'meal', 'location' => 'Dining Hall'],
-                    ['start' => '09:30', 'end' => '11:00', 'title' => 'Morning Session: "Unity in the Spirit"', 'type' => 'session', 'location' => 'Main Hall', 'speaker' => true, 'description' => 'Exploring the power of unity across denominations and nations.'],
-                    ['start' => '11:00', 'end' => '11:30', 'title' => 'Coffee Break', 'type' => 'break', 'location' => 'Café Area'],
-                    ['start' => '11:30', 'end' => '13:00', 'title' => 'Workshops Session 2', 'type' => 'session', 'location' => 'Various Rooms', 'description' => 'Continue with your chosen workshop track.'],
-                    ['start' => '13:00', 'end' => '14:30', 'title' => 'Lunch', 'type' => 'meal', 'location' => 'Dining Hall'],
-                    ['start' => '15:00', 'end' => '16:30', 'title' => 'Panel Discussion: "Revival in Europe Today"', 'type' => 'session', 'location' => 'Main Hall', 'speaker' => true, 'description' => 'Hear testimonies and insights from leaders across different European nations.'],
-                    ['start' => '17:00', 'end' => '18:30', 'title' => 'Free Time', 'type' => 'break', 'location' => 'Campus'],
-                    ['start' => '18:30', 'end' => '19:30', 'title' => 'Dinner', 'type' => 'meal', 'location' => 'Dining Hall'],
-                    ['start' => '20:00', 'end' => '22:30', 'title' => 'Night of Encounter', 'type' => 'worship', 'location' => 'Main Hall', 'speaker' => true, 'description' => 'A powerful evening of worship, prophetic ministry, and encounters with the Holy Spirit.'],
+                    ['start' => '09:00', 'end' => '12:00', 'title' => 'Saturday Morning Main Session', 'type' => 'session', 'location' => 'Main Hall', 'speaker_id' => $pastorJosef?->id, 'description' => 'Morning worship, message and ministry time.'],
+                    ['start' => '12:30', 'end' => '14:00', 'title' => 'Q&A Session', 'type' => 'session', 'location' => 'Main Hall', 'description' => 'Interactive Q&A session with Mel Tari and David Gava.'],
+                    ['start' => '14:30', 'end' => '18:00', 'title' => 'Healing Rooms', 'type' => 'special', 'location' => 'Healing Rooms', 'description' => '15-minute personal ministry slots available upon prior registration.'],
+                    ['start' => '14:30', 'end' => '18:00', 'title' => 'Prophetic Rooms', 'type' => 'special', 'location' => 'Prophetic Rooms', 'description' => '15-minute personal ministry slots available upon prior registration.'],
+                    ['start' => '14:30', 'end' => '17:00', 'title' => 'Street Evangelism', 'type' => 'special', 'location' => 'City Center', 'description' => 'Outreach teams going into the city to share the Gospel.'],
+                    ['start' => '14:30', 'end' => '18:00', 'title' => 'Merch & Ministry Booths', 'type' => 'special', 'location' => 'Foyer', 'description' => 'Browse ministry resources and connect with partner organizations.'],
+                    ['start' => '16:00', 'end' => '17:30', 'title' => 'Workshops', 'type' => 'session', 'location' => 'Various Rooms', 'description' => 'Choose from workshops on Power Evangelism, Prophetic Arts, Prophetic Ministry, Pastoral Care, Missions, Marketplace Missions, Family, Human Trafficking Awareness, Freedom Ministry, and Father Heart of God.'],
+                    ['start' => '18:30', 'end' => '22:00', 'title' => 'Saturday Evening Session', 'type' => 'session', 'location' => 'Main Hall', 'speaker_id' => $melTari?->id, 'description' => 'Evening worship, message and ministry time.'],
                 ],
             ],
-            // Day 3 - Saturday, October 25
+            // SUNDAY
             [
                 'day' => '2026-10-25',
                 'items' => [
-                    ['start' => '07:00', 'end' => '08:00', 'title' => 'Morning Prayer', 'type' => 'worship', 'location' => 'Chapel'],
-                    ['start' => '08:00', 'end' => '09:00', 'title' => 'Breakfast', 'type' => 'meal', 'location' => 'Dining Hall'],
-                    ['start' => '09:30', 'end' => '11:00', 'title' => 'Morning Session: "Go and Make Disciples"', 'type' => 'session', 'location' => 'Main Hall', 'speaker' => true, 'description' => 'A call to action for the Great Commission across Europe.'],
-                    ['start' => '11:00', 'end' => '11:30', 'title' => 'Coffee Break', 'type' => 'break', 'location' => 'Café Area'],
-                    ['start' => '11:30', 'end' => '13:00', 'title' => 'Outreach & City Prayer Walk', 'type' => 'special', 'location' => 'City Center', 'description' => 'Join us as we pray over the city and share God\'s love.'],
-                    ['start' => '13:00', 'end' => '14:30', 'title' => 'Lunch', 'type' => 'meal', 'location' => 'Dining Hall'],
-                    ['start' => '15:00', 'end' => '17:00', 'title' => 'Closing Celebration Service', 'type' => 'worship', 'location' => 'Main Hall', 'speaker' => true, 'description' => 'Our final gathering with worship, communion, commissioning, and sending.'],
-                    ['start' => '17:00', 'end' => '18:00', 'title' => 'Farewell & Departure', 'type' => 'special', 'location' => 'Main Lobby'],
+                    ['start' => '09:00', 'end' => '12:00', 'title' => 'Sunday Morning Main Session', 'type' => 'session', 'location' => 'Main Hall', 'description' => 'Morning worship, message and ministry time with Mel Tari and David Gava.'],
+                    ['start' => '12:30', 'end' => '14:00', 'title' => 'Sunday Afternoon Session', 'type' => 'session', 'location' => 'Main Hall', 'speaker_id' => $heidi?->id, 'description' => 'Worship, message and ministry time with Heidi Baker and Iris Missionaries.'],
+                    ['start' => '14:30', 'end' => '18:00', 'title' => 'Healing Rooms', 'type' => 'special', 'location' => 'Healing Rooms', 'description' => '15-minute personal ministry slots available upon prior registration.'],
+                    ['start' => '14:30', 'end' => '18:00', 'title' => 'Prophetic Rooms', 'type' => 'special', 'location' => 'Prophetic Rooms', 'description' => '15-minute personal ministry slots available upon prior registration.'],
+                    ['start' => '14:30', 'end' => '17:00', 'title' => 'Street Evangelism', 'type' => 'special', 'location' => 'City Center', 'description' => 'Outreach teams going into the city to share the Gospel.'],
+                    ['start' => '14:30', 'end' => '18:00', 'title' => 'Merch & Ministry Booths', 'type' => 'special', 'location' => 'Foyer', 'description' => 'Browse ministry resources and connect with partner organizations.'],
+                    ['start' => '16:00', 'end' => '17:30', 'title' => 'Workshops', 'type' => 'session', 'location' => 'Various Rooms', 'description' => 'Choose from workshops including Iris Global Harvest School of Missions alumni gathering, Revival Harvest, Prophetic Arts, Prophetic Ministry, Pastoral Care, Missions, Marketplace Missions, Family, Human Trafficking Awareness, Freedom Ministry, and Father Heart of God.'],
+                    ['start' => '18:30', 'end' => '22:00', 'title' => 'Closing Session', 'type' => 'session', 'location' => 'Main Hall', 'speaker_id' => $heidi?->id, 'description' => 'Closing worship, message and ministry time with Heidi Baker.'],
                 ],
             ],
         ];
 
-        $speakerIndex = 0;
-
         foreach ($schedule as $daySchedule) {
             foreach ($daySchedule['items'] as $sortOrder => $item) {
-                $speakerId = null;
-                if (isset($item['speaker']) && $item['speaker'] && $speakers->count() > 0) {
-                    $speakerId = $speakers->get($speakerIndex % $speakers->count())?->id;
-                    $speakerIndex++;
-                }
-
                 ScheduleItem::create([
                     'title' => $item['title'],
                     'description' => $item['description'] ?? null,
@@ -99,7 +82,7 @@ class ScheduleItemSeeder extends Seeder
                     'end_time' => $item['end'],
                     'type' => $item['type'],
                     'location' => $item['location'],
-                    'speaker_id' => $speakerId,
+                    'speaker_id' => $item['speaker_id'] ?? null,
                     'is_published' => true,
                     'sort_order' => $sortOrder,
                 ]);

@@ -196,9 +196,10 @@
                         <span class="text-gradient">Catch on Fire.</span>
                     </h2>
                     <p class="text-white/60 text-lg mb-8 leading-relaxed">
-                        In a world searching for meaning, we gather to encounter the One who sets hearts ablaze.
-                        This isn't just another conference—it's a divine appointment where Heaven meets earth,
-                        and ordinary lives become carriers of extraordinary fire.
+                        Europe Revival 2026 is organized by <strong class="text-white/80">Iris Europe</strong>, a revival movement led by full-time missionaries
+                        <strong class="text-white/80">Siyabonga and Dominika Mofele</strong>, pioneers of the Iris Krakow base within the Iris Global family.
+                        Rooted in prayer, worship, and obedience to the Holy Spirit, Iris Europe is committed to seeing Europe encounter Jesus
+                        and live a laid-down life of love for the Gospel.
                     </p>
 
                     {{-- Theme Points --}}
@@ -212,9 +213,9 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold mb-1">Encounter God's Presence</h4>
-                                <p class="text-white/50 text-sm">Experience powerful worship and encounter the tangible
-                                    presence of the Holy Spirit</p>
+                                <h4 class="text-white font-semibold mb-1">Born from Iris Europe Camp</h4>
+                                <p class="text-white/50 text-sm">An extension of the gathering known for deep worship,
+                                    uncompromised teaching, and encounters with God that ignite hearts</p>
                             </div>
                         </div>
 
@@ -229,9 +230,9 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold mb-1">Catch the Fire of Revival</h4>
-                                <p class="text-white/50 text-sm">Receive fresh impartation and be ignited with passion
-                                    for the lost</p>
+                                <h4 class="text-white font-semibold mb-1">Stadium Gathering in Hungary</h4>
+                                <p class="text-white/50 text-sm">The same atmosphere of intimacy, joy, and spiritual fire
+                                    expanded to create space for thousands to experience God's presence together</p>
                             </div>
                         </div>
 
@@ -244,9 +245,9 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold mb-1">Spread Revival to the Nations</h4>
-                                <p class="text-white/50 text-sm">Take the flame back to your city and become a carrier
-                                    of awakening</p>
+                                <h4 class="text-white font-semibold mb-1">A Vision for Europe</h4>
+                                <p class="text-white/50 text-sm">Europe is not spiritually dead but hungry for the living God—
+                                    we invite believers to encounter Jesus and catch on fire for His glory</p>
                             </div>
                         </div>
                     </div>
