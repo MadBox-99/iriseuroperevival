@@ -95,7 +95,7 @@
 
             {{-- Livewire Registration Form --}}
             <div class="bg-stone-900/50 border border-stone-800 rounded-3xl p-8 md:p-10">
-                @livewire('registration-form', ['type' => $type])
+               <livewire:registration-form :type="$type" />
             </div>
 
             {{-- Help Section --}}

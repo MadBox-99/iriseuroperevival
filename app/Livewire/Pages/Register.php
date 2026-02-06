@@ -6,8 +6,10 @@ namespace App\Livewire\Pages;
 
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
+#[Title('Register for Europe Revival 2026')]
 #[Layout('components.layouts.app')]
 class Register extends Component
 {
@@ -36,7 +38,6 @@ class Register extends Component
 
     public function render(): View
     {
-        return view('livewire.pages.register')
-            ->title($this->title . ' - Europe Revival 2026');
+        return view(view: 'livewire.pages.register');
     }
 }
