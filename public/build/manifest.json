@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CdeYtXke.css",
+    "file": "assets/app-C_vHPgAm.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -120,6 +120,10 @@
     "file": "assets/placeholder-DUU3kW1K.webp",
     "src": "resources/images/speakers/placeholder.webp"
   },
+  "resources/images/speakers/tineke-bouwman.webp": {
+    "file": "assets/tineke-bouwman-C8-vbCGd.webp",
+    "src": "resources/images/speakers/tineke-bouwman.webp"
+  },
   "resources/images/sponsors/iris-global-uk.svg": {
     "file": "assets/iris-global-uk-BpzEsppr.svg",
     "src": "resources/images/sponsors/iris-global-uk.svg"
@@ -145,7 +149,7 @@
     "src": "resources/images/textures/transition-subtle.webp"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DIuewKhF.js",
+    "file": "assets/app-CWpXuHPD.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
