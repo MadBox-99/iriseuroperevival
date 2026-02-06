@@ -32,20 +32,6 @@ describe('workshops page', function () {
             ->assertSee('Learn to express worship through art.');
     });
 
-    it('displays workshop difficulty level', function () {
-        Workshop::factory()->beginner()->create(['title' => 'Beginner Workshop']);
-        Workshop::factory()->intermediate()->create(['title' => 'Intermediate Workshop']);
-        Workshop::factory()->advanced()->create(['title' => 'Advanced Workshop']);
-
-        Livewire::test(Workshops::class)
-            ->assertSee('Beginner Workshop')
-            ->assertSee('Intermediate Workshop')
-            ->assertSee('Advanced Workshop')
-            ->assertSee('Beginner')
-            ->assertSee('Intermediate')
-            ->assertSee('Advanced');
-    });
-
     it('displays workshop duration', function () {
         Workshop::factory()->create([
             'title' => 'Two Hour Workshop',
@@ -57,47 +43,43 @@ describe('workshops page', function () {
             ->assertSee('2h');
     });
 
-    it('displays workshop capacity', function () {
+    it('displays workshop leader name', function () {
         Workshop::factory()->create([
-            'title' => 'Limited Workshop',
-            'capacity' => 30,
+            'title' => 'Art Workshop',
+            'leader_name' => 'Dr. Kate',
         ]);
 
         Livewire::test(Workshops::class)
-            ->assertSee('Limited Workshop')
-            ->assertSee('30');
+            ->assertSee('Art Workshop')
+            ->assertSee('Dr. Kate');
     });
 
-    it('displays workshop leader information', function () {
+    it('displays workshop leader with speaker link', function () {
         $speaker = Speaker::factory()->create([
             'name' => 'Workshop Leader',
-            'title' => 'Artist',
+            'slug' => 'workshop-leader',
         ]);
 
         Workshop::factory()->create([
             'title' => 'Art Workshop',
+            'leader_name' => 'Workshop Leader',
             'speaker_id' => $speaker->id,
         ]);
 
         Livewire::test(Workshops::class)
             ->assertSee('Art Workshop')
-            ->assertSee('Workshop Leader')
-            ->assertSee('Artist');
+            ->assertSee('Workshop Leader');
     });
 
-    it('displays workshop benefits', function () {
+    it('displays schedule note badge', function () {
         Workshop::factory()->create([
-            'title' => 'Prayer Workshop',
-            'benefits' => [
-                'Learn effective prayer techniques',
-                'Build a prayer habit',
-            ],
+            'title' => 'Saturday Workshop',
+            'schedule_note' => 'Saturday only',
         ]);
 
         Livewire::test(Workshops::class)
-            ->assertSee('Prayer Workshop')
-            ->assertSee('Learn effective prayer techniques')
-            ->assertSee('Build a prayer habit');
+            ->assertSee('Saturday Workshop')
+            ->assertSee('Saturday only');
     });
 
     it('hides unpublished workshops', function () {

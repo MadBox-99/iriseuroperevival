@@ -160,20 +160,20 @@
 
                                             <!-- Speaker -->
                                             @if($item->speaker)
-                                                <div class="flex items-center gap-3 pt-4 border-t border-navy-600">
+                                                <div class="flex items-center gap-4 pt-4 border-t border-navy-600">
                                                     @if($item->speaker->photo_path)
-                                                        <img src="{{ Vite::asset('resources/' . $item->speaker->photo_path) }}" alt="{{ $item->speaker->name }}" class="w-10 h-10 rounded-full object-cover">
+                                                        <img src="{{ Vite::asset('resources/' . $item->speaker->photo_path) }}" alt="{{ $item->speaker->name }}" class="w-16 h-16 rounded-xl object-cover object-top">
                                                     @else
-                                                        <div class="w-10 h-10 rounded-full bg-sky-400/20 flex items-center justify-center text-sky-400 font-semibold text-sm">
+                                                        <div class="w-16 h-16 rounded-xl bg-sky-400/20 flex items-center justify-center text-sky-400 font-semibold text-lg">
                                                             {{ substr($item->speaker->name, 0, 1) }}
                                                         </div>
                                                     @endif
                                                     <div>
-                                                        <a href="{{ route('speaker.show', $item->speaker->slug) }}" class="text-white text-sm font-medium hover:text-sky-400 transition-colors">
+                                                        <a href="{{ route('speaker.show', $item->speaker->slug) }}" class="text-white font-medium hover:text-sky-400 transition-colors">
                                                             {{ $item->speaker->name }}
                                                         </a>
                                                         @if($item->speaker->title)
-                                                            <p class="text-white/40 text-xs">{{ $item->speaker->title }}</p>
+                                                            <p class="text-white/40 text-sm">{{ $item->speaker->title }}</p>
                                                         @endif
                                                     </div>
                                                 </div>

@@ -110,7 +110,7 @@
     {{-- ============================================
     SPEAKERS SECTION
 ============================================= --}}
-    <section id="speakers" class="py-24 bg-navy-800 relative">
+    <section id="speakers" class="py-24 bg-navy-800 relative overflow-hidden">
         {{-- Background Pattern --}}
         <div class="absolute inset-0 opacity-5"
             style="background-image: url('{{ Vite::asset('resources/images/textures/noise.png') }}');"></div>
@@ -142,14 +142,24 @@
             @if ($workshopLeaders->isNotEmpty())
                 <div class="mt-16">
                     <h3 class="text-2xl font-bold text-white text-center mb-8">Workshop Leaders</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                        @foreach ($workshopLeaders as $speaker)
-                            <x-home.speaker-card :speaker="$speaker" :showArrow="false"
-                                wire:key="workshop-{{ $speaker->id }}" />
-                        @endforeach
-
-                        {{-- More Coming --}}
-                        <x-home.more-speakers-card />
+                    <div class="relative md:-mr-40">
+                        <div class="overflow-x-auto md:pr-40 snap-x snap-mandatory scrollbar-hide pb-4 -mb-4">
+                            <div class="flex gap-4 md:gap-6">
+                                @foreach ($workshopLeaders as $speaker)
+                                    <div class="w-[calc(50%-8px)] md:w-[calc(25%-18px)] shrink-0 snap-start"
+                                        wire:key="workshop-{{ $speaker->id }}">
+                                        <x-home.speaker-card :speaker="$speaker" :showArrow="false" />
+                                    </div>
+                                @endforeach
+                                <div class="w-[calc(50%-8px)] md:w-[calc(25%-18px)] shrink-0 snap-start">
+                                    <x-home.more-speakers-card />
+                                </div>
+                            </div>
+                        </div>
+                        {{-- Right fade gradient (outside scroll container so it stays fixed) --}}
+                        <div
+                            class="absolute right-0 top-0 bottom-4 w-16 md:w-20 bg-linear-to-l from-navy-800 to-transparent pointer-events-none z-10">
+                        </div>
                     </div>
                 </div>
             @endif

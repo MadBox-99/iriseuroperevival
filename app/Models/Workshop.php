@@ -26,6 +26,8 @@ class Workshop extends Model
         'description',
         'benefits',
         'speaker_id',
+        'leader_name',
+        'schedule_note',
         'image_path',
         'capacity',
         'duration_minutes',

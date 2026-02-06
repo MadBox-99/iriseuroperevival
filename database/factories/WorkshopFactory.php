@@ -22,6 +22,7 @@ class WorkshopFactory extends Factory
     {
         return [
             'title' => fake()->sentence(3),
+            'leader_name' => fake()->name(),
             'short_description' => fake()->paragraph(1),
             'description' => fake()->paragraphs(3, true),
             'benefits' => [

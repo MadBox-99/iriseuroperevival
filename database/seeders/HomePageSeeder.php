@@ -107,6 +107,18 @@ class HomePageSeeder extends Seeder
                 'is_featured' => false,
                 'sort_order' => 12,
             ],
+            [
+                'name' => 'Tineke Bouwman',
+                'slug' => 'tineke-bouwman',
+                'title' => 'Workshop Leader',
+                'organization' => 'Founder, Lighthouse Ministries',
+                'country' => 'Netherlands',
+                'bio' => 'Tineke Bouwman is the founder and forerunner of Lighthouse Ministries in Rilland, the Netherlands. As a prophetic voice in this generation, she brings breakthrough and stirs fire in the hearts of those she ministers to—releasing destiny. Lighthouse is a ministry born from walking in God-given prophetic revelation. It is a Family Home (community-centered living for young adults); a house of prayer; a church; and a training center. What started with a simple yes has grown into a prophetic movement. Tineke has raised up a generation burning for Jesus who understand the value of intimate life with God. She works internationally as a counselor and trainer of leaders. A mother of five children (including a foster daughter) and eight grandchildren, she gratefully enjoys time at home with her family when she is not running with God among the nations.',
+                'photo_path' => 'images/speakers/tineke-bouwman.webp',
+                'type' => 'workshop_leader',
+                'is_featured' => false,
+                'sort_order' => 13,
+            ],
         ];
 
         foreach ($speakers as $speaker) {
