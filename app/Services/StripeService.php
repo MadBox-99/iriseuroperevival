@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\Registration;
+use App\Models\TicketPrice;
 use Exception;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Date;
 use Stripe\Checkout\Session;
 use Stripe\Customer;
@@ -150,25 +152,30 @@ class StripeService
      */
     public function getTicketPrice(string $ticketType, string $tier): int
     {
+        return Cache::remember(
+            "ticket_price.{$tier}.{$ticketType}",
+            3600,
+            function () use ($ticketType, $tier): int {
+                $ticketPrice = TicketPrice::query()
+                    ->active()
+                    ->forTier($tier)
+                    ->forType($ticketType)
+                    ->first();
+
+                return $ticketPrice?->price ?? $this->getFallbackPrice($ticketType, $tier);
+            },
+        );
+    }
+
+    /**
+     * Fallback prices for when the database is not yet seeded.
+     */
+    protected function getFallbackPrice(string $ticketType, string $tier): int
+    {
         $prices = [
-            'early' => [
-                'individual' => 4900,   // €49 - Standard ticket
-                'team' => 3900,         // €39 - Group discount (10+ people)
-                'volunteer' => 2900,    // €29 - Volunteer discounted rate
-                'vip' => 14900,         // €149 - VIP with premium benefits
-            ],
-            'regular' => [
-                'individual' => 5900,   // €59 - Standard ticket
-                'team' => 4900,         // €49 - Group discount (10+ people)
-                'volunteer' => 3900,    // €39 - Volunteer discounted rate
-                'vip' => 17900,         // €179 - VIP with premium benefits
-            ],
-            'late' => [
-                'individual' => 6900,   // €69 - Standard ticket
-                'team' => 5900,         // €59 - Group discount (10+ people)
-                'volunteer' => 4900,    // €49 - Volunteer discounted rate
-                'vip' => 19900,         // €199 - VIP with premium benefits
-            ],
+            'early' => ['individual' => 4900, 'team' => 3900, 'volunteer' => 2900, 'vip' => 14900],
+            'regular' => ['individual' => 5900, 'team' => 4900, 'volunteer' => 3900, 'vip' => 17900],
+            'late' => ['individual' => 6900, 'team' => 5900, 'volunteer' => 4900, 'vip' => 19900],
         ];
 
         return $prices[$tier][$ticketType] ?? $prices['late']['individual'];
@@ -184,19 +191,21 @@ class StripeService
 
     /**
      * Get all pricing information for the current tier.
+     *
+     * @return array{tier: string, individual: int, team: int, volunteer: int, vip: int, team_minimum: int}
      */
     public function getAllPrices(): array
     {
         $tier = $this->getCurrentPricingTier();
 
-        return [
+        return Cache::remember("ticket_prices.all.{$tier}", 3600, fn (): array => [
             'tier' => $tier,
             'individual' => $this->getTicketPrice('individual', $tier),
             'team' => $this->getTicketPrice('team', $tier),
             'volunteer' => $this->getTicketPrice('volunteer', $tier),
             'vip' => $this->getTicketPrice('vip', $tier),
             'team_minimum' => 10,
-        ];
+        ]);
     }
 
     /**

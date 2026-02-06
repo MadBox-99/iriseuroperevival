@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             ScheduleItemSeeder::class,
             WorkshopSeeder::class,
             AdminUserSeeder::class,
+            TicketPriceSeeder::class,
         ]);
     }
 }

@@ -10,6 +10,7 @@
     $tier = $stripeService->getCurrentPricingTier();
     $tierName = $stripeService->getTierName();
     $pricePerTicket = $stripeService->getTicketPrice($ticketType, $tier);
+    $individualPrice = $stripeService->getTicketPrice('individual', $tier);
     $total = $pricePerTicket * $quantity;
 
     $ticketLabel = match ($ticketType) {
@@ -31,42 +32,49 @@
             {{ $tierName }} Pricing
         </span>
         @if($tier === 'early')
-            <span class="text-xs text-white/60">Ends {{ $stripeService->getEarlyBirdEndDate() }}</span>
+            <span class="text-xs text-stone-500">Ends {{ $stripeService->getEarlyBirdEndDate() }}</span>
         @endif
     </div>
 
     {{-- Line Items --}}
     <div class="space-y-2">
-        <div class="flex justify-between text-sm text-white/70">
+        <div class="flex justify-between text-sm text-stone-600">
             <span>{{ $ticketLabel }} x {{ $quantity }}</span>
-            <span>€{{ number_format($pricePerTicket / 100, 2) }} each</span>
+            @if($ticketType === 'team')
+                <span>
+                    <span class="line-through text-stone-400">€{{ number_format($individualPrice / 100, 2) }}</span>
+                    €{{ number_format($pricePerTicket / 100, 2) }} each
+                </span>
+            @else
+                <span>€{{ number_format($pricePerTicket / 100, 2) }} each</span>
+            @endif
         </div>
 
-        @if($ticketType === 'team' && $quantity >= 10)
-            <div class="flex justify-between text-sm text-green-400">
-                <span>Group Discount Applied</span>
-                <span>-20%</span>
+        @if($ticketType === 'team')
+            <div class="flex justify-between text-sm text-green-600">
+                <span>Group Discount (20% off)</span>
+                <span>-€{{ number_format(($individualPrice - $pricePerTicket) * $quantity / 100, 2) }}</span>
             </div>
         @endif
 
         @if($ticketType === 'vip')
-            <div class="text-xs text-white/50 mt-2">
+            <div class="text-xs text-stone-500 mt-2">
                 Includes: Front row seating, VIP lounge access, speaker meet & greet, exclusive merchandise
             </div>
         @endif
     </div>
 
     {{-- Total --}}
-    <div class="border-t border-stone-700 pt-3 flex justify-between text-lg font-bold text-white">
+    <div class="border-t border-stone-200 pt-3 flex justify-between text-lg font-bold text-stone-900">
         <span>Total</span>
         <span class="text-amber-400">€{{ number_format($total / 100, 2) }}</span>
     </div>
 
     {{-- Team Warning --}}
     @if($ticketType === 'team' && $quantity < 10)
-        <div class="text-sm text-amber-400 flex items-center gap-2">
+        <div class="text-sm text-amber-600 flex items-center gap-2">
             <x-heroicon-o-exclamation-triangle class="h-4 w-4" />
-            <span>Minimum 10 tickets required for group discount</span>
+            <span>Minimum 10 tickets required for group pass</span>
         </div>
     @endif
 </div>

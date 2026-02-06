@@ -17,23 +17,11 @@ class Register extends Component
 
     public string $title = 'Register for Europe Revival 2026';
 
-    public string $subtitle = 'Secure your spot at the conference';
+    public string $subtitle = 'Choose your registration type and secure your spot';
 
     public function mount(string $type = 'attendee'): void
     {
         $this->type = $type;
-
-        $this->title = match ($type) {
-            'ministry' => 'Ministry Team Application',
-            'volunteer' => 'Volunteer Application',
-            default => 'Register for Europe Revival 2026',
-        };
-
-        $this->subtitle = match ($type) {
-            'ministry' => 'Apply to serve at Europe Revival 2026',
-            'volunteer' => 'Join us as a volunteer at Europe Revival 2026',
-            default => 'Secure your spot at the conference',
-        };
     }
 
     public function render(): View

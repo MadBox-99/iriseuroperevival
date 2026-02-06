@@ -18,6 +18,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Wizard;
 use Filament\Schemas\Components\Wizard\Step;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
@@ -47,6 +48,7 @@ class RegistrationForm extends Component implements HasSchemas
         $this->type = $type;
 
         $this->form->fill([
+            'registration_type' => $type,
             'ticket_type' => 'individual',
             'ticket_quantity' => 1,
         ]);
@@ -58,7 +60,7 @@ class RegistrationForm extends Component implements HasSchemas
             ->components([
                 Wizard::make($this->getWizardSteps())
                     ->submitAction(new HtmlString(view('livewire.registration-form.partials.submit-button', [
-                        'type' => $this->type,
+                        'type' => $this->data['registration_type'] ?? 'attendee',
                     ])->render())),
             ])
             ->statePath('data');
@@ -66,27 +68,39 @@ class RegistrationForm extends Component implements HasSchemas
 
     protected function getWizardSteps(): array
     {
-        $steps = [
+        return [
+            $this->getRegistrationTypeStep(),
             $this->getPersonalInfoStep(),
+            $this->getMinistryDetailsStep(),
+            $this->getChurchInfoStep(),
+            $this->getTestimonyStep(),
+            $this->getTicketSelectionStep(),
+            $this->getVolunteerDetailsStep(),
+            $this->getConfirmationStep(),
         ];
+    }
 
-        if ($this->type === 'ministry') {
-            $steps[] = $this->getMinistryDetailsStep();
-            $steps[] = $this->getChurchInfoStep();
-            $steps[] = $this->getTestimonyStep();
-        }
-
-        if ($this->type === 'attendee') {
-            $steps[] = $this->getTicketSelectionStep();
-        }
-
-        if ($this->type === 'volunteer') {
-            $steps[] = $this->getVolunteerDetailsStep();
-        }
-
-        $steps[] = $this->getConfirmationStep();
-
-        return $steps;
+    protected function getRegistrationTypeStep(): Step
+    {
+        return Step::make('Registration Type')
+            ->description('How would you like to join us?')
+            ->icon('heroicon-o-identification')
+            ->schema([
+                Radio::make('registration_type')
+                    ->label('Select your registration type')
+                    ->required()
+                    ->options([
+                        'attendee' => 'Conference Attendee',
+                        'volunteer' => 'Volunteer',
+                        'ministry' => 'Ministry Team',
+                    ])
+                    ->descriptions([
+                        'attendee' => 'Attend the conference as a participant. Purchase tickets for yourself or your group.',
+                        'volunteer' => 'Serve as a volunteer. Discounted pass, meals during shifts, and more.',
+                        'ministry' => 'Apply for the ministry team. Free attendance, mandatory training on Oct 22.',
+                    ])
+                    ->live(),
+            ]);
     }
 
     protected function getPersonalInfoStep(): Step
@@ -158,6 +172,7 @@ class RegistrationForm extends Component implements HasSchemas
         return Step::make('Ministry Details')
             ->description('Tell us about your background')
             ->icon('heroicon-o-briefcase')
+            ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
             ->schema([
                 TextInput::make('citizenship')
                     ->label('Citizenship')
@@ -195,6 +210,7 @@ class RegistrationForm extends Component implements HasSchemas
         return Step::make('Church Information')
             ->description('Tell us about your church')
             ->icon('heroicon-o-building-library')
+            ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
             ->schema([
                 Grid::make(2)
                     ->schema([
@@ -234,6 +250,7 @@ class RegistrationForm extends Component implements HasSchemas
         return Step::make('Spiritual Background')
             ->description('Share your testimony with us')
             ->icon('heroicon-o-heart')
+            ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
             ->schema([
                 Section::make('Spiritual Requirements')
                     ->schema([
@@ -333,6 +350,7 @@ class RegistrationForm extends Component implements HasSchemas
         return Step::make('Select Your Tickets')
             ->description('Choose the best option for you')
             ->icon('heroicon-o-ticket')
+            ->visible(fn (Get $get): bool => $get('registration_type') === 'attendee')
             ->schema([
                 Radio::make('ticket_type')
                     ->label('Ticket Type')
@@ -390,6 +408,7 @@ class RegistrationForm extends Component implements HasSchemas
         return Step::make('Volunteer Details')
             ->description('Tell us about your skills')
             ->icon('heroicon-o-hand-raised')
+            ->visible(fn (Get $get): bool => $get('registration_type') === 'volunteer')
             ->schema([
                 CheckboxList::make('languages')
                     ->label('Languages You Speak')
@@ -418,46 +437,45 @@ class RegistrationForm extends Component implements HasSchemas
 
     protected function getConfirmationStep(): Step
     {
-        $schema = [
-            Section::make('Registration Summary')
-                ->schema([
-                    \Filament\Schemas\Components\View::make('livewire.registration-form.partials.summary'),
-                ]),
-        ];
-
-        if ($this->type === 'ministry') {
-            $schema[] = Section::make('Ministry Team Guidelines')
-                ->description('Please read and accept the following guidelines')
-                ->schema([
-                    \Filament\Schemas\Components\View::make('livewire.registration-form.partials.ministry-guidelines'),
-
-                    Checkbox::make('accepts_guidelines')
-                        ->label('I accept the Ministry Team Guidelines')
-                        ->helperText('I understand and commit to the requirements above')
-                        ->accepted()
-                        ->validationMessages([
-                            'accepted' => 'You must accept the ministry team guidelines.',
-                        ]),
-                ]);
-        }
-
-        $schema[] = Checkbox::make('accepts_terms')
-            ->label('I accept the Terms & Conditions')
-            ->helperText(new HtmlString(view('livewire.registration-form.partials.terms-links')->render()))
-            ->accepted()
-            ->validationMessages([
-                'accepted' => 'You must accept the terms and conditions.',
-            ]);
-
         return Step::make('Confirmation')
             ->description('Review and confirm your registration')
             ->icon('heroicon-o-check-circle')
-            ->schema($schema);
+            ->schema([
+                Section::make('Registration Summary')
+                    ->schema([
+                        \Filament\Schemas\Components\View::make('livewire.registration-form.partials.summary'),
+                    ]),
+
+                Section::make('Ministry Team Guidelines')
+                    ->description('Please read and accept the following guidelines')
+                    ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
+                    ->schema([
+                        \Filament\Schemas\Components\View::make('livewire.registration-form.partials.ministry-guidelines'),
+
+                        Checkbox::make('accepts_guidelines')
+                            ->label('I accept the Ministry Team Guidelines')
+                            ->helperText('I understand and commit to the requirements above')
+                            ->accepted()
+                            ->validationMessages([
+                                'accepted' => 'You must accept the ministry team guidelines.',
+                            ]),
+                    ]),
+
+                Checkbox::make('accepts_terms')
+                    ->label('I accept the Terms & Conditions')
+                    ->helperText(new HtmlString(view('livewire.registration-form.partials.terms-links')->render()))
+                    ->accepted()
+                    ->live()
+                    ->validationMessages([
+                        'accepted' => 'You must accept the terms and conditions.',
+                    ]),
+            ]);
     }
 
     public function submit()
     {
         $data = $this->form->getState();
+        $this->type = $data['registration_type'];
         $this->processing = true;
         $this->error = null;
 
@@ -577,7 +595,9 @@ class RegistrationForm extends Component implements HasSchemas
         $data = $this->data ?? [];
         $ticketType = $data['ticket_type'] ?? 'individual';
         $quantity = (int) ($data['ticket_quantity'] ?? 1);
-        $pricePerTicket = $ticketType === 'individual' ? 4900 : 3900;
+
+        $stripeService = app(StripeService::class);
+        $pricePerTicket = $stripeService->getTicketPrice($ticketType, $stripeService->getCurrentPricingTier());
 
         return '€' . number_format(($pricePerTicket * $quantity) / 100, 2);
     }
