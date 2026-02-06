@@ -1,10 +1,6 @@
 ---
 name: pest-testing
-description: >-
-  Tests applications using the Pest 4 PHP framework. Activates when writing tests, creating unit or feature
-  tests, adding assertions, testing Livewire components, browser testing, debugging test failures,
-  working with datasets or mocking; or when the user mentions test, spec, TDD, expects, assertion,
-  coverage, or needs to verify functionality works.
+description: "Tests applications using the Pest 4 PHP framework. Activates when writing tests, creating unit or feature tests, adding assertions, testing Livewire components, browser testing, debugging test failures, working with datasets or mocking. Mentions of test, spec, TDD, expects, assertion, coverage, or verifying functionality."
 ---
 
 # Pest Testing 4
