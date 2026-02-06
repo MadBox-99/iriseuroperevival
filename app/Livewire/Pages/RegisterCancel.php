@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Pages;
 
 use App\Models\Registration;
+use App\Services\StripeService;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -19,6 +20,14 @@ class RegisterCancel extends Component
     public function mount(string $uuid): void
     {
         $this->registration = Registration::query()->where('uuid', $uuid)->firstOrFail();
+    }
+
+    public function retryPayment(): void
+    {
+        $stripeService = app(StripeService::class);
+        $checkoutUrl = $stripeService->createCheckoutSession($this->registration);
+
+        $this->redirect($checkoutUrl);
     }
 
     public function render(): View

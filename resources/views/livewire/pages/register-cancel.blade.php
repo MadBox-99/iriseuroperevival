@@ -38,10 +38,12 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ route('register.success', $registration->uuid) }}"
-                   class="inline-flex items-center justify-center px-6 py-3 bg-amber-500 text-stone-900 font-semibold rounded-lg hover:bg-amber-400 transition-colors">
-                    {{ __('Try Payment Again') }}
-                </a>
+                <button wire:click="retryPayment"
+                        wire:loading.attr="disabled"
+                        class="inline-flex items-center justify-center px-6 py-3 bg-amber-500 text-stone-900 font-semibold rounded-lg hover:bg-amber-400 transition-colors disabled:opacity-50">
+                    <span wire:loading.remove wire:target="retryPayment">{{ __('Try Payment Again') }}</span>
+                    <span wire:loading wire:target="retryPayment">{{ __('Redirecting to payment...') }}</span>
+                </button>
                 <a href="{{ route('home') }}"
                    class="inline-flex items-center justify-center px-6 py-3 bg-stone-800 text-white font-semibold rounded-lg hover:bg-stone-700 transition-colors">
                     {{ __('Return Home') }}
