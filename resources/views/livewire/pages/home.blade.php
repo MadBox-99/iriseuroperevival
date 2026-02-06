@@ -35,10 +35,12 @@
                     class="h-20 md:h-28 mx-auto mb-6">
             </div>
 
-            {{-- Tagline Image --}}
+            {{-- Tagline --}}
             <div class="mb-10 animate-fade-in-up" style="animation-delay: 0.1s;">
-                <img src="{{ Vite::asset('resources/images/encounter-jesus-tagline.webp') }}"
-                    alt="Encounter Jesus. Catch on Fire." class="h-16 md:h-24 mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">
+                    Encounter Jesus<br>
+                    <span class="text-gradient">Catch on Fire</span>
+                </h1>
             </div>
 
             {{-- Description --}}
@@ -69,7 +71,7 @@
                             <path d="M8 5v14l11-7z" />
                         </svg>
                     </span>
-                    Watch Trailer
+                    Watch Program
                 </button>
             </div>
 
@@ -122,7 +124,7 @@
                     class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                     Featured Speakers
                 </span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">World-Class Speakers</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Speakers</h2>
                 <p class="text-white/50 text-lg max-w-2xl mx-auto">
                     Anointed ministers from around the world sharing powerful messages of revival and transformation
                 </p>
@@ -263,10 +265,10 @@
                     </div>
 
                     {{-- Scripture --}}
-                    <blockquote class="border-l-4 border-sky-400 pl-6 py-2">
-                        <p class="text-white/80 italic text-lg mb-2">"I have come to bring fire on the earth, and how I
+                    <blockquote class="bg-amber-500/15 border border-amber-500/30 rounded-xl px-6 py-5">
+                        <p class="text-white italic text-lg mb-2">"I have come to bring fire on the earth, and how I
                             wish it were already kindled!"</p>
-                        <cite class="text-sky-400 text-sm font-medium">— Luke 12:49</cite>
+                        <cite class="text-amber-400 text-sm font-medium">— Luke 12:49</cite>
                     </blockquote>
                 </div>
             </div>
@@ -381,7 +383,7 @@
                                     <h3 class="text-white text-xl font-bold">{{ $day['formatted_date'] }}</h3>
                                 </div>
                                 <div class="p-6 space-y-4">
-                                    @foreach ($day['items']->take(5) as $item)
+                                    @foreach ($day['items'] as $item)
                                         @php
                                             $borderColor = match ($item->type) {
                                                 'worship' => 'border-sky-400',
@@ -460,69 +462,80 @@
     {{-- ============================================
     PRICING SECTION
 ============================================= --}}
+    @php
+        $prices = [
+            'early' => [
+                'individual' => $ticketPrices['early']['individual'] ?? 49,
+                'team' => $ticketPrices['early']['team'] ?? 39,
+            ],
+            'regular' => [
+                'individual' => $ticketPrices['regular']['individual'] ?? 69,
+                'team' => $ticketPrices['regular']['team'] ?? 59,
+            ],
+        ];
+    @endphp
     <section id="pricing" class="py-24 bg-navy-900 relative" x-data="{
         activeTier: 'early',
-        prices: {
+        {{-- prices: {
             early: { individual: 49, team: 39 },
-            regular: { individual: 59, team: 49 },
-            late: { individual: 69, team: 59 }
-        }
+            regular: { individual: 69, team: 59 }
+        } --}}
+        prices: {{ Js::from($prices) }}
     }">
         <div class="max-w-7xl mx-auto px-4">
             {{-- Section Header --}}
-            <div class="text-center mb-16">
+            <div class="text-center mb-6">
                 <span
                     class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                     Pricing
                 </span>
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Secure Your Spot</h2>
-                <p class="text-white/50 text-lg max-w-2xl mx-auto">
-                    Early Bird pricing available until June 30, 2026
-                </p>
             </div>
 
-            {{-- Pricing Timeline --}}
-            <div class="flex justify-center gap-2 mb-12 flex-wrap">
-                <button @click="activeTier = 'early'"
+            {{-- Early Bird Deadline Highlight --}}
+            <div class="text-center mb-12">
+                <span class="inline-flex items-center gap-2 px-5 py-2.5 bg-orange-500/15 border border-orange-500/30 rounded-full text-orange-400 font-semibold">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Early Bird pricing available until June 30, 2026
+                </span>
+            </div>
+
+            {{-- Pricing Toggle --}}
+            <div class="flex justify-center gap-2 mb-12">
+                <button type="button" @click="let y = window.scrollY; activeTier = 'early'; $nextTick(() => window.scrollTo({ top: y, behavior: 'instant' }))"
                     :class="activeTier === 'early' ? 'bg-sky-400 text-navy-800' :
                         'bg-navy-700 text-white/70 hover:text-white'"
-                    class="px-5 py-2.5 rounded-full font-medium text-sm transition-all flex items-center gap-2">
+                    class="px-5 py-2.5 rounded-full font-medium text-sm transition-colors flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full"
                         :class="activeTier === 'early' ? 'bg-navy-800' : 'bg-sky-400'"></span>
                     Early Bird (until June 30)
                 </button>
-                <button @click="activeTier = 'regular'"
+                <button type="button" @click="let y = window.scrollY; activeTier = 'regular'; $nextTick(() => window.scrollTo({ top: y, behavior: 'instant' }))"
                     :class="activeTier === 'regular' ? 'bg-sky-400 text-navy-800' :
                         'bg-navy-700 text-white/70 hover:text-white'"
-                    class="px-5 py-2.5 rounded-full font-medium text-sm transition-all flex items-center gap-2">
+                    class="px-5 py-2.5 rounded-full font-medium text-sm transition-colors flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full"
                         :class="activeTier === 'regular' ? 'bg-navy-800' : 'bg-sky-400'"></span>
-                    Regular (July 1 - Aug 31)
-                </button>
-                <button @click="activeTier = 'late'"
-                    :class="activeTier === 'late' ? 'bg-sky-400 text-navy-800' :
-                        'bg-navy-700 text-white/70 hover:text-white'"
-                    class="px-5 py-2.5 rounded-full font-medium text-sm transition-all flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full"
-                        :class="activeTier === 'late' ? 'bg-navy-800' : 'bg-sky-400'"></span>
-                    Late (Sept 1+)
+                    Regular (July 1+)
                 </button>
             </div>
 
             {{-- Pricing Cards --}}
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {{-- Individual Ticket --}}
-                <div class="bg-navy-800/50 border border-navy-600 rounded-3xl p-8 relative overflow-hidden">
+                <div class="bg-navy-800/50 border border-navy-600 rounded-3xl p-8 relative overflow-hidden flex flex-col">
                     <h3 class="text-2xl font-bold text-white mb-2">Individual</h3>
                     <p class="text-white/50 mb-6">Single attendee registration</p>
 
                     <div class="mb-8">
                         <span class="text-5xl font-bold text-white">€<span
-                                x-text="prices[activeTier].individual"></span></span>
+                                x-text="prices[activeTier].individual">{{ $prices['early']['individual'] }}</span></span>
                         <span class="text-white/50">/person</span>
                     </div>
 
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-3 mb-8 grow">
                         <li class="flex items-center gap-3 text-white/70">
                             <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
@@ -564,7 +577,7 @@
 
                 {{-- Team Pass --}}
                 <div
-                    class="bg-linear-to-br from-primary-500/10 to-primary-600/10 border-2 border-primary-500/50 rounded-3xl p-8 relative overflow-hidden">
+                    class="bg-linear-to-br from-primary-500/10 to-primary-600/10 border-2 border-primary-500/50 rounded-3xl p-8 relative overflow-hidden flex flex-col">
                     {{-- Best Value Badge --}}
                     <div class="absolute -top-px -right-px">
                         <div
@@ -578,12 +591,12 @@
 
                     <div class="mb-8">
                         <span class="text-5xl font-bold text-primary-400">€<span
-                                x-text="prices[activeTier].team"></span></span>
+                                x-text="prices[activeTier].team">{{ $prices['early']['team'] }}</span></span>
                         <span class="text-white/50">/person</span>
                         <span class="block text-green-400 text-sm mt-1">Save 20% per person</span>
                     </div>
 
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-3 mb-8 grow">
                         <li class="flex items-center gap-3 text-white/70">
                             <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
@@ -624,22 +637,8 @@
                 </div>
             </div>
 
-            {{-- Early Bird Banner --}}
-            <div class="mt-12 max-w-3xl mx-auto" x-show="activeTier === 'early'">
-                <div
-                    class="bg-sky-400/10 border border-sky-400/30 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-4">
-                    <div class="w-14 h-14 bg-sky-400/20 rounded-xl flex items-center justify-center shrink-0">
-                        <svg class="w-7 h-7 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <div class="text-center md:text-left">
-                        <h4 class="text-sky-400 font-semibold">Early Bird Pricing Ends June 30, 2026</h4>
-                        <p class="text-white/60 text-sm">Lock in the lowest price and save up to €20 per ticket</p>
-                    </div>
-                </div>
-            </div>
+
+
         </div>
     </section>
 
@@ -668,25 +667,46 @@
                 </div>
             @endif
 
-            {{-- Volunteer CTA --}}
-            <div class="mt-20 text-center">
-                <div class="inline-block bg-navy-800/50 border border-navy-600 rounded-2xl p-8 max-w-2xl">
-                    <div class="w-16 h-16 bg-primary-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-primary-400" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Want to Serve?</h3>
-                    <p class="text-white/60 mb-6">Join our volunteer team and be part of something extraordinary</p>
-                    <a href="{{ route('volunteer') }}" class="btn-secondary">
-                        Apply to Volunteer
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </a>
+        </div>
+    </section>
+
+    {{-- ============================================
+    VOLUNTEER CTA SECTION
+============================================= --}}
+    <section class="py-20 bg-navy-900 relative overflow-hidden">
+        {{-- Background --}}
+        <div class="absolute inset-0">
+            <img src="{{ Vite::asset('resources/images/crowd-3.webp') }}" alt="" class="absolute inset-0 w-full h-full object-cover opacity-15">
+            <div class="absolute inset-0 bg-linear-to-r from-primary-600/20 to-navy-900/95"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4">
+            <div class="text-center">
+                <div class="w-20 h-20 bg-primary-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-primary-500/30">
+                    <svg class="w-10 h-10 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
                 </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Want to Serve?</h2>
+                <p class="text-white/60 text-lg max-w-2xl mx-auto mb-4">
+                    We are looking for volunteers to join our ministry team! Serve in healing rooms, prophetic ministry, worship, hospitality, and more.
+                </p>
+                <p class="text-primary-400 font-semibold text-lg mb-8">Free conference access for approved team members</p>
+
+                <div class="flex flex-wrap items-center justify-center gap-3 mb-10 max-w-2xl mx-auto">
+                    @foreach (['Healing Rooms', 'Prophetic Ministry', 'Worship Team', 'Hospitality', 'Prayer Team', 'Street Evangelism', 'Kids Ministry', 'Tech & Media'] as $role)
+                        <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/70 text-sm">{{ $role }}</span>
+                    @endforeach
+                </div>
+
+                <a href="{{ route('volunteer') }}"
+                    class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-bold text-xl rounded-full transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:scale-105">
+                    Apply to Volunteer
+                    <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
             </div>
         </div>
     </section>

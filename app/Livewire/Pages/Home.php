@@ -8,6 +8,7 @@ use App\Models\Faq;
 use App\Models\ScheduleItem;
 use App\Models\Speaker;
 use App\Models\Sponsor;
+use App\Models\TicketPrice;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Layout;
@@ -74,6 +75,13 @@ class Home extends Component
             ];
         });
 
+        $ticketPrices = TicketPrice::query()
+            ->active()
+            ->whereIn('ticket_type', ['individual', 'team'])
+            ->get()
+            ->groupBy('pricing_tier')
+            ->map(fn ($tierPrices) => $tierPrices->pluck('price_in_euros', 'ticket_type'));
+
         return view('livewire.pages.home', [
             'featuredSpeakers' => $featuredSpeakers,
             'workshopLeaders' => $workshopLeaders,
@@ -81,6 +89,7 @@ class Home extends Component
             'partnerSponsors' => $partnerSponsors,
             'faqs' => $faqs,
             'scheduleDays' => $scheduleDays,
+            'ticketPrices' => $ticketPrices,
         ]);
     }
 }

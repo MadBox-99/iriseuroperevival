@@ -23,7 +23,7 @@
                     <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                         Featured Speakers
                     </span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">World-Class Speakers</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Speakers</h2>
                     <p class="text-white/50 max-w-xl mx-auto">
                         Powerful voices bringing messages of revival, healing, and transformation
                     </p>

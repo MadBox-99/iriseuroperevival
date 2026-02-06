@@ -103,6 +103,7 @@
                         </div>
                     </div>
 
+                    {{-- Promo code field hidden for now
                     @if(!$this->promotionCode)
                         <div class="mt-4">
                             <flux:field>
@@ -120,6 +121,7 @@
                             </flux:field>
                         </div>
                     @endif
+                    --}}
 
                     <div class="mt-6">
                         <flux:button href="{{ route('shop.checkout') }}" variant="primary" class="w-full">

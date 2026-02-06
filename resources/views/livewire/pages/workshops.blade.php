@@ -64,9 +64,9 @@
                             <!-- Leader -->
                             <div class="flex items-center gap-4 pt-4 border-t border-navy-600">
                                 @if($workshop->speaker && $workshop->speaker->photo_path)
-                                    <img src="{{ Vite::asset('resources/' . $workshop->speaker->photo_path) }}" alt="{{ $workshop->leader_name }}" class="w-16 h-16 rounded-xl object-cover object-top">
+                                    <img src="{{ Vite::asset('resources/' . $workshop->speaker->photo_path) }}" alt="{{ $workshop->leader_name }}" class="w-24 h-24 rounded-xl object-cover object-top">
                                 @else
-                                    <div class="w-16 h-16 rounded-xl bg-sky-400/20 flex items-center justify-center text-sky-400 font-semibold text-lg">
+                                    <div class="w-24 h-24 rounded-xl bg-sky-400/20 flex items-center justify-center text-sky-400 font-semibold text-2xl">
                                         {{ substr($workshop->leader_name ?? 'W', 0, 1) }}
                                     </div>
                                 @endif
