@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Mail\PaymentConfirmation;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Override;
 
@@ -241,7 +243,13 @@ class Registration extends Model
         $this->stripe_payment_intent = $paymentIntent;
         $this->paid_at = now();
 
-        return $this->save();
+        $saved = $this->save();
+
+        if ($saved) {
+            Mail::to($this->email)->queue(new PaymentConfirmation($this));
+        }
+
+        return $saved;
     }
 
     public function cancel(): bool

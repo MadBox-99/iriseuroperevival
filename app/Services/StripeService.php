@@ -101,14 +101,38 @@ class StripeService
     }
 
     /**
-     * Build address array for Stripe.
+     * Build address array for Stripe (requires ISO 3166-1 alpha-2 country codes).
      */
     protected function buildAddress(Registration $registration): array
     {
         return array_filter([
             'city' => $registration->city,
-            'country' => $registration->country,
+            'country' => $this->countryToIsoCode($registration->country),
         ]);
+    }
+
+    /**
+     * Map country name to ISO 3166-1 alpha-2 code for Stripe.
+     */
+    protected function countryToIsoCode(?string $country): ?string
+    {
+        if (! $country) {
+            return null;
+        }
+
+        $map = [
+            'Hungary' => 'HU',
+            'Germany' => 'DE',
+            'Austria' => 'AT',
+            'Romania' => 'RO',
+            'Slovakia' => 'SK',
+            'Czech Republic' => 'CZ',
+            'Poland' => 'PL',
+            'United Kingdom' => 'GB',
+            'United States' => 'US',
+        ];
+
+        return $map[$country] ?? null;
     }
 
     /**
