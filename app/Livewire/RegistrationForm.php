@@ -92,12 +92,10 @@ class RegistrationForm extends Component implements HasSchemas
                     ->options([
                         'attendee' => 'Conference Attendee',
                         'volunteer' => 'Volunteer',
-                        'ministry' => 'Ministry Team',
                     ])
                     ->descriptions([
                         'attendee' => 'Attend the conference as a participant. Purchase tickets for yourself or your group.',
                         'volunteer' => 'Serve as a volunteer. Discounted pass, meals during shifts, and more.',
-                        'ministry' => 'Apply for the ministry team. Free attendance, mandatory training on Oct 22.',
                     ])
                     ->live(),
             ]);

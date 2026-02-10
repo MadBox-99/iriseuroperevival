@@ -584,7 +584,7 @@
                 </p>
             </div>
 
-            @if($submitted)
+           {{--  @if($submitted)
                 <div class="bg-navy-700/50 backdrop-blur-sm rounded-2xl p-8 border border-navy-600 text-center">
                     <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-emerald-500/10 flex items-center justify-center">
                         <svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -602,203 +602,13 @@
                         </svg>
                     </a>
                 </div>
-            @else
+            @else --}}
                 <div class="bg-navy-700/50 backdrop-blur-sm rounded-2xl p-8 border border-navy-600">
                     <form wire:submit="submit" class="space-y-8">
-                        {{-- Personal Info --}}
-                        <div>
-                            <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                                <span class="w-8 h-8 rounded-full bg-sky-400/20 text-sky-400 flex items-center justify-center text-sm">1</span>
-                                Személyes adatok
-                            </h3>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label for="first_name" class="block text-sm font-medium text-white/70 mb-1">Keresztnév *</label>
-                                    <input type="text" id="first_name" wire:model="first_name"
-                                        class="w-full px-4 py-3 rounded-lg bg-navy-900/50 border border-navy-600 text-white placeholder-white/30 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                                        placeholder="Add meg a keresztneved">
-                                    @error('first_name') <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span> @enderror
-                                </div>
-                                <div>
-                                    <label for="last_name" class="block text-sm font-medium text-white/70 mb-1">Vezetéknév *</label>
-                                    <input type="text" id="last_name" wire:model="last_name"
-                                        class="w-full px-4 py-3 rounded-lg bg-navy-900/50 border border-navy-600 text-white placeholder-white/30 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                                        placeholder="Add meg a vezetékneved">
-                                    @error('last_name') <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span> @enderror
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-white/70 mb-1">E-mail cím *</label>
-                                    <input type="email" id="email" wire:model="email"
-                                        class="w-full px-4 py-3 rounded-lg bg-navy-900/50 border border-navy-600 text-white placeholder-white/30 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                                        placeholder="pelda@email.com">
-                                    @error('email') <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span> @enderror
-                                </div>
-                                <div>
-                                    <label for="phone" class="block text-sm font-medium text-white/70 mb-1">Telefonszám *</label>
-                                    <input type="tel" id="phone" wire:model="phone"
-                                        class="w-full px-4 py-3 rounded-lg bg-navy-900/50 border border-navy-600 text-white placeholder-white/30 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                                        placeholder="+36 ...">
-                                    @error('phone') <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span> @enderror
-                                </div>
-                                <div class="md:col-span-2">
-                                    <label for="country" class="block text-sm font-medium text-white/70 mb-1">Ország *</label>
-                                    <input type="text" id="country" wire:model="country"
-                                        class="w-full px-4 py-3 rounded-lg bg-navy-900/50 border border-navy-600 text-white placeholder-white/30 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                                        placeholder="Pl. Magyarország">
-                                    @error('country') <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span> @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Church Info --}}
-                        <div>
-                            <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                                <span class="w-8 h-8 rounded-full bg-sky-400/20 text-sky-400 flex items-center justify-center text-sm">2</span>
-                                Gyülekezeti adatok
-                            </h3>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label for="church_name" class="block text-sm font-medium text-white/70 mb-1">Gyülekezet neve *</label>
-                                    <input type="text" id="church_name" wire:model="church_name"
-                                        class="w-full px-4 py-3 rounded-lg bg-navy-900/50 border border-navy-600 text-white placeholder-white/30 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                                        placeholder="Pl. Hit Gyülekezete">
-                                    @error('church_name') <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span> @enderror
-                                </div>
-                                <div>
-                                    <label for="church_city" class="block text-sm font-medium text-white/70 mb-1">Gyülekezet városa *</label>
-                                    <input type="text" id="church_city" wire:model="church_city"
-                                        class="w-full px-4 py-3 rounded-lg bg-navy-900/50 border border-navy-600 text-white placeholder-white/30 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                                        placeholder="Pl. Budapest">
-                                    @error('church_city') <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span> @enderror
-                                </div>
-                                <div>
-                                    <label for="pastor_name" class="block text-sm font-medium text-white/70 mb-1">Lelkipásztor neve *</label>
-                                    <input type="text" id="pastor_name" wire:model="pastor_name"
-                                        class="w-full px-4 py-3 rounded-lg bg-navy-900/50 border border-navy-600 text-white placeholder-white/30 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                                        placeholder="Add meg a lelkipásztorod nevét">
-                                    @error('pastor_name') <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span> @enderror
-                                </div>
-                                <div>
-                                    <label for="pastor_email" class="block text-sm font-medium text-white/70 mb-1">Lelkipásztor e-mail címe *</label>
-                                    <input type="email" id="pastor_email" wire:model="pastor_email"
-                                        class="w-full px-4 py-3 rounded-lg bg-navy-900/50 border border-navy-600 text-white placeholder-white/30 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                                        placeholder="pasztor@gyulekezet.hu">
-                                    @error('pastor_email') <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span> @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Service Areas --}}
-                        <div>
-                            <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                                <span class="w-8 h-8 rounded-full bg-sky-400/20 text-sky-400 flex items-center justify-center text-sm">3</span>
-                                Szolgálati területek
-                            </h3>
-                            <p class="text-white/50 text-sm mb-4">Jelöld be azokat a területeket, ahol szívesen szolgálnál (több is választható):</p>
-                            @error('service_areas') <span class="text-red-400 text-sm mb-3 block">{{ $message }}</span> @enderror
-                            <div class="grid md:grid-cols-2 gap-3">
-                                <label class="flex items-center gap-3 p-4 rounded-lg bg-navy-900/50 border border-navy-600 cursor-pointer hover:border-sky-400/50 transition-colors">
-                                    <input type="checkbox" wire:model="service_areas" value="evangelism_leader" class="w-5 h-5 rounded border-navy-500 text-sky-400 focus:ring-sky-400 focus:ring-offset-navy-800">
-                                    <span class="text-white/70">Evangelizációs csoportvezető</span>
-                                </label>
-                                <label class="flex items-center gap-3 p-4 rounded-lg bg-navy-900/50 border border-navy-600 cursor-pointer hover:border-sky-400/50 transition-colors">
-                                    <input type="checkbox" wire:model="service_areas" value="healing" class="w-5 h-5 rounded border-navy-500 text-sky-400 focus:ring-sky-400 focus:ring-offset-navy-800">
-                                    <span class="text-white/70">Gyógyító szobák</span>
-                                </label>
-                                <label class="flex items-center gap-3 p-4 rounded-lg bg-navy-900/50 border border-navy-600 cursor-pointer hover:border-sky-400/50 transition-colors">
-                                    <input type="checkbox" wire:model="service_areas" value="prophetic" class="w-5 h-5 rounded border-navy-500 text-sky-400 focus:ring-sky-400 focus:ring-offset-navy-800">
-                                    <span class="text-white/70">Prófétai szobák</span>
-                                </label>
-                                <label class="flex items-center gap-3 p-4 rounded-lg bg-navy-900/50 border border-navy-600 cursor-pointer hover:border-sky-400/50 transition-colors">
-                                    <input type="checkbox" wire:model="service_areas" value="worship" class="w-5 h-5 rounded border-navy-500 text-sky-400 focus:ring-sky-400 focus:ring-offset-navy-800">
-                                    <span class="text-white/70">Dicsőítő csapat</span>
-                                </label>
-                                <label class="flex items-center gap-3 p-4 rounded-lg bg-navy-900/50 border border-navy-600 cursor-pointer hover:border-sky-400/50 transition-colors">
-                                    <input type="checkbox" wire:model="service_areas" value="prayer" class="w-5 h-5 rounded border-navy-500 text-sky-400 focus:ring-sky-400 focus:ring-offset-navy-800">
-                                    <span class="text-white/70">Ima csapat</span>
-                                </label>
-                                <label class="flex items-center gap-3 p-4 rounded-lg bg-navy-900/50 border border-navy-600 cursor-pointer hover:border-sky-400/50 transition-colors">
-                                    <input type="checkbox" wire:model="service_areas" value="kids" class="w-5 h-5 rounded border-navy-500 text-sky-400 focus:ring-sky-400 focus:ring-offset-navy-800">
-                                    <span class="text-white/70">Gyermek szolgálat</span>
-                                </label>
-                                <label class="flex items-center gap-3 p-4 rounded-lg bg-navy-900/50 border border-navy-600 cursor-pointer hover:border-sky-400/50 transition-colors">
-                                    <input type="checkbox" wire:model="service_areas" value="hospitality" class="w-5 h-5 rounded border-navy-500 text-sky-400 focus:ring-sky-400 focus:ring-offset-navy-800">
-                                    <span class="text-white/70">Fogadó szolgálat</span>
-                                </label>
-                                <label class="flex items-center gap-3 p-4 rounded-lg bg-navy-900/50 border border-navy-600 cursor-pointer hover:border-sky-400/50 transition-colors">
-                                    <input type="checkbox" wire:model="service_areas" value="tech" class="w-5 h-5 rounded border-navy-500 text-sky-400 focus:ring-sky-400 focus:ring-offset-navy-800">
-                                    <span class="text-white/70">Technikai csapat</span>
-                                </label>
-                                <label class="flex items-center gap-3 p-4 rounded-lg bg-navy-900/50 border border-navy-600 cursor-pointer hover:border-sky-400/50 transition-colors md:col-span-2">
-                                    <input type="checkbox" wire:model="service_areas" value="translation" class="w-5 h-5 rounded border-navy-500 text-sky-400 focus:ring-sky-400 focus:ring-offset-navy-800">
-                                    <span class="text-white/70">Fordítók</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        {{-- Experience & Testimony --}}
-                        <div>
-                            <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                                <span class="w-8 h-8 rounded-full bg-sky-400/20 text-sky-400 flex items-center justify-center text-sm">4</span>
-                                Tapasztalat és bizonyságtétel
-                            </h3>
-                            <div class="space-y-4">
-                                <div>
-                                    <label for="experience" class="block text-sm font-medium text-white/70 mb-1">Korábbi szolgálati tapasztalataid</label>
-                                    <textarea id="experience" wire:model="experience" rows="3"
-                                        class="w-full px-4 py-3 rounded-lg bg-navy-900/50 border border-navy-600 text-white placeholder-white/30 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                                        placeholder="Írd le röviden, milyen szolgálati tapasztalataid vannak (pl. gyógyító szolgálat, evangelizáció, dicsőítés, stb.)"></textarea>
-                                    @error('experience') <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span> @enderror
-                                </div>
-                                <div>
-                                    <label for="testimony" class="block text-sm font-medium text-white/70 mb-1">Rövid bizonyságtétel *</label>
-                                    <textarea id="testimony" wire:model="testimony" rows="4"
-                                        class="w-full px-4 py-3 rounded-lg bg-navy-900/50 border border-navy-600 text-white placeholder-white/30 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                                        placeholder="Oszd meg röviden a megtérésed történetét és jelenlegi hitéleted (max. 500 szó)"></textarea>
-                                    @error('testimony') <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span> @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Agreements --}}
-                        <div class="space-y-4">
-                            <label class="flex items-start gap-3 cursor-pointer">
-                                <input type="checkbox" wire:model="training_agreement" class="w-5 h-5 mt-0.5 rounded border-navy-500 text-sky-400 focus:ring-sky-400 focus:ring-offset-navy-800">
-                                <span class="text-white/70 text-sm">Elfogadom, hogy a csütörtöki tréning napon (október 22.) kötelező részt vennem. *</span>
-                            </label>
-                            @error('training_agreement') <span class="text-red-400 text-sm block">{{ $message }}</span> @enderror
-                            <label class="flex items-start gap-3 cursor-pointer">
-                                <input type="checkbox" wire:model="privacy_agreement" class="w-5 h-5 mt-0.5 rounded border-navy-500 text-sky-400 focus:ring-sky-400 focus:ring-offset-navy-800">
-                                <span class="text-white/70 text-sm">Elfogadom az <a href="{{ route('privacy') }}" class="text-sky-400 hover:underline">adatvédelmi tájékoztatót</a> és hozzájárulok adataim kezeléséhez. *</span>
-                            </label>
-                            @error('privacy_agreement') <span class="text-red-400 text-sm block">{{ $message }}</span> @enderror
-                        </div>
-
-                        {{-- Submit --}}
-                        <div class="pt-4">
-                            <button type="submit"
-                                wire:loading.attr="disabled"
-                                wire:loading.class="opacity-70 cursor-wait"
-                                class="w-full py-4 px-6 rounded-xl bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-primary-500/20">
-                                <span wire:loading.remove wire:target="submit">
-                                    <svg class="w-5 h-5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                    Jelentkezés beküldése
-                                </span>
-                                <span wire:loading wire:target="submit">
-                                    <svg class="animate-spin w-5 h-5 inline mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                    </svg>
-                                    Küldés...
-                                </span>
-                            </button>
-                            <p class="text-white/30 text-sm text-center mt-4">Jelentkezési határidő: 2026. szeptember 1.</p>
-                        </div>
+                        {{ $this->form }}
                     </form>
                 </div>
-            @endif
+            {{-- @endif --}}
         </div>
     </section>
 
