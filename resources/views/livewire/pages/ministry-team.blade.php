@@ -182,7 +182,7 @@
 
                 {{-- Gyógyító szobák --}}
                 <div class="group bg-navy-700/50 backdrop-blur-sm rounded-xl p-6 border border-navy-600 hover:border-sky-400/50 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-rose-500 to-pink-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-sky-400 to-ocean-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                         </svg>
@@ -190,14 +190,14 @@
                     <h3 class="text-xl font-bold text-white mb-2">Gyógyító szobák</h3>
                     <p class="text-white/50 text-sm mb-4">Ima a betegekért, személyes imaszolgálat a gyógyulásért keresőknek. 15 perces személyes szolgálati alkalmak.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 rounded-full bg-rose-500/10 text-rose-400 text-xs">ima</span>
-                        <span class="px-2 py-1 rounded-full bg-rose-500/10 text-rose-400 text-xs">személyes szolgálat</span>
+                        <span class="px-2 py-1 rounded-full bg-sky-400/10 text-sky-400 text-xs">ima</span>
+                        <span class="px-2 py-1 rounded-full bg-sky-400/10 text-sky-400 text-xs">személyes szolgálat</span>
                     </div>
                 </div>
 
                 {{-- Prófétai szobák --}}
                 <div class="group bg-navy-700/50 backdrop-blur-sm rounded-xl p-6 border border-navy-600 hover:border-sky-400/50 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-purple-500 to-violet-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-ocean-500 to-sky-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
@@ -206,14 +206,14 @@
                     <h3 class="text-xl font-bold text-white mb-2">Prófétai szobák</h3>
                     <p class="text-white/50 text-sm mb-4">Prófétai szolgálat, bátorító szavak, Isten szívének közvetítése az emberek felé.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs">prófétai</span>
-                        <span class="px-2 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs">személyes szolgálat</span>
+                        <span class="px-2 py-1 rounded-full bg-ocean-500/10 text-ocean-400 text-xs">prófétai</span>
+                        <span class="px-2 py-1 rounded-full bg-ocean-500/10 text-ocean-400 text-xs">személyes szolgálat</span>
                     </div>
                 </div>
 
                 {{-- Dicsőítő csapat --}}
                 <div class="group bg-navy-700/50 backdrop-blur-sm rounded-xl p-6 border border-navy-600 hover:border-sky-400/50 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-blue-500 to-cyan-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-sky-400 to-ocean-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
                         </svg>
@@ -221,14 +221,14 @@
                     <h3 class="text-xl font-bold text-white mb-2">Dicsőítő csapat</h3>
                     <p class="text-white/50 text-sm mb-4">Zenei szolgálat a dicsőítő csapatban. Énekesek és hangszeres zenészek.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs">zene</span>
-                        <span class="px-2 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs">színpad</span>
+                        <span class="px-2 py-1 rounded-full bg-sky-400/10 text-sky-400 text-xs">zene</span>
+                        <span class="px-2 py-1 rounded-full bg-sky-400/10 text-sky-400 text-xs">színpad</span>
                     </div>
                 </div>
 
                 {{-- Ima csapat --}}
                 <div class="group bg-navy-700/50 backdrop-blur-sm rounded-xl p-6 border border-navy-600 hover:border-sky-400/50 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-ocean-500 to-sky-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                         </svg>
@@ -236,14 +236,14 @@
                     <h3 class="text-xl font-bold text-white mb-2">Ima csapat</h3>
                     <p class="text-white/50 text-sm mb-4">Közbenjáró ima a konferenciáért, az előadókért és a résztvevőkért a háttérben.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs">közbenjárás</span>
-                        <span class="px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs">háttér</span>
+                        <span class="px-2 py-1 rounded-full bg-ocean-500/10 text-ocean-400 text-xs">közbenjárás</span>
+                        <span class="px-2 py-1 rounded-full bg-ocean-500/10 text-ocean-400 text-xs">háttér</span>
                     </div>
                 </div>
 
                 {{-- Gyermek szolgálat --}}
                 <div class="group bg-navy-700/50 backdrop-blur-sm rounded-xl p-6 border border-navy-600 hover:border-sky-400/50 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-yellow-500 to-amber-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-primary-400 to-primary-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
@@ -251,14 +251,14 @@
                     <h3 class="text-xl font-bold text-white mb-2">Gyermek szolgálat</h3>
                     <p class="text-white/50 text-sm mb-4">Gyermekprogram 4-12 éves korig a főprogramok alatt. Játékok, tanítás, dicsőítés.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 rounded-full bg-yellow-500/10 text-yellow-400 text-xs">gyerekek</span>
-                        <span class="px-2 py-1 rounded-full bg-yellow-500/10 text-yellow-400 text-xs">kreatív</span>
+                        <span class="px-2 py-1 rounded-full bg-primary-500/10 text-primary-400 text-xs">gyerekek</span>
+                        <span class="px-2 py-1 rounded-full bg-primary-500/10 text-primary-400 text-xs">kreatív</span>
                     </div>
                 </div>
 
                 {{-- Fogadó szolgálat --}}
                 <div class="group bg-navy-700/50 backdrop-blur-sm rounded-xl p-6 border border-navy-600 hover:border-sky-400/50 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-pink-500 to-rose-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-sky-400 to-ocean-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
@@ -266,14 +266,14 @@
                     <h3 class="text-xl font-bold text-white mb-2">Fogadó szolgálat</h3>
                     <p class="text-white/50 text-sm mb-4">Vendégek fogadása, regisztráció, tájékoztatás, segítség a helyszínen.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 rounded-full bg-pink-500/10 text-pink-400 text-xs">fogadás</span>
-                        <span class="px-2 py-1 rounded-full bg-pink-500/10 text-pink-400 text-xs">szolgálat</span>
+                        <span class="px-2 py-1 rounded-full bg-sky-400/10 text-sky-400 text-xs">fogadás</span>
+                        <span class="px-2 py-1 rounded-full bg-sky-400/10 text-sky-400 text-xs">szolgálat</span>
                     </div>
                 </div>
 
                 {{-- Technikai csapat --}}
                 <div class="group bg-navy-700/50 backdrop-blur-sm rounded-xl p-6 border border-navy-600 hover:border-sky-400/50 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-slate-500 to-slate-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-ocean-500 to-sky-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
                         </svg>
@@ -281,14 +281,14 @@
                     <h3 class="text-xl font-bold text-white mb-2">Technikai csapat</h3>
                     <p class="text-white/50 text-sm mb-4">Hang, fény, vetítés és élő közvetítés kezelése a konferencia alatt.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 rounded-full bg-slate-500/10 text-slate-400 text-xs">technika</span>
-                        <span class="px-2 py-1 rounded-full bg-slate-500/10 text-slate-400 text-xs">közvetítés</span>
+                        <span class="px-2 py-1 rounded-full bg-ocean-500/10 text-ocean-400 text-xs">technika</span>
+                        <span class="px-2 py-1 rounded-full bg-ocean-500/10 text-ocean-400 text-xs">közvetítés</span>
                     </div>
                 </div>
 
                 {{-- Fordítók --}}
                 <div class="group bg-navy-700/50 backdrop-blur-sm rounded-xl p-6 border border-navy-600 hover:border-sky-400/50 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-indigo-500 to-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-14 h-14 rounded-xl bg-linear-to-br from-primary-400 to-primary-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
                         </svg>
@@ -296,8 +296,8 @@
                     <h3 class="text-xl font-bold text-white mb-2">Fordítók</h3>
                     <p class="text-white/50 text-sm mb-4">Szinkrontolmácsolás és fordítás különböző nyelveken a konferencia alatt.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs">nyelvek</span>
-                        <span class="px-2 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs">tolmácsolás</span>
+                        <span class="px-2 py-1 rounded-full bg-primary-500/10 text-primary-400 text-xs">nyelvek</span>
+                        <span class="px-2 py-1 rounded-full bg-primary-500/10 text-primary-400 text-xs">tolmácsolás</span>
                     </div>
                 </div>
             </div>
@@ -431,8 +431,8 @@
                 <div class="bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden">
                     <button @click="open = open === 2 ? null : 2" type="button" class="w-full px-6 py-4 text-left flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-ocean-500/10 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-ocean-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                                 </svg>
                             </div>
@@ -457,8 +457,8 @@
                 <div class="bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden">
                     <button @click="open = open === 3 ? null : 3" type="button" class="w-full px-6 py-4 text-left flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
                                 </svg>
                             </div>
@@ -485,8 +485,8 @@
                 <div class="bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden">
                     <button @click="open = open === 4 ? null : 4" type="button" class="w-full px-6 py-4 text-left flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                 </svg>
                             </div>
@@ -513,8 +513,8 @@
                 <div class="bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden">
                     <button @click="open = open === 5 ? null : 5" type="button" class="w-full px-6 py-4 text-left flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                                 </svg>
                             </div>
@@ -542,8 +542,8 @@
                 <div class="bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden">
                     <button @click="open = open === 6 ? null : 6" type="button" class="w-full px-6 py-4 text-left flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-rose-500/10 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                                 </svg>
                             </div>

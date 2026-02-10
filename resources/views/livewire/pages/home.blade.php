@@ -184,8 +184,8 @@
                 {{-- Left: Artwork --}}
                 <div class="relative">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="{{ Vite::asset('resources/images/crowd-1.webp') }}"
-                            alt="Encounter Jesus" class="w-full aspect-4/5 object-cover">
+                        <img src="{{ Vite::asset('resources/images/crowd-1.webp') }}" alt="Encounter Jesus"
+                            class="w-full aspect-4/5 object-cover">
                         {{-- Glow Effect --}}
                         <div class="absolute -inset-4 bg-primary-500/20 blur-3xl -z-10"></div>
                     </div>
@@ -208,9 +208,12 @@
                         <span class="text-gradient">Catch on Fire.</span>
                     </h2>
                     <p class="text-white/60 text-lg mb-8 leading-relaxed">
-                        Europe Revival 2026 is organized by <strong class="text-white/80">Iris Europe</strong>, a revival movement led by full-time missionaries
-                        <strong class="text-white/80">Siyabonga and Dominika Mofele</strong>, pioneers of the Iris Krakow base within the Iris Global family.
-                        Rooted in prayer, worship, and obedience to the Holy Spirit, Iris Europe is committed to seeing Europe encounter Jesus
+                        Europe Revival 2026 is organized by <strong class="text-white/80">Iris Europe</strong>, a
+                        revival movement led by full-time missionaries
+                        <strong class="text-white/80">Siyabonga and Dominika Mofele</strong>, pioneers of the Iris
+                        Krakow base within the Iris Global family.
+                        Rooted in prayer, worship, and obedience to the Holy Spirit, Iris Europe is committed to seeing
+                        Europe encounter Jesus
                         and live a laid-down life of love for the Gospel.
                     </p>
 
@@ -243,7 +246,8 @@
                             </div>
                             <div>
                                 <h4 class="text-white font-semibold mb-1">Stadium Gathering in Hungary</h4>
-                                <p class="text-white/50 text-sm">The same atmosphere of intimacy, joy, and spiritual fire
+                                <p class="text-white/50 text-sm">The same atmosphere of intimacy, joy, and spiritual
+                                    fire
                                     expanded to create space for thousands to experience God's presence together</p>
                             </div>
                         </div>
@@ -258,7 +262,8 @@
                             </div>
                             <div>
                                 <h4 class="text-white font-semibold mb-1">A Vision for Europe</h4>
-                                <p class="text-white/50 text-sm">Europe is not spiritually dead but hungry for the living God—
+                                <p class="text-white/50 text-sm">Europe is not spiritually dead but hungry for the
+                                    living God—
                                     we invite believers to encounter Jesus and catch on fire for His glory</p>
                             </div>
                         </div>
@@ -361,7 +366,7 @@
                                 <div class="mt-6 p-4 bg-sky-400/10 border border-sky-400/30 rounded-xl">
                                     <p class="text-sky-400 text-sm">
                                         <strong>Note:</strong> Training day is mandatory for all ministry team members.
-                                        <a href="{{ route('register.ministry') }}"
+                                        <a href="{{ route('ministry-team') }}"
                                             class="underline hover:no-underline">Apply to join the team</a>
                                     </p>
                                 </div>
@@ -494,9 +499,11 @@
 
             {{-- Early Bird Deadline Highlight --}}
             <div class="text-center mb-12">
-                <span class="inline-flex items-center gap-2 px-5 py-2.5 bg-orange-500/15 border border-orange-500/30 rounded-full text-orange-400 font-semibold">
+                <span
+                    class="inline-flex items-center gap-2 px-5 py-2.5 bg-orange-500/15 border border-orange-500/30 rounded-full text-orange-400 font-semibold">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     Early Bird pricing available until June 30, 2026
                 </span>
@@ -504,7 +511,8 @@
 
             {{-- Pricing Toggle --}}
             <div class="flex justify-center gap-2 mb-12">
-                <button type="button" @click="let y = window.scrollY; activeTier = 'early'; $nextTick(() => window.scrollTo({ top: y, behavior: 'instant' }))"
+                <button type="button"
+                    @click="let y = window.scrollY; activeTier = 'early'; $nextTick(() => window.scrollTo({ top: y, behavior: 'instant' }))"
                     :class="activeTier === 'early' ? 'bg-sky-400 text-navy-800' :
                         'bg-navy-700 text-white/70 hover:text-white'"
                     class="px-5 py-2.5 rounded-full font-medium text-sm transition-colors flex items-center gap-2">
@@ -512,7 +520,8 @@
                         :class="activeTier === 'early' ? 'bg-navy-800' : 'bg-sky-400'"></span>
                     Early Bird (until June 30)
                 </button>
-                <button type="button" @click="let y = window.scrollY; activeTier = 'regular'; $nextTick(() => window.scrollTo({ top: y, behavior: 'instant' }))"
+                <button type="button"
+                    @click="let y = window.scrollY; activeTier = 'regular'; $nextTick(() => window.scrollTo({ top: y, behavior: 'instant' }))"
                     :class="activeTier === 'regular' ? 'bg-sky-400 text-navy-800' :
                         'bg-navy-700 text-white/70 hover:text-white'"
                     class="px-5 py-2.5 rounded-full font-medium text-sm transition-colors flex items-center gap-2">
@@ -525,7 +534,8 @@
             {{-- Pricing Cards --}}
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {{-- Individual Ticket --}}
-                <div class="bg-navy-800/50 border border-navy-600 rounded-3xl p-8 relative overflow-hidden flex flex-col">
+                <div
+                    class="bg-navy-800/50 border border-navy-600 rounded-3xl p-8 relative overflow-hidden flex flex-col">
                     <h3 class="text-2xl font-bold text-white mb-2">Individual</h3>
                     <p class="text-white/50 mb-6">Single attendee registration</p>
 
@@ -676,35 +686,43 @@
     <section class="py-20 bg-navy-900 relative overflow-hidden">
         {{-- Background --}}
         <div class="absolute inset-0">
-            <img src="{{ Vite::asset('resources/images/crowd-3.webp') }}" alt="" class="absolute inset-0 w-full h-full object-cover opacity-15">
+            <img src="{{ Vite::asset('resources/images/crowd-3.webp') }}" alt=""
+                class="absolute inset-0 w-full h-full object-cover opacity-15">
             <div class="absolute inset-0 bg-linear-to-r from-primary-600/20 to-navy-900/95"></div>
         </div>
 
         <div class="relative z-10 max-w-5xl mx-auto px-4">
             <div class="text-center">
-                <div class="w-20 h-20 bg-primary-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-primary-500/30">
-                    <svg class="w-10 h-10 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div
+                    class="w-20 h-20 bg-primary-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-primary-500/30">
+                    <svg class="w-10 h-10 text-primary-400" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Want to Serve?</h2>
                 <p class="text-white/60 text-lg max-w-2xl mx-auto mb-4">
-                    We are looking for volunteers to join our ministry team! Serve in healing rooms, prophetic ministry, worship, hospitality, and more.
+                    We are looking for volunteers to join our ministry team! Serve in healing rooms, prophetic ministry,
+                    worship, hospitality, and more.
                 </p>
-                <p class="text-primary-400 font-semibold text-lg mb-8">Free conference access for approved team members</p>
+                <p class="text-primary-400 font-semibold text-lg mb-8">Free conference access for approved team members
+                </p>
 
                 <div class="flex flex-wrap items-center justify-center gap-3 mb-10 max-w-2xl mx-auto">
                     @foreach (['Healing Rooms', 'Prophetic Ministry', 'Worship Team', 'Hospitality', 'Prayer Team', 'Street Evangelism', 'Kids Ministry', 'Tech & Media'] as $role)
-                        <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/70 text-sm">{{ $role }}</span>
+                        <span
+                            class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/70 text-sm">{{ $role }}</span>
                     @endforeach
                 </div>
 
                 <a href="{{ route('volunteer') }}"
                     class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-bold text-xl rounded-full transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:scale-105">
                     Apply to Volunteer
-                    <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                 </a>
             </div>
@@ -731,7 +749,7 @@
                 @foreach ($faqs as $index => $faq)
                     <x-home.faq-item :faq="$faq" :index="$index + 1" wire:key="faq-{{ $faq->id }}">
                         @if ($faq->category === 'registration')
-                            <a href="{{ route('register.ministry') }}"
+                            <a href="{{ route('ministry-team') }}"
                                 class="inline-flex items-center gap-2 text-primary-400 mt-4 hover:underline">
                                 Apply Now
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
