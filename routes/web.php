@@ -45,11 +45,6 @@ Route::prefix('register')->group(function (): void {
     // Attendee Registration (default)
     Route::get('/', Register::class)->name('register');
 
-    // Ministry Team Application
-    Route::get('/ministry', Register::class)
-        ->defaults('type', 'ministry')
-        ->name('register.ministry');
-
     // Volunteer Application
     Route::get('/volunteer', Register::class)
         ->defaults('type', 'volunteer')

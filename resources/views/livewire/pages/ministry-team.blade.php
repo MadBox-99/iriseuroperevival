@@ -603,7 +603,7 @@
                     </a>
                 </div>
             @else --}}
-                <div class="bg-navy-700/50 backdrop-blur-sm rounded-2xl p-8 border border-navy-600">
+                <div class="text-black bg-navy-700/50 backdrop-blur-sm rounded-2xl p-8 border border-navy-600">
                     <form wire:submit="submit" class="space-y-8">
                         {{ $this->form }}
                     </form>
