@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\WebhookController;
 use App\Livewire\Pages\Dashboard;
 use App\Livewire\Pages\Home;
+use App\Livewire\Pages\MinistryTeam;
 use App\Livewire\Pages\Privacy;
 use App\Livewire\Pages\Program;
 use App\Livewire\Pages\Register;
@@ -37,6 +38,7 @@ Route::get('/program', Program::class)->name('program');
 Route::get('/workshops', Workshops::class)->name('workshops');
 Route::get('/speakers', Speakers::class)->name('speakers');
 Route::get('/speakers/{slug}', SpeakerShow::class)->name('speaker.show');
+Route::get('/ministry-team', MinistryTeam::class)->name('ministry-team');
 
 // Registration Routes
 Route::prefix('register')->group(function (): void {
