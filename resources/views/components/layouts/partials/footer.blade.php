@@ -53,7 +53,7 @@
                 <h4 class="text-white font-semibold mb-4">Registration</h4>
                 <ul class="space-y-3">
                     <li><a href="{{ route('register') }}" class="text-white/50 hover:text-white text-sm transition-colors">Attendee Registration</a></li>
-                    <li><a href="{{ route('register.ministry') }}" class="text-white/50 hover:text-white text-sm transition-colors">Ministry Team Application</a></li>
+                    <li><a href="{{ route('ministry-team') }}" class="text-white/50 hover:text-white text-sm transition-colors">Ministry Team Application</a></li>
                     <li><a href="{{ route('volunteer') }}" class="text-white/50 hover:text-white text-sm transition-colors">Volunteer Application</a></li>
                     <li><a href="mailto:info@europerevival.org" class="text-white/50 hover:text-white text-sm transition-colors">Contact Us</a></li>
                 </ul>
