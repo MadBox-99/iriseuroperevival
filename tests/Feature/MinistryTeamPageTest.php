@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Livewire\Pages\MinistryTeam;
+use App\Models\Registration;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
@@ -33,62 +35,100 @@ it('displays the training day schedule', function () {
         ->assertSee('David Gava');
 });
 
-it('validates required form fields', function () {
+it('validates required form fields for ministry registration', function () {
     Livewire::test(MinistryTeam::class)
+        ->fillForm([
+            'registration_type' => 'ministry',
+        ])
         ->call('submit')
-        ->assertHasErrors([
-            'first_name',
-            'last_name',
-            'email',
-            'phone',
-            'country',
-            'church_name',
-            'church_city',
-            'pastor_name',
-            'pastor_email',
-            'service_areas',
-            'testimony',
-            'training_agreement',
-            'privacy_agreement',
+        ->assertHasFormErrors([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'country' => 'required',
+            'city' => 'required',
         ]);
 });
 
-it('submits the form successfully with valid data', function () {
+it('creates a ministry registration with valid data', function () {
+    Mail::fake();
+
+    $testimony = str_repeat('Isten megváltoztatta az életemet. ', 5);
+
     Livewire::test(MinistryTeam::class)
-        ->set('first_name', 'János')
-        ->set('last_name', 'Kovács')
-        ->set('email', 'janos@example.com')
-        ->set('phone', '+36301234567')
-        ->set('country', 'Magyarország')
-        ->set('church_name', 'Test Gyülekezet')
-        ->set('church_city', 'Budapest')
-        ->set('pastor_name', 'Pál Pásztor')
-        ->set('pastor_email', 'pastor@example.com')
-        ->set('service_areas', ['healing', 'prayer'])
-        ->set('experience', 'Gyógyító szolgálat 2 éve')
-        ->set('testimony', 'Isten megváltoztatta az életemet.')
-        ->set('training_agreement', true)
-        ->set('privacy_agreement', true)
+        ->fillForm([
+            'registration_type' => 'ministry',
+            'first_name' => 'János',
+            'last_name' => 'Kovács',
+            'email' => 'janos@example.com',
+            'phone' => '+36301234567',
+            'country' => 'Hungary',
+            'city' => 'Budapest',
+            'citizenship' => 'Hungarian',
+            'languages' => ['English', 'Hungarian'],
+            'occupation' => 'Pastor',
+            'church_name' => 'Test Gyülekezet',
+            'church_city' => 'Budapest',
+            'pastor_name' => 'Pál Pásztor',
+            'pastor_email' => 'pastor@example.com',
+            'is_born_again' => true,
+            'is_spirit_filled' => true,
+            'testimony' => $testimony,
+            'reference_1_name' => 'Reference One',
+            'reference_1_email' => 'ref1@example.com',
+            'reference_2_name' => 'Reference Two',
+            'reference_2_email' => 'ref2@example.com',
+            'accepts_guidelines' => true,
+            'accepts_terms' => true,
+        ])
         ->call('submit')
-        ->assertHasNoErrors()
-        ->assertSet('submitted', true);
+        ->assertHasNoFormErrors()
+        ->assertRedirect();
+
+    expect(Registration::query()->count())->toBe(1);
+
+    $registration = Registration::query()->first();
+    expect($registration->type)->toBe('ministry');
+    expect($registration->first_name)->toBe('János');
+    expect($registration->status)->toBe('pending_approval');
 });
 
-it('shows success message after submission', function () {
+it('sends confirmation email after ministry submission', function () {
+    Mail::fake();
+
+    $testimony = str_repeat('Isten megváltoztatta az életemet. ', 5);
+
     Livewire::test(MinistryTeam::class)
-        ->set('first_name', 'János')
-        ->set('last_name', 'Kovács')
-        ->set('email', 'janos@example.com')
-        ->set('phone', '+36301234567')
-        ->set('country', 'Magyarország')
-        ->set('church_name', 'Test Gyülekezet')
-        ->set('church_city', 'Budapest')
-        ->set('pastor_name', 'Pál Pásztor')
-        ->set('pastor_email', 'pastor@example.com')
-        ->set('service_areas', ['healing'])
-        ->set('testimony', 'Isten megváltoztatta az életemet.')
-        ->set('training_agreement', true)
-        ->set('privacy_agreement', true)
+        ->fillForm([
+            'registration_type' => 'ministry',
+            'first_name' => 'János',
+            'last_name' => 'Kovács',
+            'email' => 'janos@example.com',
+            'phone' => '+36301234567',
+            'country' => 'Hungary',
+            'city' => 'Budapest',
+            'citizenship' => 'Hungarian',
+            'languages' => ['English', 'Hungarian'],
+            'occupation' => 'Pastor',
+            'church_name' => 'Test Gyülekezet',
+            'church_city' => 'Budapest',
+            'pastor_name' => 'Pál Pásztor',
+            'pastor_email' => 'pastor@example.com',
+            'is_born_again' => true,
+            'is_spirit_filled' => true,
+            'testimony' => $testimony,
+            'reference_1_name' => 'Reference One',
+            'reference_1_email' => 'ref1@example.com',
+            'reference_2_name' => 'Reference Two',
+            'reference_2_email' => 'ref2@example.com',
+            'accepts_guidelines' => true,
+            'accepts_terms' => true,
+        ])
         ->call('submit')
-        ->assertSee('Köszönjük a jelentkezésedet');
+        ->assertRedirect();
+
+    Mail::assertQueued(\App\Mail\MinistryApplicationReceived::class, function ($mail) {
+        return $mail->hasTo('janos@example.com');
+    });
 });

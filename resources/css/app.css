@@ -570,3 +570,170 @@
         transition-duration: 0.01ms !important;
     }
 }
+
+/* ================================================
+   MINISTRY TEAM FILAMENT FORM - DARK NAVY THEME
+   Outside @layer for highest cascade priority.
+   Scoped to .fi-navy-form — does not affect admin panel.
+   ================================================ */
+
+/* Remap Filament's gray scale to navy palette */
+.fi-navy-form {
+    --gray-50: var(--color-navy-50);
+    --gray-100: var(--color-navy-100);
+    --gray-200: var(--color-navy-200);
+    --gray-300: var(--color-navy-300);
+    --gray-400: var(--color-navy-400);
+    --gray-500: var(--color-navy-500);
+    --gray-600: var(--color-navy-600);
+    --gray-700: var(--color-navy-700);
+    --gray-800: var(--color-navy-800);
+    --gray-900: var(--color-navy-900);
+    --gray-950: var(--color-navy-950);
+
+    --color-gray-50: var(--color-navy-50);
+    --color-gray-100: var(--color-navy-100);
+    --color-gray-200: var(--color-navy-200);
+    --color-gray-300: var(--color-navy-300);
+    --color-gray-400: var(--color-navy-400);
+    --color-gray-500: var(--color-navy-500);
+    --color-gray-600: var(--color-navy-600);
+    --color-gray-700: var(--color-navy-700);
+    --color-gray-800: var(--color-navy-800);
+    --color-gray-900: var(--color-navy-900);
+    --color-gray-950: var(--color-navy-950);
+}
+
+/* Wizard container: transparent bg, no card-in-card double layer */
+.fi-navy-form .fi-sc-wizard.fi-contained {
+    background: transparent;
+    box-shadow: none;
+    --tw-ring-shadow: 0 0 #0000;
+}
+
+.fi-navy-form .fi-sc-wizard:not(.fi-contained) .fi-sc-wizard-header {
+    background: transparent;
+    box-shadow: none;
+    --tw-ring-shadow: 0 0 #0000;
+}
+
+/* Wizard header border */
+.fi-navy-form .fi-sc-wizard .fi-sc-wizard-header {
+    border-color: var(--color-navy-600);
+}
+
+/* Section cards: subtle navy, matching site card style */
+.fi-navy-form .fi-section:not(.fi-section-not-contained):not(.fi-aside) {
+    background: rgba(30, 45, 76, 0.3);
+    box-shadow: none;
+    --tw-ring-shadow: 0 0 #0000;
+    outline: 1px solid var(--color-navy-600);
+    outline-offset: -1px;
+}
+
+.fi-navy-form .fi-section:not(.fi-section-not-contained) .fi-section-header + .fi-section-content-ctn {
+    border-color: var(--color-navy-600);
+}
+
+/* Input wrapper: navy-800 bg, navy-600 border */
+.fi-navy-form .fi-input-wrp {
+    background: var(--color-navy-800);
+    box-shadow: none;
+    --tw-ring-shadow: 0 0 #0000;
+    outline: 1px solid var(--color-navy-600);
+    outline-offset: -1px;
+}
+
+.fi-navy-form .fi-input-wrp:focus-within:not(.fi-disabled) {
+    outline-color: var(--color-primary-500);
+    outline-width: 2px;
+}
+
+.fi-navy-form .fi-input-wrp.fi-invalid {
+    outline-color: var(--color-danger-500);
+}
+
+/* Radio: higher contrast ring for unchecked state */
+.fi-navy-form .fi-radio-input {
+    background-color: var(--color-navy-800);
+    --tw-ring-color: var(--color-navy-400);
+    --tw-ring-shadow: var(--tw-ring-inset, ) 0 0 0 1px var(--tw-ring-color);
+}
+
+.fi-navy-form .fi-radio-input:checked {
+    background-color: var(--color-primary-500);
+    --tw-ring-shadow: 0 0 #0000;
+}
+
+/* Checkbox: navy styling with visible border */
+.fi-navy-form .fi-checkbox-input {
+    background-color: var(--color-navy-800);
+    --tw-ring-color: var(--color-navy-400);
+    --tw-ring-shadow: var(--tw-ring-inset, ) 0 0 0 1px var(--tw-ring-color);
+}
+
+.fi-navy-form .fi-checkbox-input:checked {
+    background-color: var(--color-primary-500);
+    --tw-ring-shadow: 0 0 #0000;
+}
+
+/* Input placeholder: higher contrast */
+.fi-navy-form .fi-input::placeholder {
+    color: var(--color-navy-300);
+}
+
+/* Select placeholder text */
+.fi-navy-form .fi-select-input-placeholder {
+    color: var(--color-navy-300);
+}
+
+/* Wizard primary button (Next): gold gradient matching site CTAs */
+.fi-navy-form .fi-sc-wizard-footer .fi-btn.fi-color:not(.fi-outlined) {
+    background: linear-gradient(to right, var(--color-primary-400), var(--color-primary-600));
+    color: var(--color-navy-900);
+    font-weight: 700;
+    --tw-ring-shadow: 0 0 #0000;
+    box-shadow: 0 4px 14px rgba(247, 163, 29, 0.25);
+}
+
+.fi-navy-form .fi-sc-wizard-footer .fi-btn.fi-color:not(.fi-outlined):hover {
+    background: linear-gradient(to right, var(--color-primary-500), var(--color-primary-700));
+    box-shadow: 0 4px 14px rgba(247, 163, 29, 0.4);
+}
+
+.fi-navy-form .fi-sc-wizard-footer .fi-btn.fi-color:not(.fi-outlined) > .fi-icon {
+    color: var(--color-navy-900);
+}
+
+/* Back button: navy outlined style */
+.fi-navy-form .fi-sc-wizard-footer .fi-btn:not(.fi-color) {
+    background: transparent;
+    color: white;
+    --tw-ring-color: var(--color-navy-500);
+}
+
+.fi-navy-form .fi-sc-wizard-footer .fi-btn:not(.fi-color):hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Select dropdown prefix/suffix borders */
+.fi-navy-form .fi-input-wrp-prefix:not(.fi-inline),
+.fi-navy-form .fi-input-wrp-suffix:not(.fi-inline) {
+    border-color: var(--color-navy-600);
+}
+
+/* Select dropdown chevron */
+.fi-navy-form .fi-input-wrp .fi-icon {
+    color: var(--color-navy-300);
+}
+
+/* Dropdown panel (select options) */
+.fi-navy-form .fi-dropdown-panel {
+    background: var(--color-navy-800);
+    border-color: var(--color-navy-600);
+}
+
+/* Select search input background */
+.fi-navy-form .fi-select-input-search-ctn {
+    background: var(--color-navy-800);
+}

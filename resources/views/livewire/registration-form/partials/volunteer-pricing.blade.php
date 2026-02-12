@@ -15,12 +15,12 @@
 <div class="space-y-4">
     <div class="flex items-center justify-between p-4 bg-linear-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-xl">
         <div>
-            <p class="text-stone-900 font-semibold">Volunteer Pass</p>
-            <p class="text-stone-500 text-sm">{{ $tierLabels[$tier] ?? 'Current' }} Pricing</p>
+            <p class="text-white font-semibold">Volunteer Pass</p>
+            <p class="text-white/50 text-sm">{{ $tierLabels[$tier] ?? 'Current' }} Pricing</p>
         </div>
         <div class="text-right">
             <p class="text-2xl font-bold text-blue-400">€{{ number_format($volunteerPrice, 2) }}</p>
-            <p class="text-stone-400 text-sm line-through">€{{ number_format($regularPrice, 2) }}</p>
+            <p class="text-white/40 text-sm line-through">€{{ number_format($regularPrice, 2) }}</p>
         </div>
     </div>
 
@@ -31,7 +31,7 @@
         <span>You save €{{ number_format($savings, 2) }} as a volunteer!</span>
     </div>
 
-    <div class="text-stone-500 text-xs">
+    <div class="text-white/50 text-xs">
         <p>{{ __('Includes:') }}</p>
         <ul class="list-disc list-inside mt-1 space-y-1">
             <li>{{ __('Full conference access during breaks') }}</li>

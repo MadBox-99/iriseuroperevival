@@ -20,16 +20,16 @@
 
 <dl class="space-y-3">
     <div class="flex justify-between">
-        <dt class="text-stone-500">Name</dt>
-        <dd class="text-stone-900 font-medium">{{ $firstName }} {{ $lastName }}</dd>
+        <dt class="text-white/60">Name</dt>
+        <dd class="text-white font-medium">{{ $firstName }} {{ $lastName }}</dd>
     </div>
     <div class="flex justify-between">
-        <dt class="text-stone-500">Email</dt>
-        <dd class="text-stone-900 font-medium">{{ $email }}</dd>
+        <dt class="text-white/60">Email</dt>
+        <dd class="text-white font-medium">{{ $email }}</dd>
     </div>
     <div class="flex justify-between">
-        <dt class="text-stone-500">Location</dt>
-        <dd class="text-stone-900 font-medium">{{ $city }}, {{ $country }}</dd>
+        <dt class="text-white/60">Location</dt>
+        <dd class="text-white font-medium">{{ $city }}, {{ $country }}</dd>
     </div>
     @if($type === 'attendee')
         @php
@@ -40,17 +40,17 @@
                 default => 'Ticket',
             };
         @endphp
-        <div class="border-t border-stone-200 pt-3 flex justify-between">
-            <dt class="text-stone-500">Tickets</dt>
-            <dd class="text-stone-900 font-medium">{{ $ticketQuantity }}x {{ $ticketLabel }}</dd>
+        <div class="border-t border-navy-600 pt-3 flex justify-between">
+            <dt class="text-white/60">Tickets</dt>
+            <dd class="text-white font-medium">{{ $ticketQuantity }}x {{ $ticketLabel }}</dd>
         </div>
         <div class="flex justify-between text-sm">
-            <dt class="text-stone-500">Price per ticket</dt>
-            <dd class="text-stone-900 font-medium">€{{ number_format($pricePerTicketCents / 100, 2) }}</dd>
+            <dt class="text-white/60">Price per ticket</dt>
+            <dd class="text-white font-medium">€{{ number_format($pricePerTicketCents / 100, 2) }}</dd>
         </div>
         <div class="flex justify-between text-lg font-bold">
-            <dt class="text-stone-900">Total</dt>
-            <dd class="text-amber-600">€{{ number_format($totalCents / 100, 2) }}</dd>
+            <dt class="text-primary-400">Total</dt>
+            <dd class="text-primary-400">€{{ number_format($totalCents / 100, 2) }}</dd>
         </div>
     @endif
 </dl>
