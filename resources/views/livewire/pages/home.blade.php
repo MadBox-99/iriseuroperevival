@@ -270,10 +270,10 @@
                     </div>
 
                     {{-- Scripture --}}
-                    <blockquote class="bg-amber-500/15 border border-amber-500/30 rounded-xl px-6 py-5">
+                    <blockquote class="bg-primary-500/15 border border-primary-500/30 rounded-xl px-6 py-5">
                         <p class="text-white italic text-lg mb-2">"I have come to bring fire on the earth, and how I
                             wish it were already kindled!"</p>
-                        <cite class="text-amber-400 text-sm font-medium">— Luke 12:49</cite>
+                        <cite class="text-primary-400 text-sm font-medium">— Luke 12:49</cite>
                     </blockquote>
                 </div>
             </div>
@@ -766,7 +766,7 @@
             <div class="mt-12 text-center">
                 <p class="text-white/50 mb-4">Still have questions?</p>
                 <a href="mailto:info@europerevival.org"
-                    class="text-primary-400 hover:text-amber-300 font-medium transition-colors">
+                    class="text-primary-400 hover:text-primary-300 font-medium transition-colors">
                     Contact us at info@europerevival.org
                 </a>
             </div>

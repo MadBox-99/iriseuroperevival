@@ -19,7 +19,7 @@
         @livewireStyles
         @fluxAppearance
     </head>
-    <body class="min-h-screen bg-stone-950 text-white font-sans antialiased">
+    <body class="min-h-screen bg-navy-950 text-white font-sans antialiased">
         <div class="flex min-h-screen flex-col items-center justify-center p-6 md:p-10">
             <div class="w-full max-w-md">
                 {{-- Logo --}}
@@ -30,13 +30,13 @@
                 </a>
 
                 {{-- Card --}}
-                <div class="bg-stone-900 border border-stone-800 rounded-2xl p-8">
+                <div class="bg-navy-900 border border-navy-700 rounded-2xl p-8">
                     {{ $slot }}
                 </div>
 
                 {{-- Back to home link --}}
                 <div class="mt-6 text-center">
-                    <a href="{{ route('home') }}" class="text-sm text-stone-400 hover:text-white transition-colors" wire:navigate>
+                    <a href="{{ route('home') }}" class="text-sm text-white/50 hover:text-white transition-colors" wire:navigate>
                         ← {{ __('Back to home') }}
                     </a>
                 </div>

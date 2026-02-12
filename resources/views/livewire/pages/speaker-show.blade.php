@@ -1,6 +1,6 @@
 <div>
     {{-- Breadcrumb --}}
-    <section class="bg-stone-950 pt-24 pb-4">
+    <section class="bg-navy-950 pt-24 pb-4">
         <div class="max-w-7xl mx-auto px-4">
             <nav class="flex items-center gap-2 text-sm">
                 <a href="{{ route('home') }}" class="text-white/50 hover:text-white transition-colors">Home</a>
@@ -11,13 +11,13 @@
                 <svg class="w-4 h-4 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
-                <span class="text-amber-400">{{ $speaker->name }}</span>
+                <span class="text-primary-400">{{ $speaker->name }}</span>
             </nav>
         </div>
     </section>
 
     {{-- Speaker Hero --}}
-    <section class="py-16 bg-stone-950">
+    <section class="py-16 bg-navy-950">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid lg:grid-cols-2 gap-12 items-start">
                 {{-- Photo --}}
@@ -28,7 +28,7 @@
                              class="w-full h-full object-cover">
                     </div>
                     {{-- Glow Effect --}}
-                    <div class="absolute -inset-4 bg-amber-500/10 blur-3xl -z-10 rounded-full"></div>
+                    <div class="absolute -inset-4 bg-primary-500/10 blur-3xl -z-10 rounded-full"></div>
 
                     {{-- Type Badge --}}
                     @php
@@ -55,7 +55,7 @@
                 {{-- Info --}}
                 <div class="lg:py-8">
                     @if($speaker->title)
-                        <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded-full mb-4">
+                        <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-primary-400 bg-primary-500/10 border border-primary-500/30 rounded-full mb-4">
                             {{ $speaker->title }}
                         </span>
                     @endif
@@ -66,7 +66,7 @@
                         <div class="flex flex-wrap items-center gap-4 mb-6">
                             @if($speaker->organization)
                                 <div class="flex items-center gap-2 text-white/60">
-                                    <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                                     </svg>
                                     <span>{{ $speaker->organization }}</span>
@@ -74,7 +74,7 @@
                             @endif
                             @if($speaker->country)
                                 <div class="flex items-center gap-2 text-white/60">
-                                    <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                                     </svg>
@@ -101,7 +101,7 @@
                                         <a href="{{ str_starts_with($url, 'http') ? $url : 'https://' . $url }}"
                                            target="_blank"
                                            rel="noopener noreferrer"
-                                           class="inline-flex items-center gap-2 px-4 py-2 bg-stone-800/50 hover:bg-stone-800 border border-stone-700 hover:border-amber-500/50 rounded-lg text-white/70 hover:text-white transition-all">
+                                           class="inline-flex items-center gap-2 px-4 py-2 bg-navy-800/50 hover:bg-navy-800 border border-navy-700 hover:border-primary-500/50 rounded-lg text-white/70 hover:text-white transition-all">
                                             @switch(strtolower($platform))
                                                 @case('twitter')
                                                 @case('x')
@@ -161,7 +161,7 @@
 
     {{-- Other Speakers --}}
     @if($otherSpeakers->isNotEmpty())
-        <section class="py-20 bg-stone-900">
+        <section class="py-20 bg-navy-900">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold text-white mb-4">Other Speakers</h2>
@@ -171,17 +171,17 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach($otherSpeakers as $otherSpeaker)
                         <a href="{{ route('speaker.show', $otherSpeaker->slug) }}"
-                           class="group relative overflow-hidden rounded-2xl bg-stone-800/50 border border-stone-700 hover:border-amber-500/50 transition-all duration-300"
+                           class="group relative overflow-hidden rounded-2xl bg-navy-800/50 border border-navy-700 hover:border-primary-500/50 transition-all duration-300"
                            wire:key="other-{{ $otherSpeaker->id }}">
                             <div class="aspect-3/4 overflow-hidden">
                                 <img src="{{ $otherSpeaker->photo_path ? Vite::asset($otherSpeaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
                                      alt="{{ $otherSpeaker->name }}"
                                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-linear-to-t from-stone-900 via-stone-900/20 to-transparent"></div>
+                                <div class="absolute inset-0 bg-linear-to-t from-navy-900 via-navy-900/20 to-transparent"></div>
                             </div>
                             <div class="absolute bottom-0 left-0 right-0 p-6">
                                 @if($otherSpeaker->title)
-                                    <span class="inline-block px-3 py-1 text-xs font-semibold text-amber-400 bg-amber-500/20 border border-amber-500/30 rounded-full mb-3">
+                                    <span class="inline-block px-3 py-1 text-xs font-semibold text-primary-400 bg-primary-500/20 border border-primary-500/30 rounded-full mb-3">
                                         {{ $otherSpeaker->title }}
                                     </span>
                                 @endif

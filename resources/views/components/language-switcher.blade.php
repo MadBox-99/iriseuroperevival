@@ -27,11 +27,11 @@
              x-transition:leave="transition ease-in duration-75"
              x-transition:leave-start="opacity-100 scale-100"
              x-transition:leave-end="opacity-0 scale-95"
-             class="absolute right-0 mt-2 w-32 bg-stone-900 border border-stone-700 rounded-lg shadow-xl overflow-hidden z-50"
+             class="absolute right-0 mt-2 w-32 bg-navy-900 border border-navy-700 rounded-lg shadow-xl overflow-hidden z-50"
              style="display: none;">
             @foreach($locales as $code => $locale)
                 <a href="{{ route('lang.switch', $code) }}"
-                   class="flex items-center gap-2 px-4 py-2 text-sm transition-colors {{ $code === $currentLocale ? 'bg-stone-800 text-amber-400' : 'text-white/70 hover:bg-stone-800 hover:text-white' }}">
+                   class="flex items-center gap-2 px-4 py-2 text-sm transition-colors {{ $code === $currentLocale ? 'bg-navy-800 text-primary-400' : 'text-white/70 hover:bg-navy-800 hover:text-white' }}">
                     <span>{{ $locale['flag'] }}</span>
                     <span>{{ $locale['name'] }}</span>
                 </a>
@@ -44,7 +44,7 @@
         <span class="text-white/50 text-sm">{{ __('Language') }}:</span>
         @foreach($locales as $code => $locale)
             <a href="{{ route('lang.switch', $code) }}"
-               class="text-sm font-medium {{ $code === $currentLocale ? 'text-amber-400' : 'text-white/60 hover:text-white' }}">
+               class="text-sm font-medium {{ $code === $currentLocale ? 'text-primary-400' : 'text-white/60 hover:text-white' }}">
                 {{ $locale['short'] }}
             </a>
         @endforeach
